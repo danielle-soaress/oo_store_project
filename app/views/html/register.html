@@ -10,28 +10,30 @@
 </head>
 <body>
     <h1>Sign Up</h1>
-    <form>
+    <form action="" id="register">
         <i class="bi bi-person"></i>
-        <input type="text" placeholder="FirstName" required><br>
+        <input type="text" name="firstName" id="firstName" placeholder="FirstName" required><br>
         
         <i class="bi bi-person"></i>
-        <input type="text" placeholder="LastName" required><br>
+        <input type="text" name="lastName" id="lastName" placeholder="LastName" required><br>
         
         <i class="bi bi-person"></i>
-        <input type="text" placeholder="Username" required><br>
+        <input type="text" name="username" id="userNname" placeholder="UserName" required><br>
         
         <i class="bi bi-envelope"></i>
-        <input type="email" placeholder="Email" required><br>
+        <input type="email" name="email" id="email" placeholder="Email" required><br>
+        
+        <i class="bi bi-house-door"></i>
+        <input type="text" name="address" id="address" placeholder="Address" required><br>  
         
         <i class="bi bi-lock"></i>
-        <input type="password" placeholder="Password" required><br>
-
-        <i class="bi bi-house-door"></i>
-        <input type="text" placeholder="Address" required><br>  
-       
-        <input type="submit" value="Register">
+        <input type="password" name="password" id="password" placeholder="Password" required><br>  
+        
+        <button type="submit">Register</button>
         
     </form>
+
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.min.js"></script>

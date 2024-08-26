@@ -8,7 +8,8 @@ class Application():
 
         self.pages = {
             'pagina': self.pagina,
-            'portal': self.portal
+            'portal': self.portal,
+            'register': self.register
         }
         self.__model= DataRecord()
 
@@ -65,3 +66,7 @@ class Application():
         self.__model.logout(session_id)
         response.delete_cookie('session_id')
         redirect('/portal')
+
+    def register(self):
+        print("Register page requested")
+        return template('app/views/html/register')
