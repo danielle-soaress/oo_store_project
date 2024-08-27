@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link  rel="stylesheet" href="../../static/css/index.css">
+    <link  rel="stylesheet" href="../../static/css/header.css">
     <title>Menu</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,15 +26,29 @@
                 </nav>
             </div>
             <div class="header_right_container">
-                <button id="login" onclick="window.location.href= 'portal.html'">Sign In</button>
+                <a class="header_link"><button class="login_button" onclick="window.location.href= 'portal.html'">Sign In</button></a>
                 <i class="bi bi-search"></i>
                 <i class="bi bi-moon-fill"></i>
             </div>
         </div>
     </header>
-
+    <section class="main_image_section">
+        <div class="main_image_container">
+            <div class="main_image_left">
+                <h2 class="main_image_t1">HEAR EVERY DETAIL</h2>
+                <h2 class="main_image_t2">FEEL THE BEAT</h2>
+                <div class="main_image_text">
+                    <p class="main_image_p1">It's time to feel the <span class="p1_span">difference</span>.</p>
+                    <p class="main_image_p2">The perfect sound exists.<br>but you haven't found it yet.</p>
+                    <button class="main_image_button">Search now</button>
+                </div>
+            </div>
+            <div class="main_image_div">
+                <img id='main_image' src="../../static/img/main_image_headphone.png" alt="">
+            </div>
+        </div>
+    </section>
     <button id="register" onclick="window.location.href= 'register.html'">Sign Up</button>
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.min.js"></script>
