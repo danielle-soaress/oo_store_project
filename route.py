@@ -16,9 +16,6 @@ ctl = Application()
 def serve_static(filepath):
     return static_file(filepath, root='./app/static')
 
-@app.route('/helper')
-def helper():
-    return ctl.render('helper')
 
 #-----------------------------------------------------------------------------
 # Suas rotas aqui:
@@ -47,6 +44,10 @@ def logout():
 @app.route('/register', method='GET')
 def signUp():
     return ctl.render('register')
+
+@app.route('/home', method='GET')
+def home():
+    return ctl.render('home')
 
     
 @app.route('/register', method='POST')

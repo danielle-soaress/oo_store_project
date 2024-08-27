@@ -9,21 +9,18 @@ class Application():
         self.pages = {
             'pagina': self.pagina,
             'portal': self.portal,
-            'register': self.register
+            'register': self.register,
+            'home': self.home            
         }
         self.__model= DataRecord()
 
 
     def render(self,page,parameter=None):
-        content = self.pages.get(page, self.helper)
+        content = self.pages.get(page, self.home)
         if not parameter:
             return content()
         else:
             return content(parameter)
-
-
-    def helper(self):
-        return template('app/views/html/helper')
 
 
     def portal(self):
@@ -70,3 +67,8 @@ class Application():
     def register(self):
         print("Register page requested")
         return template('app/views/html/register')
+    
+
+    def home(self):
+        print("Home page requested")
+        return template('app/views/html/index')
