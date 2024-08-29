@@ -1,7 +1,13 @@
+* {
+    padding: 0;
+    margin: 0;
+
+}
 
 header {
     width: 100vw;
     height: 10vh;
+    min-height: 10vh;
     background-color: rgba(235, 235, 235, 0.403);
     display: flex;
     justify-content: center;
@@ -10,6 +16,7 @@ header {
 
 .header_container {
     width: 85vw;
+    max-width: 1440px;
     height: 100%;
     display: flex;
     justify-content: space-between;
@@ -18,7 +25,7 @@ header {
 }
 
 #header_logo {
-    width: 100px;
+    width: 110px;
     height: auto;
 
 }
