@@ -55,7 +55,7 @@ def action_register():
     sucess = dtr.book(username, password)
 
     if sucess:
-        return "Usuário registrado com sucesso!"
+        return ctl.render("portal")
     else:
         return "Nome de usuário já existe. Por favor, escolha outro."
     
