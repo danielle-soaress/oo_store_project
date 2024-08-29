@@ -23,12 +23,21 @@ class DataRecord():
 
 
     def book(self,username,password):
+        #Verificar se username existe no arquivo.json
+        for user in self.__user_accounts:
+            if user.username == username:
+                return False #Username já existe
+
+        #Se não existir, cria e adiciona o novo usuario
         new_user= UserAccount(username,password)
         self.__user_accounts.append(new_user)
+
+        #Salva no arquivo.json
         with open("app/controllers/db/user_accounts.json", "w") as arquivo_json:
             user_data = [vars(user_account) for user_account in
             self.__user_accounts]
             json.dump(user_data, arquivo_json)
+        return True #Usuario registrado com sucesso
 
 
     def getCurrentUser(self,session_id):

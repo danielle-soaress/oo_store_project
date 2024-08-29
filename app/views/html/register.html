@@ -10,7 +10,7 @@
 </head>
 <body>
     <h1>Sign Up</h1>
-    <form action="" id="register">
+    <form action="/register" method="post" id="register">
         <i class="bi bi-person"></i>
         <input type="text" name="firstName" id="firstName" placeholder="FirstName" required><br>
         
@@ -29,9 +29,18 @@
         <i class="bi bi-lock"></i>
         <input type="password" name="password" id="password" placeholder="Password" required><br>  
         
-        <button type="submit">Register</button>
-        
+        <input type="password" name="passwordConfir" id="passwordConfir" placeholder="Confirm your password" required><br>  
+
+        <input type="submit" value="Sign Up"> <br>
+
+        <span>Have an account? <a href="#" onclick="redirectLogin()">Sign In</a></span>
     </form>
+
+    <script>
+        function redirectLogin(){
+            window.location.href="portal.html";
+        }
+    </script>
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

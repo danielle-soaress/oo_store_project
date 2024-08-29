@@ -27,7 +27,7 @@ def action_pagina(username=None):
 
 @app.route('/portal', method='GET')
 def login():
-    return ctl.template('/app/views/html/portal.tpl')
+    return ctl.render('/app/views/html/portal')
 
 
 @app.route('/portal', method='POST')
@@ -45,25 +45,24 @@ def logout():
 def signUp():
     return ctl.render('register')
 
-@app.route('/home', method='GET')
-def home():
-    return ctl.render('home')
 
-    
 @app.route('/register', method='POST')
 def action_register():
     username = request.forms.get('username')
     password = request.forms.get('password')
 
-    users = ctl.read()
+    #Registrar o usuario
+    sucess = dtr.book(username, password)
 
-    if any(user['username'] == username for user in users):
-        message = 'Nome de usuário já cadastrado!'
-        return template('register', message = message)
+    if sucess:
+        return ctl.render("portal")
+    else:
+        return "Nome de usuário já existe. Por favor, escolha outro."
+    
 
-    users.append({'username': username})
-    ctl.book(users)
-
+@app.route('/home', method='GET')
+def home():
+    return ctl.render('home')
 #-----------------------------------------------------------------------------
 
 

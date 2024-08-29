@@ -21,6 +21,13 @@
     </form>
     <form action="/logout" method="post">
         <button type="submit">Logout</button>
+        <span>Have an account? <a href="#" onclick="redirectRegister()">Sign Up</a></span>
     </form>
+
+    <script>
+        function redirectRegister(){
+            window.location.href="register.html";
+        }
+    </script>
 </body>
 </html>
