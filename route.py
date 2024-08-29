@@ -48,11 +48,16 @@ def signUp():
 
 @app.route('/register', method='POST')
 def action_register():
+    firstname = request.forms.get('firstname')
+    lastname = request.forms.get('lastname')
     username = request.forms.get('username')
+    email = request.forms.get('email')
+    address = request.forms.get('address')
     password = request.forms.get('password')
+    
 
-    #Registrar o usuario
-    sucess = dtr.book(username, password)
+    #Registrar o usuario e os dados
+    sucess = dtr.book(username, password), dtr.book_users_dates(firstname, lastname, username, email, address, password)
 
     if sucess:
         return ctl.render("portal")
