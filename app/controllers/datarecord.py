@@ -1,5 +1,4 @@
 from app.models.user_account import UserAccount
-from app.models.users_dates import UsersDates
 import json
 import uuid
 import os
@@ -10,7 +9,6 @@ class DataRecord():
 
     def __init__(self):
         self.__user_accounts = []
-        self.__users_dates = []
         self.__authenticated_users = {}
         self.read()
 
@@ -29,7 +27,7 @@ class DataRecord():
             if not any(user.userID == new_id for user in self.__user_accounts):
                 return new_id
 
-    def book(self,username,password):
+    def book(self,firstname, lastname, username, email, address, password):
         #Verificar se username existe no arquivo.json
         for user in self.__user_accounts:
             if user.username == username:
@@ -37,7 +35,7 @@ class DataRecord():
 
         #Se não existir, cria e adiciona o novo usuario
         id = self.generate_unique_id()
-        new_user= UserAccount(username,password, id)
+        new_user= UserAccount(firstname, lastname, username, email, address, password, id)
         self.__user_accounts.append(new_user)
 
         #Salva no arquivo.json
