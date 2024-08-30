@@ -1,11 +1,12 @@
 class Product:
-    def __init__(self, id, name, price, productType, description, brand):
+    def __init__(self, id, name, price, productType, description, brand, color):
         self.__id = id
         self.__name = name
         self.__price = price
         self.__type = productType
         self.__description = description
         self.__brand = brand
+        self.__color = color
 
     def getId(self):
         return self.__id
@@ -36,3 +37,9 @@ class Product:
     
     def getBrand(self):
         return self.__brand
+    
+    def setColor(self, color):
+        self.__color = color
+
+    def getColor(self):
+        return self.__color

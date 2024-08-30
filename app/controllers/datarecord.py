@@ -19,9 +19,14 @@ class DataRecord():
                 user_data = json.load(arquivo_json)
                 self.__user_accounts = [UserAccount(**data) for data in user_data]
         except FileNotFoundError:
-            self.__user_accounts = [UserAccount('Guest', '000000')]  # Corrigido para inicializar a lista
+            self.__user_accounts.append(UserAccount('Guest', '000000', uuid.uuid4()))
 
-
+    def generate_unique_id(self):
+        #Gera um UUID único e garante que ele não se repita no banco de dados
+        while True:
+            new_id = str(uuid.uuid4())
+            if not any(user.userID == new_id for user in self.__user_accounts):
+                return new_id
 
     def book(self,firstname, lastname, username, email, address, password):
         #Verificar se username existe no arquivo.json
@@ -30,7 +35,8 @@ class DataRecord():
                 return False #Username já existe
 
         #Se não existir, cria e adiciona o novo usuario
-        new_user= UserAccount(firstname, lastname, username, email, address, password)
+        id = self.generate_unique_id()
+        new_user= UserAccount(firstname, lastname, username, email, address, password, id)
         self.__user_accounts.append(new_user)
 
         #Salva no arquivo.json

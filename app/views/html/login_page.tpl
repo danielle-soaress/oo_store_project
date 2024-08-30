@@ -6,11 +6,7 @@
     <title>Login</title>
 </head>
 <body>
-    <h1>Login</h1>
-    % if username:
-        <h4>Usuário logado: {{ username }} </h4>
-    % end
-    <form action="/portal" method="post">
+    <form action="/login_page" method="post">
         <label for="username">Nome:</label>
         <input id="username" name="username" type="text" required /><br>
 
@@ -19,15 +15,14 @@
 
         <input value="Login" type="submit" />
     </form>
+    
+    %if error_message:
+        <p style="color:red;">{{ error_message }}</p>
+    %end
+
     <form action="/logout" method="post">
         <button type="submit">Logout</button>
-        <span>Have an account? <a href="#" onclick="redirectRegister()">Sign Up</a></span>
+        <span>Have an account? <a href="#" onclick="window.location.href='register';">Sign Up</a></span>
     </form>
-
-    <script>
-        function redirectRegister(){
-            window.location.href="register.html";
-        }
-    </script>
 </body>
 </html>
