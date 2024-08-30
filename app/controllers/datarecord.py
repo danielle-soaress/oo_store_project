@@ -14,7 +14,6 @@ class DataRecord():
         self.__authenticated_users = {}
         self.read()
 
-
     def read(self):
         try:
             with open("app/controllers/db/user_accounts.json", "r") as arquivo_json:
@@ -46,9 +45,9 @@ class DataRecord():
             user_data = [vars(user_account) for user_account in
             self.__user_accounts]
             json.dump(user_data, arquivo_json)
+
         return True #Usuario registrado com sucesso
 
-    
     def read_users_dates(self):
             try:
                 with open("app/controllers/db/users_dates.json", "r") as arquivo_json:
@@ -56,7 +55,6 @@ class DataRecord():
                     self.__users_dates = [UsersDates(**data) for data in dates]
             except FileNotFoundError:
                 self.__users_dates.append(UsersDates('Guest', '000000'))
-
 
     def book_users_dates(self, firstname, lastname, username, email, address, password):
         #Cria e adiciona os dados do usuario
@@ -70,22 +68,21 @@ class DataRecord():
             json.dump(dates, arquivo_json)
         return True #Usuario registrado com sucesso
 
-
     def getCurrentUser(self,session_id):
         if session_id in self.__authenticated_users:
             return self.__authenticated_users[session_id]
         else:
             return None
 
-
     def checkUser(self, username, password):
+        self.read()
         for user in self.__user_accounts:
+            print(user.username)
             if user.username == username and user.password == password:
                 session_id = str(uuid.uuid4())  # Gera um ID de sessão único
                 self.__authenticated_users[session_id] = user
                 return session_id  # Retorna o ID de sessão para o usuário
         return None
-
 
     def logout(self, session_id):
         if session_id in self.__authenticated_users:

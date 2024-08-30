@@ -54,7 +54,7 @@ class Application():
         return username == current_user.username
 
 
-    def authenticate_user(self, username, password):
+    def authenticate_user(self, username, password): #login function
         session_id = self.__model.checkUser(username, password)
         if session_id:
             response.set_cookie('session_id', session_id, httponly=True, secure=True, max_age=3600)
