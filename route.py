@@ -65,7 +65,7 @@ def action_register():
     sucess = dtr.book(username, password), dtr.book_users_dates(firstname, lastname, username, email, address, password)
 
     if sucess:
-        return ctl.render("login")
+        return ctl.render("login_page")
     else:
         return "Nome de usuário já existe. Por favor, escolha outro."
     
