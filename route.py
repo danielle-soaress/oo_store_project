@@ -1,6 +1,7 @@
 from app.controllers.application import Application
-from bottle import Bottle, route, run, request, static_file
-from bottle import redirect, template, response
+from app.models.error import ERRORS, Error
+from bottle import Bottle, run, request, static_file
+from bottle import redirect
 from app.controllers.datarecord import DataRecord
 import json
 
@@ -22,23 +23,27 @@ def serve_static(filepath):
 
 @app.route('/pagina/<username>', method='GET')
 def action_pagina(username=None):
-    return ctl.render('pagina',username)
+    return ctl.render('pagina',username = username)
 
 
-@app.route('/portal', method='GET')
-def login():
-    return ctl.render('/app/views/html/portal')
+@app.route('/login_page', method='GET')
+def login(error_message = None):
+    error_code = request.query.get('error_code', None)
+    if error_code:
+        error_message = ERRORS.get(int(error_code), 0).message
+    return ctl.render('login_page', error_message = error_message)
 
-
-@app.route('/portal', method='POST')
-def action_portal():
+@app.route('/login_page', method='POST')
+def action_login():
     username = request.forms.get('username')
     password = request.forms.get('password')
     ctl.authenticate_user(username, password)
+        
 
 @app.route('/logout', method='POST')
 def logout():
     ctl.logout_user()
+    return redirect('/login_page')
 
 
 @app.route('/register', method='GET')
@@ -55,7 +60,7 @@ def action_register():
     sucess = dtr.book(username, password)
 
     if sucess:
-        return ctl.render("portal")
+        return ctl.render("login")
     else:
         return "Nome de usuário já existe. Por favor, escolha outro."
     

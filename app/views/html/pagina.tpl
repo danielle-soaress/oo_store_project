@@ -15,12 +15,12 @@
             <h2>Dados do Usuário:</h2>
             <p>Username: {{current_user.username}} </p>
             <p>Password: {{current_user.password}} </p>
-            <h3>Para LOGOUT, acesse novamente a rota '/portal'</h3>
+            <h3>Para LOGOUT, acesse novamente a rota '/login'</h3>
         </div>
 
     % else:
 
-        <h2>Realize o LOGIN para ter acesso aos seus dados pessoais. Acesse nosso portal em '/portal' :) </h2>
+        <h2>Realize o LOGIN para ter acesso aos seus dados pessoais. Acesse nosso login em '/login' :) </h2>
 
     % end
 
