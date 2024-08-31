@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #ffffff;
+    display: flex;
+    font-family: Poppins;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+
+    border: 0;
+}
+
+.container {
+    background-color: #7D29D2;
+    border-radius: 5px;
+    border: 2px solid #3E445B;
+    width: 600px;
+    max-width: 100%;
+}
+
+.header {
+    padding: 30px 40px;
+}
+
+.header h1 {
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.form {
+    padding: 0 40px 30px;
+}
+
+.form_control {
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+    position: relative;
+}
+
+.form_control label {
+    display: inline-block;
+    margin-bottom: 5px;
+    color: #ffffff;
+}
+.form_control span {
+    color: #ffffff;
+    padding: 5px;
+    font-size: medium;
+}
+
+.form_control span a {
+    font-weight: 500;
+    color: #ffffff;
+    margin-left: 5px;
+}
+
+.two_form {
+    display: flex;
+    gap: 10px;
+}
+
+.form_control input {
+    font-size: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    height: 50px;
+    width: 100%;
+    padding: 0 10px 0 45px; 
+    border: 2px solid #ffffff;
+    border-radius: 30px;
+    display: block;
+}
+
+.form_control i {
+    position: absolute;
+    top: 43px;
+    right: 10px;
+    font-size: 20px;
+    color: #ffffff;
+    visibility: hidden;
+}
+
+.form_control small {
+    visibility: hidden;
+    position: absolute;
+    margin-top: -15px;
+    margin-left: 25px;
+    font-size: 14px;
+}
+
+.form_control.error small {
+    color: #DB5A5A;
+    visibility: visible;
+}
+
+.form_control.error input {
+    border: 3px solid #DB5A5A;
+}
+
+.form_control.error i .img-error {
+    visibility: visible;
+}
+
+.form_control.success small {
+    color: #DB5A5A;
+    visibility: visible;
+}
+
+.form_control.success input {
+    border: 3px solid #4ECA64;
+}
+
+.form_control.success i .img-success {
+    visibility: visible;
+}
+
+.form button {
+    background-color: #4ECA64;
+    color: #ffffff;
+    border-radius: 30px;
+    padding: 15px;
+    font-size: 15px;
+    font-weight: 600px;
+    width: 100%;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.form button:hover {
+    background-color: #584ff5;
+    transition: 0.3s;
+}

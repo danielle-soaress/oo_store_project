@@ -18,6 +18,12 @@ def serve_static(filepath):
     return static_file(filepath, root='./app/static')
 
 
+@app.route('/db/<filepath:path>')
+def serve_db(filepath):
+    return static_file(filepath, root='./app/controllers/db')
+
+
+
 #-----------------------------------------------------------------------------
 # Suas rotas aqui:
 
@@ -59,18 +65,12 @@ def action_register():
     email = request.forms.get('email')
     address = request.forms.get('address')
     password = request.forms.get('password')
-    confirm_password = request.forms.get('confirm_password')
     
 
-    #Registrar o usuario e os dados se as senha original for igual a senha de confirmação
-    if password != confirm_password:
-        return ctl.render('register')
-    else:
-        sucess = dtr.book(firstname, lastname, username, email, address, password)
+    #Registrar o usuario e os dados
+    sucess = dtr.book(firstname, lastname, username, email, address, password)
     if sucess:
         return ctl.render("login_page")
-    else:
-        return "Nome de usuário já existe. Por favor, escolha outro."
     
 
 @app.route('/home', method='GET')
