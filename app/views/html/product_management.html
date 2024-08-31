@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link  rel="stylesheet" href="../../static/css/product_management.css">
+    <link  rel="stylesheet" href="../../static/css/header.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <title>Admin Product Management</title>
+</head>
+<body>
+    <header>
+        <div class="header_container">
+            <div id="left_header">
+                <img id="header_logo" src="../../static/img/logo.png" alt="">
+                <div id="bar"></div>
+                <h1 class="header_title">PRODUCT<br>MANAGEMENT</h1>
+            </div>
+            <div id="center_header">
+                <div class="action_header_container">
+                    <i class="action_icon bi bi-cart"></i>
+                    <p class="action_header_text">Products</p>
+                </div>
+                <div class="action_header_container">
+                    <i class="action_icon bi bi-bar-chart-line"></i>
+                    <p class="action_header_text">Dashboard</p>
+                </div>
+                <div class="action_header_container">
+                    <i class="action_icon bi bi-card-list"></i>
+                    <p class="action_header_text">Orders</p>
+                </div>
+            </div>
+            <div id="right_header">
+                <p class="right_header_p">Admin, <a class=" header_link right_header_p_purple">Logout</span></a>
+            </div>
+        </div>
+    </header>
+    <section id="products_section">
+        <div id="left_products_section">
+            <div id="search_bar">
+                <i class="bi bi-search"></i>
+                <input id="search_input" type="text"/>
+                <i class="bi bi-caret-right-fill"></i>
+            </div>
+            <div id="products_list_container">
+                <div class="product_item">
+                    
+                </div>
+            </div>
+        </div>
+        <div id="right_products_section">
+            <button class="products_section_action_button">Delete Product</button>
+            <button class="products_section_action_button">Add Product</button>
+            <button class="products_section_action_button">Edit Product</button>
+            <button class="products_section_action_button">Archive Product</button>
+        </div>
+    </section>
+
+
+    <script>
+        function redirectLogin(){
+            window.location.href="login_page";
+        }
+    </script>
+    <script src='../../static/js/product_management.js'></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.min.js"></script>
+</body>
+</html>

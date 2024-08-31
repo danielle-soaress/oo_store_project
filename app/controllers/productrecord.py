@@ -15,8 +15,16 @@ class ProductRecord:
         except FileNotFoundError:
             self.__products = []
 
-    def create_product(self, name, price):
-        new_product = Product(name, price)
+    def generate_unique_id(self):
+        #Gera um UUID único e garante que ele não se repita no banco de dados
+        while True:
+            new_id = str(uuid.uuid4())
+            if not any(product.getId() == new_id for product in self.__products):
+                return new_id
+
+    def create_product(self, name, price, productType, description, brand, color):
+        ProductID = self.generate_unique_id()
+        new_product = Product(ProductID, name, price, productType, description, brand, color)
         self.__products.append(new_product)
         self.save()
         return new_product

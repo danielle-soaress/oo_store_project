@@ -8,9 +8,10 @@ class Product:
         self.__brand = brand
         self.__color = color
 
+    @property
     def getId(self):
         return self.__id
-    
+    @property
     def getName(self):
         return self.__name
     

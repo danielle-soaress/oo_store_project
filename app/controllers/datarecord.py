@@ -19,7 +19,9 @@ class DataRecord():
                 self.__user_accounts = [UserAccount(**data) for data in user_data]
         except FileNotFoundError:
             self.__user_accounts.append(UserAccount('Guest', '000000', uuid.uuid4()))
-
+        except json.JSONDecodeError:
+            self.__user_accounts = []
+    
     def generate_unique_id(self):
         #Gera um UUID único e garante que ele não se repita no banco de dados
         while True:
@@ -44,26 +46,6 @@ class DataRecord():
             self.__user_accounts]
             json.dump(user_data, arquivo_json)
 
-        return True #Usuario registrado com sucesso
-
-    def read_users_dates(self):
-            try:
-                with open("app/controllers/db/users_dates.json", "r") as arquivo_json:
-                    dates = json.load(arquivo_json)
-                    self.__users_dates = [UsersDates(**data) for data in dates]
-            except FileNotFoundError:
-                self.__users_dates.append(UsersDates('Guest', '000000'))
-
-    def book_users_dates(self, firstname, lastname, username, email, address, password):
-        #Cria e adiciona os dados do usuario
-        new_dates = UsersDates(firstname, lastname, username, email, address, password)
-        self.__users_dates.append(new_dates)
-
-        #Salva no arquivo.json
-        with open("app/controllers/db/users_dates.json", "w") as arquivo_json:
-            dates = [vars(user_date) for user_date in
-            self.__users_dates]
-            json.dump(dates, arquivo_json)
         return True #Usuario registrado com sucesso
 
     def getCurrentUser(self,session_id):

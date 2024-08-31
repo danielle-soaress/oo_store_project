@@ -1,0 +1,118 @@
+#left_header {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    line-height: 17px;
+}
+
+#bar {
+    width: 3px;
+    height: 50px;
+    background-color: #D9D9D9;
+}
+
+#center_header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#right_header .right_header_p{
+    font-weight: 600;
+}
+
+.right_header_p_purple {
+    color: #7D29D2;
+    cursor: pointer
+}
+
+.action_icon {
+    color: inherit;
+    font-size: 22px;
+}
+
+.action_header_container {
+    cursor:pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 10vh;
+    width: 80px;
+    padding: 0px 50px;
+    gap: 2px;
+    color: #7D29D2;
+    font-weight: 800;
+}
+
+.action_header_text {
+    color: inherit;
+}
+
+
+.select_action {
+    background-color: #A348FF;
+    color: white!important;
+}
+
+#products_section {
+    width: 85vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+#left_products_section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 80%
+}
+
+#search_bar {
+    width: 90%;
+    height: 35px;
+    background-color: #F5F5F5;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#search_input {
+    width: 100%;
+    background-color: #F5F5F5;
+    outline: none;
+    border: none;
+    vertical-align: middle;
+
+}
+
+.bi-search, .bi-caret-right-fill {
+    font-size: 16px;
+    color:#7D29D2;
+    padding: 0px 20px;;
+}
+
+#products_list_container {
+    width: 100%;
+    background-color: #7D29D2;
+    height:50vh;
+    border-radius: 20px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.product_item {
+    width: 90%;
+    height: 180px;
+    background-color: white;
+}
