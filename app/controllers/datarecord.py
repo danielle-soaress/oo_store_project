@@ -1,4 +1,5 @@
 from app.models.user_account import UserAccount
+from bottle import redirect
 import json
 import uuid
 import os
@@ -30,11 +31,6 @@ class DataRecord():
                 return new_id
 
     def book(self,firstname, lastname, username, email, address, password):
-        #Verificar se username existe no arquivo.json
-        for user in self.__user_accounts:
-            if user.username == username:
-                return False #Username já existe
-
         #Se não existir, cria e adiciona o novo usuario
         id = self.generate_unique_id()
         new_user= UserAccount(firstname, lastname, username, email, address, password, id)

@@ -68,8 +68,7 @@ class Application():
         response.delete_cookie('session_id')
         redirect('/login')
 
-    def register(self):
-        print("Register page requested")
+    def register(self, **args):
         return template('app/views/html/register')
     
 
