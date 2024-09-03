@@ -1,0 +1,30 @@
+[
+    {
+        "id": "123",
+        "name": "Headphone Model X",
+        "price": 199.99,
+        "category": "Over-Ear",
+        "connectivity": "Bluetooth",
+        "description": "High-quality over-ear headphones with noise cancellation.",
+        "brand": "SoundTech",
+        "colorStock": {
+            "black": 15,
+            "silver": 10
+        },
+        "imageFileName": "main_image_headphone.png"
+    },
+    {
+        "id": "124",
+        "name": "Earbuds Pro",
+        "price": 89.99,
+        "category": "In-Ear",
+        "connectivity": "Bluetooth",
+        "description": "Compact and powerful in-ear earbuds with a comfortable fit.",
+        "brand": "SoundTech",
+        "colorStock": {
+            "white": 20,
+            "blue": 12
+        },
+        "imageFileName": "headphone-home.png"
+    }
+]

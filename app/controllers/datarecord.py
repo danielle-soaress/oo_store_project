@@ -10,8 +10,10 @@ class DataRecord():
 
     def __init__(self):
         self.__user_accounts = []
+        self.__admins = []
         self.__authenticated_users = {}
         self.read()
+        self.adminsInfo()
 
     def read(self):
         try:
@@ -22,6 +24,17 @@ class DataRecord():
             self.__user_accounts.append(UserAccount('Guest', '000000', uuid.uuid4()))
         except json.JSONDecodeError:
             self.__user_accounts = []
+    
+    def adminsInfo(self):
+        try:
+            with open("app/controllers/db/admins.json", "r") as arquivo_json:
+                admins_data = json.load(arquivo_json)
+                admins = []
+                for item in admins_data:
+                    admins.append(item["id"])
+                self.__admins = admins
+        except FileNotFoundError:
+            self.__admins.append(UserAccount('Guest', '000000', uuid.uuid4()))
     
     def generate_unique_id(self):
         #Gera um UUID único e garante que ele não se repita no banco de dados
@@ -42,6 +55,7 @@ class DataRecord():
             self.__user_accounts]
             json.dump(user_data, arquivo_json)
         return True #Usuario registrado com sucesso
+    
 
     def getCurrentUser(self,session_id):
         if session_id in self.__authenticated_users:
@@ -57,6 +71,18 @@ class DataRecord():
                 session_id = str(uuid.uuid4())  # Gera um ID de sessão único
                 self.__authenticated_users[session_id] = user
                 return session_id  # Retorna o ID de sessão para o usuário
+        return None
+
+    def checkAdmin(self, session_id):
+        current_user = self.getCurrentUser(session_id)
+        print(current_user)
+        print('admins ')
+        print(self.__admins)
+        if current_user:
+            for adminID in self.__admins:
+                if adminID == current_user.userID:
+                    return True
+            return False
         return None
 
     def logout(self, session_id):

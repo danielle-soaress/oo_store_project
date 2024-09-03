@@ -16,24 +16,27 @@ class ProductRecord:
             self.__products = []
 
     def generate_unique_id(self):
-        #Gera um UUID único e garante que ele não se repita no banco de dados
         while True:
             new_id = str(uuid.uuid4())
-            if not any(product.getId() == new_id for product in self.__products):
+            if not any(product.id == new_id for product in self.__products):
                 return new_id
 
-    def create_product(self, name, price, productType, description, brand, color):
+    def create_product(self,name, price, category, connectivity, description, brand, colorStock, imageFileName):
         ProductID = self.generate_unique_id()
-        new_product = Product(ProductID, name, price, productType, description, brand, color)
+        new_product = Product(ProductID, name, price, category, connectivity, description, brand, colorStock, imageFileName)
         self.__products.append(new_product)
         self.save()
-        return new_product
+        return True
 
     def get_product(self, product_id):
         for product in self.__products:
-            if product.product_id == product_id:
+            if product.id == product_id:
                 return product
         return None
+    
+    def get_stockInfo(self, product_id):
+        product = self.get_product(product_id)
+        return product.stockStatus()
 
     def update_product(self, product_id, name=None, price=None):
         product = self.get_product(product_id)
@@ -45,12 +48,22 @@ class ProductRecord:
             self.save()
             return product
         return None
+    
+    def update_product_stock(self, product_id, color, quantitySold):
+        product = self.get_product(product_id)
+        if product:
+            newColorStock = product.getStockForColor(color) - quantitySold
+            if newColorStock >=0:
+                product.setColorStock(color, newColorStock)
+                self.save()
+                return product
+        return None
 
     def delete_product(self, product_id):
-        self.__products = [product for product in self.__products if product.product_id != product_id]
+        self.__products = [product for product in self.__products if product.id != product_id]
         self.save()
 
     def save(self):
         with open("app/controllers/db/products.json", "w") as arquivo_json:
             product_data = [product.to_dict() for product in self.__products]
-            json.dump(product_data, arquivo_json)
+            json.dump(product_data, arquivo_json, indent=4)
