@@ -1,9 +1,14 @@
 from app.controllers.application import Application
 from app.models.error import ERRORS, Error
-from bottle import Bottle, run, request, static_file
+from bottle import Bottle, run, request, static_file, response
 from bottle import redirect
 from app.controllers.datarecord import DataRecord
+from app.controllers.productrecord import ProductRecord
 import json
+import os
+import re
+import uuid
+
 
 dtr = DataRecord()
 app = Bottle()
@@ -25,7 +30,6 @@ def serve_db(filepath):
 
 
 #-----------------------------------------------------------------------------
-# Suas rotas aqui:
 
 @app.route('/pagina/<username>', method='GET')
 def action_pagina(username=None):
@@ -76,6 +80,98 @@ def action_register():
 @app.route('/home', method='GET')
 def home():
     return ctl.render('home')
+
+
+# ----------------- PRODUCT MANAGEMENT ROUTES (API) ----------------
+
+prc = ProductRecord()
+
+@app.route('/management', method='GET')
+def management():
+    return ctl.render('management')
+
+@app.route('/api/products', method='GET')
+def get_products():
+    with open('app/controllers/db/products.json') as f:
+        products = json.load(f)
+    response.content_type = 'application/json'
+    return json.dumps(products)
+
+@app.route('/api/products/<product_id>', method='DELETE')
+def delete_product(product_id):
+    try:
+        prc.delete_product(product_id)
+        response.status = 204
+        return
+    except Exception as e:
+        response.status = 500
+        return {'error':str(e)}
+    
+@app.route('/api/products', method='POST')
+def add_product():
+    try:
+        name = request.forms.get('name')
+        price_str = request.forms.get('price')
+        category = request.forms.get('category')
+        connectivity = request.forms.get('connectivity')
+        description = request.forms.get('description')
+        brand = request.forms.get('brand')
+        colorStock = {}
+        imageFileName = None
+        price = None
+
+        ## price processing
+        if not is_valid_float(price_str):
+            response.status = 400
+            return {"error": "Insert a valid price value. For decimal numbers, use '.'."}
+        else:
+            price = float(price_str)
+
+        ## image processing
+
+        image = request.files.get('image')
+        if image:
+            filename = generate_unique_filename(image.filename)
+    
+            if not filename.endswith(('.png', '.jpg', '.jpeg', '.gif')):
+                response.status = 400
+                return json.dumps({"error": "Unsupported file type"})
+            file_path = os.path.join('app/static/img', filename)
+            image.save(file_path)
+            imageFileName = filename
+        
+        ## color stock processing
+        colors = request.forms.getall('colorStock')
+        quantities = request.forms.getall('colorStockQuantity')
+
+        if len(colors) == len(quantities):
+            for color,quantity in zip(colors, quantities):
+                if not is_valid_hex_color(color):
+                    response.status = 400
+                    return json.dumps({"error": f'Color "{color}" is not in a valid hex format'})
+                colorStock[color] = int(quantity) 
+        else:
+            response.status = 400
+            return json.dumps({"error": "All colors must have quantity information. The number of colors is not equal to the number of quantity information."})
+        prc.create_product(name, price, category, connectivity, description, brand, colorStock, imageFileName)
+        response.status = 204
+        return
+    except Exception as e:
+        response.status = 500
+        return {'error':str(e)}
+
+# Regex para verificar cores hexadecimais
+HEX_COLOR_REGEX = re.compile(r'^#(?:[0-9A-Fa-f]{3}){1,2}$')
+
+def is_valid_hex_color(color):
+    return HEX_COLOR_REGEX.match(color) is not None
+
+def is_valid_float(value):
+    return bool(re.match(r"^\d+(\.\d+)?$", value))
+
+def generate_unique_filename(filename):
+    unique_id = str(uuid.uuid4())
+    return f"{unique_id}_{filename}"
 #-----------------------------------------------------------------------------
 
 

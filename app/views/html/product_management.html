@@ -21,7 +21,7 @@
                 <h1 class="header_title">PRODUCT<br>MANAGEMENT</h1>
             </div>
             <div id="center_header">
-                <div class="action_header_container">
+                <div class="action_header_container select_action">
                     <i class="action_icon bi bi-cart"></i>
                     <p class="action_header_text">Products</p>
                 </div>
@@ -43,23 +43,115 @@
         <div id="left_products_section">
             <div id="search_bar">
                 <i class="bi bi-search"></i>
-                <input id="search_input" type="text"/>
+                <input id="search_input" type="text" placeholder="Search for product name or id"/>
                 <i class="bi bi-caret-right-fill"></i>
             </div>
             <div id="products_list_container">
-                <div class="product_item">
-                    
-                </div>
+                
             </div>
         </div>
         <div id="right_products_section">
-            <button class="products_section_action_button">Delete Product</button>
-            <button class="products_section_action_button">Add Product</button>
-            <button class="products_section_action_button">Edit Product</button>
-            <button class="products_section_action_button">Archive Product</button>
+            <button id = "add_product_button" onclick="openProductWindow()" class="products_section_action_button">Add Product</button>   
+            
         </div>
+        
     </section>
+    <div id="information_box" class="hide less-opacity">
+        <div id="stock_information" class="hide">
+            <div class="top_informatioon_box">
+                <button onclick="closeProductWindow()" class="close_window_button">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+                <p id="stock_product_name" class="information_box_title">Product Name (ID: 323)</p>
+            </div>
 
+            <p id="stock_product_status" class="product_item_text"><strong>Status:</strong> In Stock </p>
+            <br>
+            <p class="product_item_text"><strong>Available Colors:</strong></p>
+            <div class="product_item_colors">
+                <div id="stock_product_colors" class="product_colors">
+                    
+                </div>
+            </div>
+            <div>
+                <button class="product_item_action_button" onclick="closeStockInformation()"> Return </button>
+                <button class="product_item_action_button"> Save </button>
+            </div>
+        </div>
+        <div id="add_product" class="hide">
+            <div class="top_informatioon_box">
+                <button onclick="closeProductWindow()" class="close_window_button">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+                <h1 class="information_box_title">Cadastrar Produto</h1>
+            </div>
+            <form id="productForm">
+                <div class="label_div">
+                    <label for="name">Name:</label>
+                    <input class="productForm_input" type="text" id="name" name="name" required>
+                    <br>
+                </div>
+
+                <div class="label_div">
+                    <label for="price">Price (R$):</label>
+                    <input class="productForm_input" type="number" id="price" name="price" step="0.01" required>
+                    <br>
+                </div>
+
+                <div class="label_div">
+                    <label for="category">Category:</label>
+                    <select class="productForm_input" name="category" id="category">
+                        <option value="Headphones">Headphone</option>
+                        <option value="Earbuds">Earbuds</option>
+                        <option value="In_ear">In-Ear</option>
+                        <option value="Headsets">Headsets</option>
+                        <option value="Noise-Cancelling">Noise-Cancelling</option>
+                    </select>
+                </div>
+
+                <div class="label_div">
+                    <label for="connectivity">Connectivity:</label>
+                    <select class="productForm_input" name="connectivity" id="connectivity">
+                        <option value="Wireless">Wireless</option>
+                        <option value="Wired">Wired</option>
+                        <option value="Hybrid">Hybrid</option>
+                    </select>
+                </div>
+
+                <div class="label_div desc_div">
+                    <label for="description">Description:</label>
+                    <textarea class="productForm_input" id="description" name="description" rows="4" required></textarea>
+                    
+                </div>
+
+                <div class="label_div">
+                    <label for="brand">Brand:</label>
+                    <input class="productForm_input" type="text" id="brand" name="brand" required>
+                    <br>
+                </div>
+
+                <div class="label_div img_div">
+                    <label for="image">Image:</label>
+                    <input id="input_imge" type="file" id="image" name="image" accept="image/*">
+                    
+                </div>
+
+                <div class="label_div colorStock_div">
+                    <label>Color Stock:</label>
+                    <div id="colorStockContainer">
+                        <div class="color-stock">
+                            <input  class="productForm_input" type="text" name="colorStock" placeholder="Hex Color (ex: #FFFFFF)" required>
+                            <input  class="productForm_input" style="width: 90px;" type="number" name="colorStockQuantity" placeholder="Quantity" min="0" required>
+                        </div>
+                    </div>
+                    <button id="add_color_productForm" class="product_item_action_button" style="width: 100px;" type="button">Add Color</button>
+                    <br>
+                </div>
+
+                <button style="width: 100%;" class="product_item_action_button" type="submit">Add Product</button>
+            </form>
+        </div>
+    </div>
 
     <script>
         function redirectLogin(){

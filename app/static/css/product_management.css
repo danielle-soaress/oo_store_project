@@ -1,3 +1,7 @@
+html {
+    overflow: hidden;
+}
+
 #left_header {
     display: flex;
     flex-direction: row;
@@ -58,7 +62,7 @@
 }
 
 #products_section {
-    width: 85vw;
+    width: 1000px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -70,7 +74,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    width: 80%
+    width: 70%;
 }
 
 #search_bar {
@@ -90,7 +94,6 @@
     outline: none;
     border: none;
     vertical-align: middle;
-
 }
 
 .bi-search, .bi-caret-right-fill {
@@ -105,14 +108,228 @@
     height:50vh;
     border-radius: 20px;
     margin-top: 20px;
+    padding: 10px 10px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+    gap: 10px;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .product_item {
-    width: 90%;
-    height: 180px;
+    width: 100%;
+    height: 150px;
+    padding: 6px 6px;
     background-color: white;
+    border-radius:15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main_product_info {
+    display: flex;
+}
+
+.product_item_image {
+    height: 140px;
+    border-radius: 15px;
+}
+
+.product_item_div_text {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+    margin-right: 25px;
+    line-height: 20px;
+    font-size: 16px;
+    justify-content: center;
+}
+
+.product_item_name, .information_box_title {
+    margin-bottom: 6px;
+    color:#7D29D2;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.product_item_colors {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.product_colors {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.p_color {
+    width: 15px;
+    height: 15px;
+    background-color: aqua;
+    border: 1px solid black;
+    border-radius: 16px;
+}
+
+.color_info {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.product_item_actions {
+    display: flex;
+    gap: 10px;
+    margin-right: 15px;
+}
+
+.product_item_actions {
+
+    display: flex;
+    flex-direction: column;
+}
+
+#right_products_section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.product_item_action_button {
+    background-color: #7D29D2;
+    outline: none;
+    border: none;
+    padding: 6px 8px;
+    font-weight: 500;
+    font-size: 12px;
+    color: white;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: ease 0.2s;
+}
+
+.product_item_action_button:hover {
+    transform: scale(1.05);
+    transition: ease 0.2s;
+}
+
+#information_box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vh;
+}
+
+#stock_information, #add_product {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(255, 255, 255);
+    border-radius: 40px;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+.top_informatioon_box {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    gap: 30px;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+
+}
+.quantity_input {
+    width: 70px;
+    padding: 3px 0px;
+    padding-left: 10px;
+    border-radius: 8px;
+}
+
+#add_product {
+    gap: 20px;
+}
+
+#productForm
+
+#productForm label {
+    font-weight: 600;
+}
+
+
+.label_div {
+    margin-bottom: 15px;
+}
+
+.img_div, .desc_div, .colorStock_div {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#colorStockContainer {
+    max-height: 130px;
+    overflow: auto;
+}
+
+.color-stock {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.color-stock_input {
+    width: 
+}
+.productForm_input, .color-stock_input {
+    padding: 4px 10px;
+    outline: none;
+    border-radius: 20px;
+    border: none;
+    background-color: #F5F5F5
+}
+
+.less-opacity {
+    background-color: rgba(0, 0, 0, 0.555);
+}
+
+.close_window_button {
+    background-color: #7D29D2;
+    outline: none;
+    border: none;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 40px;
+    cursor: pointer;
+    
+}
+
+.bi-x-lg {
+    color: white;
+    font-size: 16px;
+}
+
+
+
+
+
+
+
+
+.hide {
+    display: none!important;
 }
