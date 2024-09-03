@@ -1,0 +1,168 @@
+[33mcommit b32918bb6caf1d29648e6ec84c3a92e77392970f[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: b0adca6 4cf2c73
+Author: Danielle Soares <silvasoaresdanielle2@gmail.com>
+Date:   Sat Aug 31 20:42:53 2024 -0300
+
+    bug fixed: datarecord 'read' function
+
+[33mcommit b0adca6b916dd7df4bd6348e064a5c56eb4d1d94[m
+Author: Danielle Soares <silvasoaresdanielle2@gmail.com>
+Date:   Sat Aug 31 20:37:59 2024 -0300
+
+    bug fixed: error on 'read' datarecord function
+
+[33mcommit 4cf2c732d83447e6a2812cc3ad71fd6eb41bdd2e[m
+Merge: fd3245d df86013
+Author: LeticiArisa <higaleticia11@gmail.com>
+Date:   Sat Aug 31 15:07:36 2024 -0300
+
+    update: register
+
+[33mcommit fd3245d3d8fee87225fb7649396c8f4661e4c4d4[m
+Author: LeticiArisa <higaleticia11@gmail.com>
+Date:   Sat Aug 31 15:06:09 2024 -0300
+
+    update:register
+
+[33mcommit df8601355ab4ebb5ff2765d054eefe8cb81c71ac[m
+Merge: 3cce6a7 0a06401
+Author: Danielle Soares <silvasoaresdanielle2@gmail.com>
+Date:   Fri Aug 30 20:12:08 2024 -0300
+
+    merging content
+
+[33mcommit 3cce6a7d07fac6dafe7617ae68e26c00de1f15c0[m
+Author: Danielle Soares <silvasoaresdanielle2@gmail.com>
+Date:   Fri Aug 30 20:10:32 2024 -0300
+
+    Bug fix: resolved issue with user login.
+
+[33mcommit 0a064012af111e43a258f813160b0244ba4890e3[m
+Merge: 900c383 6cf4173
+Author: LeticiArisa <higaleticia11@gmail.com>
+Date:   Fri Aug 30 00:12:52 2024 -0300
+
+    update
+
+[33mcommit 900c3831e108c7d06ea5cffcc79b0f01591f6487[m
+Author: LeticiArisa <higaleticia11@gmail.com>
+Date:   Thu Aug 29 23:51:12 2024 -0300
+
+    update
+
+[33mcommit 98866f9a83356727159493164e4c9d5a3085049d[m
+Author: LeticiArisa <higaleticia11@gmail.com>
+Date:   Thu Aug 29 23:48:29 2024 -0300
+
+    update
+
+[33mcommit aa750febf9cfa90ef73b86c74e406339bbab55a7[m
+Author: LeticiArisa <higaleticia11@gmail.com>
+Date:   Thu Aug 29 23:47:47 2024 -0300
+
+    update
+
+[33mcommit 6cf4173b59512f54a3bd9862a93bb511fb0d6bdb[m
+Author: Danielle Soares <silvasoaresdanielle2@gmail.com>
+Date:   Thu Aug 29 23:32:03 2024 -0300
+
+    uuid atribute added for each user
+
+[33mcommit c3088a67c17e3b290dd99e1cd14b3d74a8209d14[m
+Merge: cbe3d79 8ee70f8
+Author: Danielle Soares <silvasoaresdanielle2@gmail.com>
+Date:   Thu Aug 29 22:29:28 2024 -0300
+
+    Merge branch 'main' of https://github.com/danielle-soaress/oo_store_project
+
+[33mcommit cbe3d79327dd74b653f824b2f67c51e8b97aa8d4[m
+Author: Danielle Soares <silvasoaresdanielle2@gmail.com>
+Date:   Thu Aug 29 22:29:13 2024 -0300
+
+    login: backend working
+
+[33mcommit 8ee70f8499dcbf07ecf58e0494689c65049473ff[m
+Author: LeticiArisa <higaleticia11@gmail.com>
+Date:   Thu Aug 29 16:09:38 2024 -0300
+
+    update: dados do usuario e users_date.json
+
+[33mcommit 4c9c82dbf86a9256d66258c11963b063c0867a81[m
+Merge: af8f94a 01f9a14
+Author: Danielle Soares <silvasoaresdanielle2@gmail.com>
+Date:   Thu Aug 29 14:57:15 2024 -0300
+
+    update: home cards
+
+[33mcommit af8f94ace520b87768e53ca9e0f7b1fa8f1179aa[m
+Author: Danielle Soares <silvasoaresdanielle2@gmail.com>
+Date:   Thu Aug 29 14:52:29 2024 -0300
+
+    update: home cards
+
+[33mcommit 01f9a14ef9d37999f34be993ab712a9fa516cd55[m
+Author: LeticiArisa <higaleticia11@gmail.com>
+Date:   Thu Aug 29 12:55:39 2024 -0300
+
+    Update route.py
+
+[33mcommit 76dd453e3e9eb838f98061bc218f27bb29bfa304[m
+Author: LeticiArisa <higaleticia11@gmail.com>
+Date:   Thu Aug 29 01:34:42 2024 -0300
+
+    register
+
+[33mcommit b56f00ab10e1c372f32aef766811f366fa6a0d77[m
+Author: Danielle Soares <silvasoaresdanielle2@gmail.com>
+Date:   Tue Aug 27 20:39:00 2024 -0300
+
+    update: main image section without responsivity
+
+[33mcommit c685cab3970481ebdd9c120c3cf4a23bddeffb10[m
+Author: Danielle Soares <silvasoaresdanielle2@gmail.com>
+Date:   Tue Aug 27 14:44:14 2024 -0300
+
+    update: static header created.
+
+[33mcommit 6a0b57fe3b8394a0b1730fd28b6698945285b7c5[m
+Author: Danielle Soares <silvasoaresdanielle2@gmail.com>
+Date:   Tue Aug 27 13:04:13 2024 -0300
+
+    update: 'home' page route added
+
+[33mcommit abbf229c75fa65e03c793f0a2e55ef657f252bc1[m
+Author: LeticiArisa <higaleticia11@gmail.com>
+Date:   Mon Aug 26 19:59:10 2024 -0300
+
+    index
+
+[33mcommit 30dadb70afba82b6b1be5b6d8531fa19c45964e8[m
+Author: LeticiArisa <higaleticia11@gmail.com>
+Date:   Sun Aug 25 13:29:46 2024 -0300
+
+    Register
+
+[33mcommit ed7a07d68d3f43b1326f757a30a9b82264dd1690[m
+Author: Danielle Soares <108499815+danielle-soaress@users.noreply.github.com>
+Date:   Tue Aug 13 19:19:35 2024 -0300
+
+    Update README.md
+
+[33mcommit c7dd63166922af5f85ad0e92d32b4d2581ec817f[m
+Merge: 39b86f0 1896601
+Author: Danielle Soares <silvasoaresdanielle2@gmail.com>
+Date:   Tue Aug 13 19:18:28 2024 -0300
+
+    readme.md
+
+[33mcommit 39b86f0b12754e92611e4b43a549a088c21858c0[m
+Author: Danielle Soares <silvasoaresdanielle2@gmail.com>
+Date:   Tue Aug 13 19:16:06 2024 -0300
+
+    first commit
+
+[33mcommit 1896601414f4170734520c14a17dcaa7763a15c4[m
+Author: Danielle Soares <108499815+danielle-soaress@users.noreply.github.com>
+Date:   Tue Aug 13 19:14:40 2024 -0300
+
+    Initial commit

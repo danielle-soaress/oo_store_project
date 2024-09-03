@@ -3,14 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
-    <title>Sign Up</title>
-=======
     <title>Document</title>
     <link rel="stylesheet" href="/static/css/register.css">
->>>>>>> 4cf2c732d83447e6a2812cc3ad71fd6eb41bdd2e
 </head>
 <body>
     <div class="container">
@@ -22,17 +16,17 @@
             <div class="two_form">
                 <div class="form_control">
                     <label for="firstname">FirstName</label>
-                    <input type="text" name="firstname" id="firstname" required><br>
+                    <input type="text" name="firstname" id="firstname" autocomplete="given-name" required><br>
                 </div>
                 <div class="form_control">
                     <label for="lastname">LastName</label>
-                    <input type="text" name="lastname" id="lastname" required><br>
+                    <input type="text" name="lastname" id="lastname" autocomplete="family-name" required><br>
                 </div>
             </div>
             
             <div class="form_control">
                 <label for="username">UserName</label>
-                <input type="text" name="username" id="username" required><br>
+                <input type="text" name="username" id="username" autocomplete="username"><br>
 
                 <i><img class="img-success" src="/static/img/success-icon.svg" alt=""></i>
                 <i><img class="img-error" src="/static/img/error-icon.svg" alt=""></i>
@@ -41,7 +35,7 @@
             </div>
             <div class="form_control">
                 <label for="email">Email</label>  
-                <input type="email" name="email" id="email" required><br>
+                <input type="email" name="email" id="email" autocomplete="email"><br>
 
                 <i><img class="img-success" src="/static/img/success-icon.svg" alt=""></i>
                 <i><img class="img-error" src="/static/img/error-icon.svg" alt=""></i>
@@ -50,11 +44,11 @@
             </div>
             <div class="form_control">
                 <label for="address">Address</label>
-                <input type="text" name="address" id="address" required><br>  
+                <input type="text" name="address" id="address" autocomplete="street-address" required><br>  
             </div>
             <div class="form_control">
                 <label for="password">Password</label>
-                <input type="password" name="password" id="password" required><br>  
+                <input type="password" name="password" id="password" autocomplete="new-password" required><br>  
 
                 <i><img class="img-success" src="/static/img/success-icon.svg" alt=""></i>
                 <i><img class="img-error" src="/static/img/error-icon.svg" alt=""></i>
@@ -63,24 +57,25 @@
             </div>
             <div class="form_control">
                 <label for="confirm_password">Confirm your password</label>
-                <input type="password" name="confirm_password" id="confirm_password" required><br>
+                <input type="password" name="confirm_password" id="confirm_password" autocomplete="new-password" required><br>
 
                 <i><img class="img-success" src="/static/img/success-icon.svg" alt=""></i>
                 <i><img class="img-error" src="/static/img/error-icon.svg" alt=""></i>
 
                 <small></small>
             </div>
+
+            <button type="submit">Sign Up</button> <br>
+
             <div class="form_control">
-            <button>Sign Up</button> <br>
+            
 
                 <span>Have an account? <a href="#" onclick="redirectLogin()">Sign In</a></span>
             </div>
         </form>
         
     </div>
-    
-
-        
+      
 
     <script>
         function redirectLogin(){
@@ -89,9 +84,6 @@
     </script>
 
     <script src="/static/js/register.js"></script>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.min.js"></script>
+    
 </body>
 </html>

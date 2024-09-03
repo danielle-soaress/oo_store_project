@@ -10,66 +10,67 @@ form.addEventListener('submit', (e) => {
     //Prevenir o comportamento padrão do html
     e.preventDefault();
 
-    checkInputs();
-
-})
-
+    checkInputs().then((isValid) => {
+        if (isValid) {
+            form.submit();
+        }
+    });
+});
 
 function checkInputs() {
-    const usernameValue = username.value.trim();
-    const passwordValue = password.value.trim();
-    const confirm_passwordValue = confirm_password.value.trim();
+    let formIsValid = true;
 
-    //Carrega o arquivo JSON e verifica se o username já existe
-    fetch('/db/user_accounts.json')
+    const usernameValue = username.value.trim()
+    const passwordValue = password.value.trim()
+    const confirm_passwordValue = confirm_password.value.trim()
+
+    //Verifica se as senhas tem no minimo 8 caracters
+    if (passwordValue.length < 8) {
+        setErrorFor(password, 'A senha deve ter pelo menos 8 caracteres!');
+        formIsValid = false;
+    } else {
+        setSuccessFor(password)
+    }
+            
+    //Verifica se as senhas são iguais
+    if (passwordValue !== confirm_passwordValue) {
+        setErrorFor(confirm_password, 'As senhas não são iguais!');
+        formIsValid = false;
+    } else {
+        setSuccessFor(confirm_password);
+    }
+
+    //Carrega o arquivo json e verifica se o username já existe
+    return fetch('/db/user_accounts.json')
         .then(response => response.json())
         .then(data => {
-            //Verifica se já existe um username no JSON
+            //Verifica se já existe um username no json
             const userExists = data.some(user => user.username === usernameValue);
 
             if (userExists) {
-                setErrorFor(username, 'O nome de usuário já existe!');
-            }else {
+                setErrorFor(username, 'O nome de usuário já existe!')
+                formIsValid = false;
+            } else {
                 setSuccessFor(username);
             }
-
+            return formIsValid;
         })
-        .catch(error => console.error('Ero ao carregar o arquivo JSON:', error));
+        .catch(error => {
+            console.error('Erro ao carregar o arquivo JSON:', error);
+            formIsValid = false;
+        });
 
-    validatePassword(password, passwordValue, confirm_password, confirm_passwordValue);
 }
-
-function validatePassword(passwordInput, passwordValue, confirmPasswordInput, confirmPasswordValue) {
-    if (passwordValue === '') {
-        setErrorFor(passwordInput, 'Password cannot be empty');
-    } else if (passwordValue.length < 6) {
-        setErrorFor(passwordInput, 'Password must be at least 6 characters');
-    } else {
-        setSuccessFor(passwordInput);
-    }
-
-    if (confirmPasswordValue === '') {
-        setErrorFor(confirmPasswordInput, 'Password confirmation cannot be empty');
-    } else if (passwordValue !== confirmPasswordValue) {
-        setErrorFor(confirmPasswordInput, 'Passwords do not match');
-    } else {
-        setSuccessFor(confirmPasswordInput);
-
-    }
-}
+   
 
 function setErrorFor(input, message) {
     const formControl = input.parentElement;
     const small = formControl.querySelector('small');
-
     small.innerText = message;
     formControl.className = 'form_control error';
 }
 
 function setSuccessFor(input) {
     const formControl = input.parentElement;
-    const small = formControl.querySelector('small');
-
-    small.innerText = ''; // Limpa a mensagem de erro, se houver
-    formControl.className = 'form_control success';
+    formControl.className = 'form_control success'
 }

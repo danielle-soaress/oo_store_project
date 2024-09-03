@@ -70,6 +70,7 @@ def action_register():
     #Registrar o usuario e os dados
     sucess = dtr.book(firstname, lastname, username, email, address, password)
     if sucess:
+        print('success')
         return ctl.render("login_page")
     
 

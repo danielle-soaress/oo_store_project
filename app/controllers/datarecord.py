@@ -41,7 +41,6 @@ class DataRecord():
             user_data = [vars(user_account) for user_account in
             self.__user_accounts]
             json.dump(user_data, arquivo_json)
-
         return True #Usuario registrado com sucesso
 
     def getCurrentUser(self,session_id):

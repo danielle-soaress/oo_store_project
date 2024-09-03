@@ -103,18 +103,16 @@ body {
     visibility: visible;
 }
 
+
 .form_control.error input {
     border: 3px solid #DB5A5A;
 }
+
 
 .form_control.error i .img-error {
     visibility: visible;
 }
 
-.form_control.success small {
-    color: #DB5A5A;
-    visibility: visible;
-}
 
 .form_control.success input {
     border: 3px solid #4ECA64;
