@@ -82,6 +82,10 @@ def action_register():
 def home():
     return ctl.render('home')
 
+@app.route('/viewProducts', method='GET')
+def viewProducts():
+    return ctl.render('viewProducts')
+
 
 # ----------------- PRODUCT MANAGEMENT ROUTES (API) ----------------
 

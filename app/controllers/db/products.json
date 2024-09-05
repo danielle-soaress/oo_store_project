@@ -26,5 +26,18 @@
             "blue": 12
         },
         "imageFileName": "headphone-home.png"
+    },
+    {
+        "id": "17066d21-cd62-4a3b-964c-53b55128c381",
+        "name": "headphone",
+        "price": 123.0,
+        "category": "Headphones",
+        "connectivity": "Wireless",
+        "description": "dfdagf",
+        "brand": "Sony",
+        "colorStock": {
+            "#FFF": 12
+        },
+        "imageFileName": "096675b5-7976-4df7-b39c-e0f6a86b03f5_0b494acb-00d4-464e-8924-259041cf14af_sajad-nori-CeyE899Q73Y-unsplash-1.png"
     }
 ]

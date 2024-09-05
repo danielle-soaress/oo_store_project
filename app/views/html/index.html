@@ -26,8 +26,8 @@
                 </nav>
             </div>
             <div class="header_right_container">
-                <a class="header_link"><button class="login_button"onclick="redirectToLogin()">Sign In</button></a>
-                <a class="header_link" id="sign_up_link">Sign Up</a>
+                <a class="header_link"><button class="login_button" onclick="redirectToLogin()">Sign In</button></a>
+                <a class="header_link"><button class="register_button" onclick="redirectToRegister()">Sign Up</button></a>
                 <i class="bi bi-search"></i>
                 <i class="bi bi-moon-fill"></i>
             </div>
@@ -78,13 +78,17 @@
             </div>
         </div>
     </section>
-    <button id="register" onclick="window.location.href= 'register'">Sign Up</button>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.min.js"></script>
     <script>
         function redirectToLogin() {
             window.location.href = '/login_page';
+        }
+    </script>
+    <script>
+        function redirectToRegister() {
+            window.location.href = '/register';
         }
     </script>
 </body>

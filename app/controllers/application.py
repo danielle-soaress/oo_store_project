@@ -13,7 +13,8 @@ class Application():
             'login': self.login,
             'register': self.register,
             'home': self.home,
-            'management': self.management          
+            'management': self.management,
+            'viewProducts': self.viewProducts
         }
         self.__model= DataRecord()
        
@@ -78,6 +79,9 @@ class Application():
         if self.__model.checkAdmin(session_id):
             return template('app/views/html/product_management')
         return template('app/views/html/index')"""
+
+    def viewProducts(self):
+        return template('app/views/html/page_buy')
     
     
     
