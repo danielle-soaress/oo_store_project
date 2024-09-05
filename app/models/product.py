@@ -67,7 +67,7 @@ class Product:
         return self.__imageFileName
     
     @imageFileName.setter
-    def name(self, value):
+    def imageFileName(self, value):
         self.__imageFileName = value
 
 

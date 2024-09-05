@@ -4,7 +4,7 @@
         "name": "Headphone Model X",
         "price": 199.99,
         "category": "Over-Ear",
-        "connectivity": "Bluetooth",
+        "connectivity": "Wireless",
         "description": "High-quality over-ear headphones with noise cancellation.",
         "brand": "SoundTech",
         "colorStock": {
@@ -15,16 +15,128 @@
     },
     {
         "id": "124",
-        "name": "Earbuds Pro",
+        "name": "VISHHHH",
         "price": 89.99,
         "category": "In-Ear",
-        "connectivity": "Bluetooth",
+        "connectivity": "Wireless",
         "description": "Compact and powerful in-ear earbuds with a comfortable fit.",
         "brand": "SoundTech",
         "colorStock": {
             "white": 20,
             "blue": 12
         },
-        "imageFileName": "headphone-home.png"
+        "imageFileName": "EITA"
+    },
+    {
+        "id": "125",
+        "name": "Gaming Headset Z1",
+        "price": 129.99,
+        "category": "Over-Ear",
+        "connectivity": "Wired",
+        "description": "Comfortable gaming headset with surround sound.",
+        "brand": "GameGear",
+        "colorStock": {
+            "black": 8,
+            "red": 5
+        },
+        "imageFileName": "gaming_headset.png"
+    },
+    {
+        "id": "126",
+        "name": "Noise Cancelling Headphones",
+        "price": 299.99,
+        "category": "Over-Ear",
+        "connectivity": "Wireless",
+        "description": "High-end noise cancelling headphones for audiophiles.",
+        "brand": "AudioLux",
+        "colorStock": {
+            "black": 7,
+            "grey": 12
+        },
+        "imageFileName": "noise_cancelling_headphones.png"
+    },
+    {
+        "id": "127",
+        "name": "Bluetooth Earbuds",
+        "price": 69.99,
+        "category": "In-Ear",
+        "connectivity": "Wireless",
+        "description": "Affordable Bluetooth earbuds with good sound quality.",
+        "brand": "SoundFlex",
+        "colorStock": {
+            "black": 25,
+            "pink": 10
+        },
+        "imageFileName": "bluetooth_earbuds.png"
+    },
+    {
+        "id": "128",
+        "name": "Studio Monitor Headphones",
+        "price": 349.99,
+        "category": "Over-Ear",
+        "connectivity": "Wired",
+        "description": "Professional studio monitor headphones for accurate sound.",
+        "brand": "StudioPro",
+        "colorStock": {
+            "black": 10,
+            "silver": 6
+        },
+        "imageFileName": "studio_monitor_headphones.png"
+    },
+    {
+        "id": "129",
+        "name": "Sport Earbuds",
+        "price": 79.99,
+        "category": "In-Ear",
+        "connectivity": "Wireless",
+        "description": "Sweat-resistant earbuds designed for sports and exercise.",
+        "brand": "FitAudio",
+        "colorStock": {
+            "blue": 15,
+            "green": 8
+        },
+        "imageFileName": "sport_earbuds.png"
+    },
+    {
+        "id": "130",
+        "name": "Compact Travel Headphones",
+        "price": 89.99,
+        "category": "On-Ear",
+        "connectivity": "Wired",
+        "description": "Foldable headphones perfect for travel.",
+        "brand": "TravelSound",
+        "colorStock": {
+            "black": 12,
+            "blue": 10
+        },
+        "imageFileName": "compact_travel_headphones.png"
+    },
+    {
+        "id": "131",
+        "name": "Premium Wireless Headphones",
+        "price": 399.99,
+        "category": "Over-Ear",
+        "connectivity": "Wireless",
+        "description": "Luxury wireless headphones with high-fidelity sound.",
+        "brand": "LuxAudio",
+        "colorStock": {
+            "black": 5,
+            "gold": 3
+        },
+        "imageFileName": "premium_wireless_headphones.png"
+    },
+    {
+        "id": "132",
+        "name": "Noise Cancelling Earbuds",
+        "price": 149.99,
+        "category": "In-Ear",
+        "connectivity": "Wireless",
+        "description": "Noise cancelling earbuds with a comfortable fit.",
+        "brand": "QuietTech",
+        "colorStock": {
+            "black": 20,
+            "white": 10
+        },
+        "imageFileName": "noise_cancelling_earbuds.png"
     }
 ]
