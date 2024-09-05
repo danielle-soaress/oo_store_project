@@ -10,9 +10,36 @@ el.forEach((element) => {
     });
 });
 
-/* ------------------------ "Add Product" form functions--------------------*/
+/* ------------------------ WINDOW ALERT -------------------------------- */
 
-/*--------------------------------------------------------------------------*/
+const windowAlertContainer = document.getElementById('message')
+const windowAlertText =  document.getElementById('error_message')
+
+document.getElementById('close_error_message').addEventListener('click', () => closeAlert())
+
+function closeAlert() {
+    windowAlertContainer.classList.add('hide')
+}
+
+function showAlert(message, alertType) {
+    windowAlertContainer.classList.remove('hide')
+    if (alertType == 'error') {
+        windowAlertContainer.classList.remove('success')
+        windowAlertContainer.classList.add('error')
+        windowAlertText.innerHTML = `Error: ${message}`
+    } else {
+        windowAlertContainer.classList.remove('error')
+        windowAlertContainer.classList.add('success')
+        windowAlertText.innerHTML = `${message}`
+    }
+
+    setTimeout(() => {
+        closeAlert()
+    }, 3000);
+}
+
+
+/*-------------------------------- UPDATE PRODUCTS LIST ------------------------------------*/
 function updateProductList() {
     fetch('/api/products')
     .then(response => response.json())
@@ -58,18 +85,11 @@ function updateProductList() {
             productPrice.classList.add('product_item_text');
             productPrice.innerHTML = `<strong>Price:</strong> R$ ${product.price.toFixed(2)}`;
 
-            /*
-            const productStatus = document.createElement('p');
-            productStatus.classList.add('product_item_text');
-            productStatus.innerHTML = `<strong>Status:</strong> ${product.status}`;*/
-
             productTextDiv.appendChild(productName);
             productTextDiv.appendChild(productId);
             productTextDiv.appendChild(productCategory);
             productTextDiv.appendChild(productBrand);
             productTextDiv.appendChild(productPrice);
-            /*productTextDiv.appendChild(productStatus);*/
-
             mainProductInfo.appendChild(productImage);
             mainProductInfo.appendChild(productTextDiv);
 
@@ -85,6 +105,7 @@ function updateProductList() {
             const btnEdit = document.createElement('button');
             btnEdit.classList.add('product_item_action_button');
             btnEdit.textContent = 'Edit Product';
+            btnEdit.addEventListener('click', () => openEditForm(product.id, product.name, product.price, product.category, product.connectivity, product.description, product.brand))
 
             const btnDelete = document.createElement('button');
             btnDelete.classList.add('product_item_action_button');
@@ -101,6 +122,7 @@ function updateProductList() {
         });
     })
     .catch(error => {
+        showAlert(error, 'error')
         console.error('Error fetching products', error);
     });
 }
@@ -108,7 +130,7 @@ function updateProductList() {
 updateProductList()
 
 
-/*----------------------- STOCK INFORMATION -------------------------------*/
+/*----------------------- "SEE STOCK INFORMATION" ACTION -------------------------------*/
 
 const StockProductName = document.querySelector('#stock_product_name')
 const StockProductStatus = document.querySelector('#stock_product_status')
@@ -155,36 +177,48 @@ function saveStockInformation() {
     StockInformationDiv.classList.add('hide')
 }
 
+
+/* ------------------- "DELETE" ACTION ---------------------------------------------*/
+
 function deleteProduct(productID) {
     fetch(`/api/products/${productID}`, {
         method: 'DELETE'
     })
-    .then(response => {
-        if (response.ok) {
-            console.log('EBAA! Produto foi deletado.');
+    .then(async response => {
+        let data;
+        if (response.status !== 204) { 
+            data = await response.json();
+        } else {
+            data = { message: "Product deleted successfully" }
+        }
+        return { ok: response.ok, data };
+    })
+    .then(({ ok, data }) => {
+        if (ok) {
+            showAlert(data.message, 'success')
             updateProductList();
         } else {
-            console.log('ERRO: Produto não foi deletado.');
+            alert(`Erro: ${data.error}`);
         }
     })
     .catch(error => {
-        console.error('Erro na requisição: ', error);
+        showAlert(error, 'error')
+        alert('Erro na comunicação com o servidor.');
     });
 }
 
 
 
-
-/* --------------------------------- PRODUCT FORM  -----------------------------*/
+/* --------------------------------- "ADD" PRODUCT ACTION - (PRODUCT FORM)  -----------------------------*/
 
 const addProductContainer = document.getElementById('add_product')
 const productForm = document.getElementById('productForm')
 const addColorStockButton = document.getElementById('add_color_productForm')
-const container = document.getElementById('colorStockContainer');
+const ColorStockcontainer = document.getElementById('colorStockContainer');
+const closeProductWindowButton = document.getElementById('close_productForm')
+const openProductWindowButton = document.querySelector('#add_product_button')
 
-// color stock - button to add colors
-
-
+// button to add more colors to the stock.
 addColorStockButton.addEventListener('click', () => addColorStock())
 
 function addColorStock() {
@@ -193,23 +227,32 @@ function addColorStock() {
     div.innerHTML = `
         <input  class="productForm_input" type="text" name="colorStock" placeholder="Hex Color (ex: #FFFFFF)" required>
         <input  class="productForm_input" style="width: 90px;" type="number" name="colorStockQuantity" placeholder="Quantity" min="0" required>
-        <br>
         `;
-    container.appendChild(div);
+    ColorStockcontainer.appendChild(div);
 }
 
+// button to open form window
+openProductWindowButton.addEventListener('click', () => openProductWindow());
 
 function openProductWindow() {
-    addProductContainer.classList.remove('hide')
-    informationBox.classList.remove('hide')
+    addProductContainer.classList.remove('hide');
+    informationBox.classList.remove('hide');
 }
+
+// button to close form window
+
+closeProductWindowButton.addEventListener('click', () => closeProductWindow())
 
 function closeProductWindow() {
     addProductContainer.classList.add('hide')
     informationBox.classList.add('hide')
     productForm.reset();
+    ColorStockcontainer.innerHTML = ''
+    addColorStock()
 
 }
+
+// submit form action
 
 productForm.addEventListener('submit', function (event) {
     event.preventDefault();
@@ -223,30 +266,100 @@ productForm.addEventListener('submit', function (event) {
 
         const formData = new FormData(this);
 
-        formData.forEach((value, key) => {
-            console.log(key, value);
-        });
-
         fetch('/api/products', {
             method: 'POST',
             body: formData
         })
-        .then(response => {
-            if (response.ok) {
-                alert('deu certo')
+        .then(async response => {
+            const data = await response.json();
+            return ({ ok: response.ok, data });
+        })
+        .then(({ ok, data }) => {
+            if (ok) {
+                showAlert(data.message, 'success');
                 updateProductList();
+                closeProductWindow();
             } else {
-                alert(`Erro`);
+                alert(`Erro: ${data.error}`);
             }
         })
         .catch(error => {
-            console.error('Erro na requisição:', error);
             alert('Erro na comunicação com o servidor.');
         });
-
-        closeProductWindow()
     }
 })
 
+
+/* --------------------------------- "EDIT" PRODUCT ACTION - (PRODUCT FORM)  -----------------------------*/
+const editFormContainer = document.getElementById('edit_product')
+const editProductForm = document.getElementById('editProductForm')
+const productIDText = document.getElementById('editForm_productId')
+const closeEditFormButton = document.getElementById('close_editForm')
+
+
+function openEditForm(product_ID, productName, productPrice, productCategory, productConnectivity, productDescription, productBrand) {
+    const nameInput = document.getElementById('name_editForm')
+    const priceInput = document.getElementById('price_editForm')
+    const categoryInput = document.getElementById('category_editForm')
+    const connectivityInput = document.getElementById('connectivity_editForm')
+    const descInput = document.getElementById('desc_editForm')
+    const brandInput = document.getElementById('brand_editForm')
+
+    textInputs = [nameInput, priceInput, categoryInput, connectivityInput, descInput, brandInput]
+    textValues = [productName, productPrice, productCategory, productConnectivity, productDescription, productBrand]
+
+    for(let i = 0; i < textInputs.length; i++) {
+        textInputs[i].value = `${textValues[i]}`
+    }
+
+    editProductForm.dataset.productId = `${product_ID}`
+    informationBox.classList.remove('hide')
+    productIDText.innerHTML = `${product_ID}`
+    editFormContainer.classList.remove('hide')
+}
+
+
+closeEditFormButton.addEventListener('click', () => closeEditForm())
+
+function closeEditForm() {
+    informationBox.classList.add('hide')
+    editFormContainer.classList.add('hide')
+    editProductForm.reset();
+    productIDText.innerHTML = ''
+    editProductForm.dataset.productId = ' '
+}
+
+
+// submit form action
+editProductForm.addEventListener('submit', function (event) {
+    console.log('oiiii232i')
+    event.preventDefault();
+    
+    const formData = new FormData(this);
+    const productId = this.dataset.productId; 
+
+    fetch(`/api/products/${productId}`, {
+        method: 'PATCH',
+        body: formData
+    })
+    .then(async response => {
+        const data = await response.json();
+        return ({ ok: response.ok, data });
+    })
+    .then(({ ok, data }) => {
+        if (ok) {
+            showAlert(data.message, 'success');
+            updateProductList();
+            closeProductWindow();
+        } else {
+            alert(`Erro: ${data.error}`);
+        }
+    })
+    .catch(error => {
+        console.log(error)
+        alert('Erro na comunicação com o servidor.');
+    });
+
+})
 
 

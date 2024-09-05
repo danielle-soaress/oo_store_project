@@ -1,0 +1,145 @@
+#search_bar {
+    width: 250px;
+    height: 35px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#search_input {
+    width: 100%;
+    background-color: #ffffff;
+    outline: none;
+    border: none;
+    vertical-align: middle;
+}
+
+.bi-search, .bi-caret-right-fill {
+    font-size: 16px;
+    color:#7D29D2;
+    padding: 0px 20px;;
+}
+
+#catalog_section {
+    display: flex;
+    width: 100vw;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+
+#filter {
+    display: flex;
+    width: 80vw;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#filter_categories {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 1%;
+    flex-wrap: wrap;
+}
+
+.filter_category {
+    position: relative;
+    width: 19%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    letter-spacing: 15px;
+    text-indent: 15px;
+    transition: ease 0.5s;
+    cursor: pointer;
+}
+
+.filter_category:hover {
+    opacity: 60%;
+    font-size:larger;
+    letter-spacing: 20px;
+    text-indent: 20px;
+    transition: ease 0.5s
+}
+
+.filter_category_img {
+    width: 100%;
+}
+
+.filter_category_title {
+    font-size: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 800;
+    color: inherit;
+    letter-spacing: inherit;
+    text-indent: inherit;
+}
+
+
+.hide {
+    display: none;
+}
+
+
+
+#products_container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.product_item {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.product_item img {
+    height: 200px;
+    margin-bottom: 15px;
+}
+
+.price {
+    font-weight: 900;
+    font-size: 20px;
+    color: #A348FF;
+    margin-bottom: 20px;
+}
+
+.description {
+    margin: 10px 0;
+}
+
+.button_add_to_cart {
+    background-color: #7D29D2;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.button_add_to_cart:hover {
+    transition: ease .2s;
+    background-color: #9f40ff;
+}
+
+.bi-cart3 {
+    color: white;
+    margin-left: 6px;
+}

@@ -38,13 +38,23 @@ class ProductRecord:
         product = self.get_product(product_id)
         return product.stockStatus()
 
-    def update_product(self, product_id, name=None, price=None):
+    def update_product(self, product_id, name=None, price=None, category = None, connectivity=None, description=None, brand=None):
         product = self.get_product(product_id)
+        print(product)
         if product:
             if name:
                 product.name = name
+                print(product.name)
             if price:
                 product.price = price
+            if category:
+                product.category = category
+            if connectivity:
+                product.connectivity = connectivity
+            if description:
+                product.description = description
+            if brand:
+                product.brand = brand
             self.save()
             return product
         return None

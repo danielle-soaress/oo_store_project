@@ -107,10 +107,41 @@ def delete_product(product_id):
     try:
         prc.delete_product(product_id)
         response.status = 204
-        return
+        return json.dumps({"message": "Product deleted successfully"})
     except Exception as e:
         response.status = 500
-        return {'error':str(e)}
+        return json.dumps({"error": str(e)})
+    
+@app.route('/api/products/<product_id>', method='PATCH')
+def edit_product(product_id):
+    try:
+        print('chegou aqui 0')
+        name = request.forms.get('name')
+        price_str = request.forms.get('price')
+        category = request.forms.get('category')
+        connectivity = request.forms.get('connectivity')
+        description = request.forms.get('description')
+        brand = request.forms.get('brand')
+        price = None
+
+        print('chegou aqui 1')
+        ## price processing
+        if not is_valid_float(price_str):
+            response.status = 400
+            return json.dumps({"error": "Insert a valid price value. For decimal numbers, use period."})
+        else:
+            price = float(price_str)
+
+
+        print('chegou aqui 2')
+        print(product_id)
+        prc.update_product(product_id, name, price, category, connectivity, description, brand)
+        print('chegou aqui 3')
+        response.status = 200
+        return json.dumps({"message": "Product updated successfully"})
+    except Exception as e:
+        response.status = 500
+        return json.dumps({"error": str(e)})
     
 @app.route('/api/products', method='POST')
 def add_product():
@@ -128,7 +159,7 @@ def add_product():
         ## price processing
         if not is_valid_float(price_str):
             response.status = 400
-            return {"error": "Insert a valid price value. For decimal numbers, use '.'."}
+            return json.dumps({"error": "Insert a valid price value. For decimal numbers, use '.'."})
         else:
             price = float(price_str)
 
@@ -160,10 +191,10 @@ def add_product():
             return json.dumps({"error": "All colors must have quantity information. The number of colors is not equal to the number of quantity information."})
         prc.create_product(name, price, category, connectivity, description, brand, colorStock, imageFileName)
         response.status = 204
-        return
+        return json.dumps({"message": "Product created successfully"})
     except Exception as e:
         response.status = 500
-        return {'error':str(e)}
+        return json.dumps({"error": str(e)})
 
 # Regex para verificar cores hexadecimais
 HEX_COLOR_REGEX = re.compile(r'^#(?:[0-9A-Fa-f]{3}){1,2}$')
@@ -181,5 +212,4 @@ def generate_unique_filename(filename):
 
 
 if __name__ == '__main__':
-
     run(app, host='localhost', port=8080, debug=True)

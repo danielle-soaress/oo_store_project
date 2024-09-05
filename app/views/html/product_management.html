@@ -51,8 +51,7 @@
             </div>
         </div>
         <div id="right_products_section">
-            <button id = "add_product_button" onclick="openProductWindow()" class="products_section_action_button">Add Product</button>   
-            
+            <button id="add_product_button" class="products_section_action_button">Add Product</button>   
         </div>
         
     </section>
@@ -80,10 +79,10 @@
         </div>
         <div id="add_product" class="hide">
             <div class="top_informatioon_box">
-                <button onclick="closeProductWindow()" class="close_window_button">
+                <button id="close_productForm" class="close_window_button">
                     <i class="bi bi-x-lg"></i>
                 </button>
-                <h1 class="information_box_title">Cadastrar Produto</h1>
+                <h1 class="information_box_title">Register product</h1>
             </div>
             <form id="productForm">
                 <div class="label_div">
@@ -151,17 +150,81 @@
                 <button style="width: 100%;" class="product_item_action_button" type="submit">Add Product</button>
             </form>
         </div>
+        <div id="edit_product" class="hide">
+            <div class="top_informatioon_box">
+                <button id="close_editForm" class="close_window_button">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+                <h1 class="information_box_title">Edit Product</h1>
+            </div>
+            <form id="editProductForm" data-product-id="">
+                <p id="editForm_productId"></p>
+                <br>
+                <div class="label_div">
+                    <label for="name">Name:</label>
+                    <input id="name_editForm" class="productForm_input" type="text" id="name" name="name" required>
+                    <br>
+                </div>
+
+                <div class="label_div">
+                    <label for="price">Price (R$):</label>
+                    <input id="price_editForm"  class="productForm_input" type="number" id="price" name="price" step="0.01" required>
+                    <br>
+                </div>
+
+                <div class="label_div">
+                    <label for="category">Category:</label>
+                    <select class="productForm_input" name="category" id="category_editForm">
+                        <option value="Headphones">Headphone</option>
+                        <option value="Earbuds">Earbuds</option>
+                        <option value="In_ear">In-Ear</option>
+                        <option value="Headsets">Headsets</option>
+                        <option value="Noise-Cancelling">Noise-Cancelling</option>
+                    </select>
+                </div>
+
+                <div class="label_div">
+                    <label for="connectivity">Connectivity:</label>
+                    <select class="productForm_input" name="connectivity" id="connectivity_editForm">
+                        <option value="Wireless">Wireless</option>
+                        <option value="Wired">Wired</option>
+                        <option value="Hybrid">Hybrid</option>
+                    </select>
+                </div>
+
+                <div class="label_div desc_div">
+                    <label for="description">Description:</label>
+                    <textarea class="productForm_input" name="description" id="desc_editForm" rows="4" required></textarea>
+                </div>
+
+                <div class="label_div">
+                    <label for="brand">Brand:</label>
+                    <input id="brand_editForm" class="productForm_input" type="text" id="brand" name="brand" required>
+                    <br>
+                </div>
+
+                <button style="width: 100%;" class="product_item_action_button" type="submit">update Product</button>
+            </form>
+        </div>
+    </div>
+    <div id="message" class="success hide">
+        <i class="bi bi-info-circle"></i>
+        <p id="error_message">dasdas</p>
+        <i id="close_error_message" class="bi bi-x"></i>
     </div>
 
-    <script>
-        function redirectLogin(){
-            window.location.href="login_page";
-        }
-    </script>
-    <script src='../../static/js/product_management.js'></script>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.min.js"></script>
+</div>
+
+<script>
+    function redirectLogin(){
+        window.location.href="login_page";
+    }
+</script>
+<script src='../../static/js/product_management.js'></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.min.js"></script>
 </body>
 </html>

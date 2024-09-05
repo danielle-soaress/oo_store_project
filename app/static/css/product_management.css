@@ -225,7 +225,7 @@ html {
     height: 100vh;
 }
 
-#stock_information, #add_product {
+#stock_information, #add_product, #edit_product {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -256,16 +256,13 @@ html {
     border-radius: 8px;
 }
 
-#add_product {
+#add_product, #edit_product {
     gap: 20px;
 }
 
-#productForm
-
-#productForm label {
+#productForm label, #editProductForm label {
     font-weight: 600;
 }
-
 
 .label_div {
     margin-bottom: 15px;
@@ -289,9 +286,6 @@ html {
     align-items: center;
 }
 
-.color-stock_input {
-    width: 
-}
 .productForm_input, .color-stock_input {
     padding: 4px 10px;
     outline: none;
@@ -318,15 +312,52 @@ html {
     
 }
 
-.bi-x-lg {
+.bi-x-lg, .bi-x{
     color: white;
     font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+#message {
+    padding: 15px;
+    border-radius: 50px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    position: fixed;
+    top: 12vh;
+    right: 2vw;
+    box-shadow:  5px 5px 30px #00000065;
+}
 
+.error {
+    background: #EF665B;
+}
 
+.success {
+    background: #50da5c;
+}
 
+.bi-info-circle {
+    font-size: 20px;
+}
 
+.bi-info-circle, #error_message {
+    color: white;
+}
+
+#close_error_message {
+    outline: none;
+    border: none;
+    margin-left: 40px;
+    cursor:pointer;
+}
+
+.bi-x {
+    font-size: 20px;
+}
 
 
 
