@@ -124,7 +124,6 @@ def edit_product(product_id):
         brand = request.forms.get('brand')
         price = None
 
-        print('chegou aqui 1')
         ## price processing
         if not is_valid_float(price_str):
             response.status = 400
@@ -132,11 +131,7 @@ def edit_product(product_id):
         else:
             price = float(price_str)
 
-
-        print('chegou aqui 2')
-        print(product_id)
         prc.update_product(product_id, name, price, category, connectivity, description, brand)
-        print('chegou aqui 3')
         response.status = 200
         return json.dumps({"message": "Product updated successfully"})
     except Exception as e:
