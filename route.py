@@ -86,6 +86,10 @@ def home():
 def viewProducts():
     return ctl.render('viewProducts')
 
+@app.route('/viewProduct/<product_id>', method='GET')
+def viewProduct(product_id = None):
+    return ctl.render('viewProduct', product_id = product_id)
+
 
 # ----------------- PRODUCT MANAGEMENT ROUTES (API) ----------------
 
@@ -150,7 +154,7 @@ def add_product():
         colorStock = {}
         imageFileName = None
         price = None
-
+        print('checkpoint0')
         ## price processing
         if not is_valid_float(price_str):
             response.status = 400
@@ -159,7 +163,7 @@ def add_product():
             price = float(price_str)
 
         ## image processing
-
+        print('checkpoint2')
         image = request.files.get('image')
         if image:
             filename = generate_unique_filename(image.filename)
@@ -171,6 +175,7 @@ def add_product():
             image.save(file_path)
             imageFileName = filename
         
+        print('checkpoint1')
         ## color stock processing
         colors = request.forms.getall('colorStock')
         quantities = request.forms.getall('colorStockQuantity')
@@ -186,9 +191,11 @@ def add_product():
             return json.dumps({"error": "All colors must have quantity information. The number of colors is not equal to the number of quantity information."})
         prc.create_product(name, price, category, connectivity, description, brand, colorStock, imageFileName)
         response.status = 204
+        print('deu certo')
         return json.dumps({"message": "Product created successfully"})
     except Exception as e:
         response.status = 500
+        print('error ' + str(e))
         return json.dumps({"error": str(e)})
 
 # Regex para verificar cores hexadecimais

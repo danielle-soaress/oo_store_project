@@ -9,8 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../static/css/page_buy.css">
-</head>
+    <link rel="stylesheet" href="../../static/css/product_page.css">
+    <link rel="stylesheet" href="../../static/css/header.css">
 
 <body>
     <header class="header">
@@ -59,39 +59,52 @@
             </div>
         </div>        
     </header>
-    <section id="filters_section">
-        <div id="filter">
-            <div id="filter_categories">
-                <div class="filter_category">
-                    <img class="filter_category_img" alt="" src="../../static/img/F1.png">
-                    <span class="filter_category_title">HEADSET</span>
+    <section id="product_info_section">
+        <div id="product_info_div">
+            <img src="../../static/img/6a75e89f-89db-4c71-b465-5aa139dce1f5_61kd0kZDgcL._AC_SX679_.jpg" alt="" class="product_info_image">
+            <div class="product_info_text">
+                <h1 id="product_info_name">{{ name }}</h1>
+                <div id="product_info_availability_div" style="background-color: {{ 'green' if availability == 'In Stock' else '#EA0000' }}">
+                    <p id="product_info_availability">{{ availability }}</p>
                 </div>
-                <div class="filter_category">
-                    <img class="filter_category_img" alt="" src="../../static/img/F2.png">
-                    <span class="filter_category_title">EAR.BUD</span>
+                <p id="product_info_brand" class="product_info_paragraph"><span class="strong">Brand:</span> {{ brand }}</p>
+                <div class="product_info_colors">
+                    <p class="product_info_colors_title product_info_paragraph">Available colors:</p>
+                    <div id="product_info_colors_container" data-colors="{{ colors }}">
+                        
+                    </div>
                 </div>
-                <div class="filter_category">
-                    <img class="filter_category_img" alt="" src="../../static/img/F3.png">
-                    <span class="filter_category_title">HEADPHONE</span>
-                </div>
-                <div class="filter_category">
-                    <img class="filter_category_img" alt="" src="../../static/img/F4.png">
-                    <span class="filter_category_title">IN.EAR</span>
-                </div>
-                <div class="filter_category">
-                    <img class="filter_category_img" alt="" src="../../static/img/F5.png">
-                    <span class="filter_category_title">WIRELESS</span>
+                <div id="product_info_price">
+                    <div id="product_info_payment_div">
+                        <span>
+                            <p id="product_info_price_in_cash">R$ 699,90</p>
+                            <p class="product_info_payment_info product_info_paragraph">
+                                <span class="strong">Cash</span> with up to <span class="strong">7% OFF</span>
+                            </p>
+                            <p id="product_info_price_credit">R$ 720,30</p>
+                            <p class="product_info_payment_info product_info_paragraph">
+                                Up to <span class="strong">8x of R$ 87,48</span> interest-free on credit card
+                            </p>
+                        </span>
+                        <button id="product_info_buy_button">
+                            Add to Cart <i class="bi bi-bag button_bag"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!------------Produtos Loja-------------->
-    <main>
-        <section id="viewProducts">
-            
-        </section>
-    </main>
+    <script>
+        const colorContainer = document.querySelector('#product_info_colors_container');
+        const colors = JSON.parse(colorContainer.getAttribute('data-colors'));
+        console.log(colors);
+        colors.forEach(color => {
+            const div = document.createElement('div');
+            div.className = 'product_info_color';
+            div.style.backgroundColor = color;
+            colorContainer.appendChild(div);
+        });
+    </script>
 
 
     

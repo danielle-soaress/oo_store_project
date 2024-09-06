@@ -24,6 +24,10 @@ function updateProductList() {
             const mainProductInfo = document.createElement('div');
             mainProductInfo.classList.add('main_product_info');
             
+            const productLink = document.createElement('a'); 
+            productLink.classList.add('product_link')
+            productLink.setAttribute('href', `/viewProduct/${product.id}`)
+
             const productImage = document.createElement('img');
             productImage.classList.add('product_item_image');
             productImage.src = `../../static/img/${product.imageFileName}`;
@@ -68,8 +72,10 @@ function updateProductList() {
             productTextDiv.appendChild(productBrand);
             productTextDiv.appendChild(productPrice);
 
-            mainProductInfo.appendChild(productImage);
-            mainProductInfo.appendChild(productTextDiv);
+            productLink.appendChild(productImage);
+            productLink.appendChild(productTextDiv);
+
+            mainProductInfo.appendChild(productLink);
 
             const productActions = document.createElement('div');
             productActions.classList.add('product_item_actions');

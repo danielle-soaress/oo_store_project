@@ -43,7 +43,7 @@ class Product:
         return self.__connectivity
 
     @connectivity.setter
-    def onnectivity(self, value):
+    def connectivity(self, value):
         self.__connectivity
 
     @property
@@ -75,19 +75,22 @@ class Product:
     def setColorStock(self, color, quantity):
         self.__colorStock[color] = quantity
 
+    def getColorStock(self):
+        return self.__colorStock
+
     def getStockForColor(self, color):
         return self.__colorStock.get(color, 0)
     
     
     def getColors(self): # this function gets all product colors
         colors = []
-        for chave, valor in self.__colorStock.item():
+        for chave, valor in self.__colorStock.items():
             colors.append(str(chave))
-        return  colors
+        return colors
     
     def getStock(self): # this function gets the quantity of products in stock.
         quantity = 0
-        for chave, valor in self.__colorStock.item():
+        for chave, valor in self.__colorStock.items():
             quantity+= valor
         return quantity
     

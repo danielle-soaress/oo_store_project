@@ -1,6 +1,7 @@
 from app.controllers.datarecord import DataRecord
 from app.controllers.productrecord import ProductRecord
 from bottle import template, redirect, request, response
+import json
 
 
 class Application():
@@ -14,9 +15,11 @@ class Application():
             'register': self.register,
             'home': self.home,
             'management': self.management,
+            'viewProduct': self.viewProduct,
             'viewProducts': self.viewProducts
         }
         self.__model= DataRecord()
+        self.__product_model = ProductRecord()
        
     def render(self, page, **kwargs):
         content = self.pages.get(page, self.home)
@@ -74,14 +77,22 @@ class Application():
         return template('app/views/html/login_page', error_message=error_message)
     
     def management(self, **args):
-        return template('app/views/html/product_management')
-        """session_id = request.get_cookie('session_id')
+        session_id = request.get_cookie('session_id')
         if self.__model.checkAdmin(session_id):
             return template('app/views/html/product_management')
-        return template('app/views/html/index')"""
+        return template('app/views/html/index')
 
     def viewProducts(self):
         return template('app/views/html/page_buy')
     
+    def viewProduct(self, **args):
+        productID = args.get('product_id', None)
+
+        product = self.__product_model.get_product(productID)
+        if product:
+            product_colors = product.getColors()
+            return template('app/views/html/product_page', availability = product.stockStatus(), name = product.name, id = product.id, price = product.price,\
+                             category = product.category, brand = product.brand, connect = product.connectivity, desc= product.description, \
+                             colors = json.dumps(product_colors))
     
     
