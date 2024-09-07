@@ -85,7 +85,7 @@ header {
     padding: 6px 10px;
     outline: none;
     border: none;
-    background-color: blueviolet;
+    background-color: #7D29D2;
     border-radius: 10px;
     color: white;
     font-weight: 500;
@@ -98,7 +98,7 @@ header {
     padding: 6px 10px;
     outline: none;
     border: none;
-    background-color: blueviolet;
+    background-color: #7D29D2;
     border-radius: 10px;
     color: white;
     font-weight: 500;
@@ -205,8 +205,8 @@ header {
     vertical-align: middle;
 }
 
-.bi-search, .bi-caret-right-fill {
+.bi-search, .search_arrow {
     font-size: 16px;
     color:#7D29D2;
-    padding: 0px 20px;;
+    padding: 0px 20px;
 }

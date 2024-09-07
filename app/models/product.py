@@ -105,6 +105,23 @@ class Product:
             return 'Sold Out'
         else:
             return 'In Stock'
+        
+    def creditCardPrice(self):
+        return (0.04*self.__price + self.__price)
+        
+    def creditCardParcels(self):
+        parcels_quantity = 1
+        parcels_price = self.creditCardPrice()
+
+        while (parcels_price > 100):
+            parcels_quantity+=1
+            parcels_price = self.creditCardPrice()/parcels_quantity
+
+        if parcels_quantity > 12:
+            parcels_quantity = 12
+            parcels_price = self.creditCardPrice()/parcels_quantity  
+             
+        return [parcels_quantity, f'{parcels_price:.2f}']
 
     def to_dict(self):
         return {

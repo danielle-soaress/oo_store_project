@@ -31,7 +31,23 @@
     justify-content: flex-start;
     align-items: flex-start;
     padding: 70px 0px;
-    width: 50%;
+    width: 40%;
+}
+
+.tags_div {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.tag {
+    background-color: #7D29D2;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 #product_info_name {

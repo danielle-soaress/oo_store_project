@@ -29,7 +29,7 @@ def serve_db(filepath):
 
 
 
-#-----------------------------------------------------------------------------
+#-----------------------------------LOGIN AND REGISTER ------------------------------------------
 
 @app.route('/pagina/<username>', method='GET')
 def action_pagina(username=None):
@@ -77,6 +77,7 @@ def action_register():
         print('success')
         return ctl.render("login_page")
     
+#----------------------------------- HOME, STORE AND PRODUCTS PAGES ------------------------------------------
 
 @app.route('/home', method='GET')
 def home():

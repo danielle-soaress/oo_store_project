@@ -63,6 +63,10 @@
         <div id="product_info_div">
             <img src="../../static/img/6a75e89f-89db-4c71-b465-5aa139dce1f5_61kd0kZDgcL._AC_SX679_.jpg" alt="" class="product_info_image">
             <div class="product_info_text">
+                <div class="tags_div">
+                    <div class="tag">{{ category }}</div>
+                    <div class="tag">{{ connect }}</div>
+                </div>
                 <h1 id="product_info_name">{{ name }}</h1>
                 <div id="product_info_availability_div" style="background-color: {{ 'green' if availability == 'In Stock' else '#EA0000' }}">
                     <p id="product_info_availability">{{ availability }}</p>
@@ -77,13 +81,13 @@
                 <div id="product_info_price">
                     <div id="product_info_payment_div">
                         <span>
-                            <p id="product_info_price_in_cash">R$ 699,90</p>
+                            <p id="product_info_price_in_cash">{{ cash_price }}</p>
                             <p class="product_info_payment_info product_info_paragraph">
                                 <span class="strong">Cash</span> with up to <span class="strong">7% OFF</span>
                             </p>
-                            <p id="product_info_price_credit">R$ 720,30</p>
+                            <p id="product_info_price_credit">{{ credit_price }}</p>
                             <p class="product_info_payment_info product_info_paragraph">
-                                Up to <span class="strong">8x of R$ 87,48</span> interest-free on credit card
+                                Up to <span class="strong">{{ parcels_qt }}x of R$ {{ parcels }}</span> interest-free on credit card
                             </p>
                         </span>
                         <button id="product_info_buy_button">

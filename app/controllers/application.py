@@ -91,8 +91,9 @@ class Application():
         product = self.__product_model.get_product(productID)
         if product:
             product_colors = product.getColors()
-            return template('app/views/html/product_page', availability = product.stockStatus(), name = product.name, id = product.id, price = product.price,\
+            parcels_info= product.creditCardParcels()
+            return template('app/views/html/product_page', availability = product.stockStatus(), name = product.name, id = product.id, cash_price = product.price,\
                              category = product.category, brand = product.brand, connect = product.connectivity, desc= product.description, \
-                             colors = json.dumps(product_colors))
+                             colors = json.dumps(product_colors), credit_price = product.creditCardPrice(), parcels = parcels_info[1], parcels_qt = parcels_info[0])
     
     
