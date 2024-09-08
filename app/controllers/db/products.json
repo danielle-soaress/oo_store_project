@@ -37,6 +37,208 @@
         "colorStock": {
             "#FFF": 7
         },
-        "imageFileName": "be1f7f6c-3cb3-428b-8c1b-d1d338480db8_earbuds_home.png"
+        "imageFileName": "noise_cancelling_headphones.png"
+    },
+    {
+        "id": "127",
+        "name": "Bluetooth Earbuds",
+        "price": 69.99,
+        "category": "In-Ear",
+        "connectivity": "Wireless",
+        "description": "Affordable Bluetooth earbuds with good sound quality.",
+        "brand": "SoundFlex",
+        "colorStock": {
+            "black": 25,
+            "pink": 10
+        },
+        "imageFileName": "bluetooth_earbuds.png"
+    },
+    {
+        "id": "128",
+        "name": "Studio Monitor Headphones",
+        "price": 349.99,
+        "category": "Over-Ear",
+        "connectivity": "Wired",
+        "description": "Professional studio monitor headphones for accurate sound.",
+        "brand": "StudioPro",
+        "colorStock": {
+            "black": 10,
+            "silver": 6
+        },
+        "imageFileName": "studio_monitor_headphones.png"
+    },
+    {
+        "id": "129",
+        "name": "Sport Earbuds",
+        "price": 79.99,
+        "category": "In-Ear",
+        "connectivity": "Wireless",
+        "description": "Sweat-resistant earbuds designed for sports and exercise.",
+        "brand": "FitAudio",
+        "colorStock": {
+            "blue": 15,
+            "green": 8
+        },
+        "imageFileName": "sport_earbuds.png"
+    },
+    {
+        "id": "130",
+        "name": "Compact Travel Headphones",
+        "price": 89.99,
+        "category": "On-Ear",
+        "connectivity": "Wired",
+        "description": "Foldable headphones perfect for travel.",
+        "brand": "TravelSound",
+        "colorStock": {
+            "black": 12,
+            "blue": 10
+        },
+        "imageFileName": "compact_travel_headphones.png"
+    },
+    {
+        "id": "131",
+        "name": "Premium Wireless Headphones",
+        "price": 399.99,
+        "category": "Over-Ear",
+        "connectivity": "Wireless",
+        "description": "Luxury wireless headphones with high-fidelity sound.",
+        "brand": "LuxAudio",
+        "colorStock": {
+            "black": 5,
+            "gold": 3
+        },
+        "imageFileName": "premium_wireless_headphones.png"
+    },
+    {
+        "id": "132",
+        "name": "Noise Cancelling Earbuds",
+        "price": 149.99,
+        "category": "In-Ear",
+        "connectivity": "Wireless",
+        "description": "Noise cancelling earbuds with a comfortable fit.",
+        "brand": "QuietTech",
+        "colorStock": {
+            "black": 20,
+            "white": 10
+        },
+        "imageFileName": "noise_cancelling_earbuds.png"
+    },
+    {
+        "id": "27ee5600-ceb3-4e89-b3a1-4d9ba7742548",
+        "name": "produtinho",
+        "price": 12.0,
+        "category": "Headphones",
+        "connectivity": "Wireless",
+        "description": "descri\u00e7\u00e3o longa e legal aqui",
+        "brand": "JBL",
+        "colorStock": {
+            "#000": 12
+        },
+        "imageFileName": "d7b7e2ef-c655-4129-94fd-5db9f5f8ac27_61kd0kZDgcL._AC_SX679_.jpg"
+    },
+    {
+        "id": "8ba5db08-6929-4c12-9720-6598f93a076e",
+        "name": "produtinho",
+        "price": 12.0,
+        "category": "Headphones",
+        "connectivity": "Wireless",
+        "description": "descri\u00e7\u00e3o longa e legal aqui",
+        "brand": "JBL",
+        "colorStock": {
+            "#000": 12
+        },
+        "imageFileName": "8a626c54-50c2-40d0-9e8d-833df42c16e7_61kd0kZDgcL._AC_SX679_.jpg"
+    },
+    {
+        "id": "ca379e67-4c9f-4bd8-9ba0-f434d6f3811d",
+        "name": "produto",
+        "price": 12.0,
+        "category": "Headphones",
+        "connectivity": "Wireless",
+        "description": "descri\u00e7\u00e3o longa e legal aqui",
+        "brand": "JBL",
+        "colorStock": {
+            "#000": 12
+        },
+        "imageFileName": "708990c2-d660-4a83-bbd8-8c2794a49389_61kd0kZDgcL._AC_SX679_.jpg"
+    },
+    {
+        "id": "060d047b-ce43-44a3-9a06-61c03cdc0044",
+        "name": "aaaa",
+        "price": 12.0,
+        "category": "Headphones",
+        "connectivity": "Wireless",
+        "description": "adasd",
+        "brand": "dasda",
+        "colorStock": {
+            "#fff": 12
+        },
+        "imageFileName": "001858d9-01db-43a5-8780-97dd363fcc3e_61kd0kZDgcL._AC_SX679_.jpg"
+    },
+    {
+        "id": "1376abcd-35bb-45a0-9444-e46c3771dbc4",
+        "name": "aaa",
+        "price": 32.0,
+        "category": "Headphones",
+        "connectivity": "Wireless",
+        "description": "dasda",
+        "brand": "dsada",
+        "colorStock": {
+            "#fff": 12
+        },
+        "imageFileName": "53d1ba96-578d-4740-8d7d-2bcd9bf8bec5_61kd0kZDgcL._AC_SX679_.jpg"
+    },
+    {
+        "id": "a4b93a6c-7b3d-4944-8875-24f4f147a34b",
+        "name": "dasda",
+        "price": 12.0,
+        "category": "Headphones",
+        "connectivity": "Wireless",
+        "description": "dasda",
+        "brand": "dasda",
+        "colorStock": {
+            "#fff": 12,
+            "#000": 43
+        },
+        "imageFileName": "d63f09c8-b67a-4247-92e8-96e94a3903ba_61kd0kZDgcL._AC_SX679_.jpg"
+    },
+    {
+        "id": "3de353ba-37e3-4d6d-866c-6ba54a601f65",
+        "name": "aaaa",
+        "price": 43.0,
+        "category": "Headphones",
+        "connectivity": "Wireless",
+        "description": "dasdas",
+        "brand": "dasdas",
+        "colorStock": {
+            "#fff": 12
+        },
+        "imageFileName": "6a75e89f-89db-4c71-b465-5aa139dce1f5_61kd0kZDgcL._AC_SX679_.jpg"
+    },
+    {
+        "id": "685d880e-7ab0-468d-8eb0-1331375fff63",
+        "name": "dsada",
+        "price": 12.0,
+        "category": "Headphones",
+        "connectivity": "Wireless",
+        "description": "dasd",
+        "brand": "dasda",
+        "colorStock": {
+            "#fff": 12
+        },
+        "imageFileName": "51690b5c-bf1e-4968-87d4-6d5d490ebee1_61kd0kZDgcL._AC_SX679_.jpg"
+    },
+    {
+        "id": "98211a83-63cd-4f9d-a7a2-80cc1b86fbb6",
+        "name": "fsdfs",
+        "price": 14.0,
+        "category": "Headphones",
+        "connectivity": "Wireless",
+        "description": "fsdfs",
+        "brand": "fsdf",
+        "colorStock": {
+            "#fff": 12
+        },
+        "imageFileName": "f7dbf30c-7f34-4f98-a9f4-87b22fffbea4_61kd0kZDgcL._AC_SX679_.jpg"
     }
 ]

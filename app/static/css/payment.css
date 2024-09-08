@@ -1,0 +1,494 @@
+#payment_progress {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80vw;
+}
+
+#previousStep, .nextStep {
+    color: white;
+    background-color: #7D29D2;
+    outline: none;
+    border: none;
+    width: 90px;
+    padding: 5px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: ease .5s;
+}
+
+#previousStep {
+    position: absolute;
+    left: 0;
+}
+
+#previousStep:hover, .nextStep:hover, .generic_button:hover {
+    background-color: #651db1;
+    transition: ease .4s;
+}
+
+.checkout_steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 8vh;
+    margin: 20px 0px;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ccc;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.line {
+    width: 50px;
+    height: 4px;
+    background-color: #ccc;
+    transition: background-color 0.3s ease;
+}
+
+.step p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.active {
+    background-color: #7D29D2;
+}
+
+/* --- sections general style set -- */
+
+.step_layout {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 40px;
+    height: 73vh;
+}
+
+/* --- payment section -- */
+#left_purchase_section, #right_purchase_section {
+    display: flex;
+}
+
+#left_purchase_section {
+    width: 58vw;
+    height: 100%;
+}
+
+#right_purchase_section {
+    width: 23vw;
+    flex-direction: column;
+    gap: 40px;
+    height: 73vh;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#right_purchase_section .nextStep{
+    width: 100%;
+}
+
+#cart_products_title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.section_title, .cart_products_bag {
+    font-size: 20px;
+    color: #7D29D2;
+    font-weight: 800;
+}
+
+.title_icon {
+    font-size: 20px;
+    color: #7D29D2;
+}
+
+#cart_products_container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.section_title_span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+}
+
+.cart_products_remove_all {
+    background-color: #ed3e3e;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: ease .5s;
+    color: white;
+}
+
+.cart_products_remove_all:hover {
+    transform: scale(1.06);
+    transition: ease .5s;
+}
+
+.cart_products_remove_all .product_card_text, .bi-trash-fill {
+    color: inherit;
+    font-size: 15px;
+}
+
+.product_card {
+    background-color: white;
+    padding: 15px;
+    display: flex;
+    gap: 15px;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: space-between
+}
+
+.section_text {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.product_card_qt_div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.product_card_qt_div .product_card_text, .arrow {
+    color: #7D29D2;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+}
+
+.product_card_qt_input, #coupon_input {
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    width: 60px;
+    box-shadow: 1px 1px 5px rgb(133, 133, 133);
+    text-align: center;
+}
+
+input[type=number]::-webkit-inner-spin-button { 
+    -webkit-appearance: none;
+    
+}
+input[type=number] { 
+   -moz-appearance: textfield;
+   appearance: textfield;
+
+}
+
+.product_card_remove_div .product_card_text, .bi-trash-fill{
+    color: inherit;
+    font-size: 12px;
+    margin-right: 5px;
+    font-weight: 600;
+}
+
+.product_card_remove_div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ed3e3e;
+    padding: 0px 15px;
+    border-radius: 12px;
+    height: 25px;
+    width: fit-content;
+    color: #ffffff;
+    cursor: pointer;
+    transition: ease 0.5s;
+}
+
+.product_card_remove_div:hover {
+    color: #ed3e3e;
+    background-color: #fff;
+    transition: ease 0.5s;
+}
+
+.remove_button_text {
+    color: inherit;
+}
+
+.subsection {
+    padding: 40px;
+    background-color: #F5F5F5;
+    width: 100%;
+}
+
+#coupon_input {
+    margin-top: 15px;
+    margin-right: 10px;
+    width: 55%;
+}
+
+#coupon_button {
+    border-radius: 10px;
+    width: 70px;
+}
+
+#purchase_summary hr {
+    margin-top: 10px;
+    height: 2px;
+    background-color: white;
+    border: none;
+}
+
+.total_div_installments {
+    background-color: #d3d3d3;
+}
+
+.total_div_cash {
+    background-color: #acffb6;
+}
+
+.total_div {
+    width: 100%;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.total_div_subdiv {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    text-align: end;
+}
+
+.nextStep{
+    border-radius: 10px;
+    padding: 15px 0px;
+    height: fit-content;
+}
+
+#right_purchase_sextion .nextStep {
+    width: 100%;
+}
+
+/* ----- user identification layout -----------*/
+
+.left_identify_section  {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    gap: 30px;
+}
+
+.identify_main_div {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: fit-content
+}
+
+.identification-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#edit_information {
+    width: 200px;
+}
+
+
+.right_identify_section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: fit-content;
+    width: fit-content;
+}
+
+/*--- payment layout ---- */
+
+
+.payment-section {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.payment-section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+    margin-top: 30px;
+}
+
+.payment-options {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.payment-options label {
+    font-size: 14px;
+    color: #333;
+}
+
+.payment-options input {
+    margin-right: 5px;
+}
+
+.credit-card-info .form-group {
+    margin-bottom: 15px;
+}
+
+.credit-card-info label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.credit-card-info input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.credit-card-info input:focus {
+    border-color: #7D29D2;
+    outline: none;
+}
+
+.generic_button {
+    width: 100%;
+    padding: 10px;
+    background-color: #7D29D2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.generic_button:hover {
+    background-color: #651db1;
+}
+
+.subtitle_text, #total_payment {
+    font-weight: 700;
+    font-size: 16px;
+    vertical-align: baseline;
+}
+
+#total_payment {
+    color: #651db1;
+}
+
+#total_payment_info {
+    display: flex;
+    width: 100%;
+    margin-bottom: 30px;
+    height: fit-content;
+    align-items: center;
+    justify-content: end;
+    gap: 10px;
+}
+
+#payment_step {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* ------- conclusion step ------- */
+
+
+#orderResult {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    border-radius: 8px;
+    margin-top: 100px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s ease;
+    height: fit-content;
+}
+
+#orderResult.success {
+    background-color: #acffb6;
+    color: #2e7d32;
+}
+
+#orderResult.error {
+    background-color: #ffcccb;
+    color: #d32f2f;
+}
+
+#resultMessage {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.retryButton {
+    padding: 10px 20px;
+    background-color: #7D29D2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.retryButton:hover {
+    background-color: #651db1;
+}
+
+
+/* useful classes */
+.hide {
+    display: none!important;
+}
+
+.strong {
+    font-weight: 600;
+}
+

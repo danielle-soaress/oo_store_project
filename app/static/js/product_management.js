@@ -271,6 +271,7 @@ productForm.addEventListener('submit', function (event) {
             body: formData
         })
         .then(async response => {
+            console.log('processando resposta json')
             const data = await response.json();
             return ({ ok: response.ok, data });
         })
@@ -284,7 +285,9 @@ productForm.addEventListener('submit', function (event) {
             }
         })
         .catch(error => {
-            alert('Erro na comunicação com o servidor.');
+            console.log(error)
+            alert('Erro na comunicação com o servidor ' + error);
+            console.log(error)
         });
     }
 })

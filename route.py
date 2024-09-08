@@ -31,6 +31,11 @@ def serve_db(filepath):
 
 #-----------------------------------------------------------------------------
 
+@app.route('/pagina/<username>', method='GET')
+def action_pagina(username=None):
+    return ctl.render('pagina',username = username)
+
+
 @app.route('/login_page', method='GET')
 def login(error_message = None):
     error_code = request.query.get('error_code', None)
@@ -74,6 +79,7 @@ def action_register():
         print('success')
         return ctl.render("login_page")
     
+#----------------------------------- HOME, STORE AND PRODUCTS PAGES ------------------------------------------
 
 @app.route('/home', method='GET')
 def home():
@@ -197,7 +203,7 @@ def add_product():
         colorStock = {}
         imageFileName = None
         price = None
-
+        print('checkpoint0')
         ## price processing
         if not is_valid_float(price_str):
             response.status = 400
@@ -206,7 +212,7 @@ def add_product():
             price = float(price_str)
 
         ## image processing
-
+        print('checkpoint2')
         image = request.files.get('image')
         if image:
             filename = generate_unique_filename(image.filename)
@@ -218,6 +224,7 @@ def add_product():
             image.save(file_path)
             imageFileName = filename
         
+        print('checkpoint1')
         ## color stock processing
         colors = request.forms.getall('colorStock')
         quantities = request.forms.getall('colorStockQuantity')
@@ -233,9 +240,11 @@ def add_product():
             return json.dumps({"error": "All colors must have quantity information. The number of colors is not equal to the number of quantity information."})
         prc.create_product(name, price, category, connectivity, description, brand, colorStock, imageFileName)
         response.status = 204
+        print('deu certo')
         return json.dumps({"message": "Product created successfully"})
     except Exception as e:
         response.status = 500
+        print('error ' + str(e))
         return json.dumps({"error": str(e)})
 
 # Regex para verificar cores hexadecimais

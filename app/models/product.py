@@ -43,7 +43,7 @@ class Product:
         return self.__connectivity
 
     @connectivity.setter
-    def onnectivity(self, value):
+    def connectivity(self, value):
         self.__connectivity
 
     @property
@@ -75,19 +75,22 @@ class Product:
     def setColorStock(self, color, quantity):
         self.__colorStock[color] = quantity
 
+    def getColorStock(self):
+        return self.__colorStock
+
     def getStockForColor(self, color):
         return self.__colorStock.get(color, 0)
     
     
     def getColors(self): # this function gets all product colors
         colors = []
-        for chave, valor in self.__colorStock.item():
+        for chave, valor in self.__colorStock.items():
             colors.append(str(chave))
-        return  colors
+        return colors
     
     def getStock(self): # this function gets the quantity of products in stock.
         quantity = 0
-        for chave, valor in self.__colorStock.item():
+        for chave, valor in self.__colorStock.items():
             quantity+= valor
         return quantity
     
@@ -102,6 +105,23 @@ class Product:
             return 'Sold Out'
         else:
             return 'In Stock'
+        
+    def creditCardPrice(self):
+        return (0.04*self.__price + self.__price)
+        
+    def creditCardParcels(self):
+        parcels_quantity = 1
+        parcels_price = self.creditCardPrice()
+
+        while (parcels_price > 100):
+            parcels_quantity+=1
+            parcels_price = self.creditCardPrice()/parcels_quantity
+
+        if parcels_quantity > 12:
+            parcels_quantity = 12
+            parcels_price = self.creditCardPrice()/parcels_quantity  
+             
+        return [parcels_quantity, f'{parcels_price:.2f}']
 
     def to_dict(self):
         return {
