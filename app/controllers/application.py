@@ -56,7 +56,7 @@ class Application():
         session_id = self.__model.checkUser(username, password)
         if session_id:
             response.set_cookie('session_id', session_id, httponly=True, secure=True, max_age=3600)
-            return redirect(f'/pagina/{username}')
+            return redirect(f'/viewProducts')
         return redirect('/login_page?error_code=1')
 
     def logout_user(self):
@@ -80,7 +80,8 @@ class Application():
         session_id = request.get_cookie('session_id')
         if self.__model.checkAdmin(session_id):
             return template('app/views/html/product_management')
-        return template('app/views/html/index')
+        self.home()
+        return
 
     def viewProducts(self):
         return template('app/views/html/page_buy')

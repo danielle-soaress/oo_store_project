@@ -7,12 +7,17 @@
     font-size: 14px;
 }
 
+html {
+    overflow-x: hidden;
+}
+
 body {
     display: flex;
     width: 100vw;
     height: 100vh;
     flex-direction: column;
     align-items: center;
+    overflow-x: hidden;
 }
 
 header {
@@ -24,6 +29,8 @@ header {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    position: fixed;
+    z-index: 5;
 }
 
 .header_container {
