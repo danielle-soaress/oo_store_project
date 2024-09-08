@@ -179,6 +179,7 @@ function loadCart() {
             if (data.status === 'success') {
                 cart = data.cart;
                 displayCart();
+                updateTotal()
             } else {
                 console.error('Erro ao carregar o carrinho:', data.message);
             }
@@ -338,7 +339,8 @@ function updateProductList() {
 
 document.addEventListener('DOMContentLoaded', () => {
     updateProductList(),
-    loadCart()
+    loadCart(),
+    updateTotal()
 });
 
 
