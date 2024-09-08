@@ -102,8 +102,8 @@ header {
 .side_bag {
     position: fixed;
     top: 0;
-    right: -350px; /*Escondido por padrao*/
-    width: 300px;
+    right: -750px; /*Escondido por padrao*/
+    width: 700px;
     height: 100%;
     background-color: #7D29D2;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
@@ -132,6 +132,17 @@ header {
     flex: 1;
     overflow-y: auto;
 }
+.cart_total {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#total {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+    text-align: right;
+}
 
 .buy_bag {
     width: 100%;
@@ -140,7 +151,6 @@ header {
     color: #fff;
     border: 20px;
     border-radius: 20px;
-    margin-top: 10px;
 }
 
 .close_bag {
@@ -184,6 +194,87 @@ header {
     font-size: 16px;
     color:#7D29D2;
     padding: 0px 20px;;
+}
+
+table {
+    width: 100%;
+    margin-bottom: auto;
+    border-collapse: collapse;
+}
+
+thead tr {
+    border-bottom: 3px solid #eee;
+}
+
+thead th {
+    text-align: left;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+    color: #666;
+}
+
+
+.productIdentification {
+    display: flex;
+    align-items: center;
+}
+
+.productIdentification img {
+        border-radius: 6px;
+        height: 120px;
+        width: 100;
+        object-fit: cover;
+}
+
+.productIdentification .info {
+    margin-left: 20px;
+}
+
+.productIdentification .info .name_product {
+    font-size: 15px;
+}
+
+.productIdentification .info .id,
+.productIdentification .info .category,
+.productIdentification .info .brand {
+    font-size: 12px;
+    color: #666;
+}
+
+.price_product {
+    margin-right: 20px;
+    font-size: 15px; 
+    font-weight: bold; 
+    color: #333; 
+}
+
+.product_qty {
+    margin-left: 15px;
+    width: 40px; 
+    padding: 5px; 
+    text-align: center; 
+    font-size: 15px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+}
+
+.product_remove {
+    background-color: #e74c3c; 
+    color: white;
+    border: none; 
+    padding: 8px 12px; 
+    font-size: 12px; 
+    border-radius: 4px; 
+    cursor: pointer; 
+    transition: background-color 0.3s; 
+}
+
+.product_remove:hover {
+    background-color: #c0392b; 
+}
+
+tbody tr td {
+    padding: 30px 0;
 }
 
 /* ===================FILTERS========================*/
@@ -314,7 +405,23 @@ main {
     margin-bottom: 10px;
 }
 
-.product_item_text {
+.product_item_id {
+    margin-bottom: 5px;
+}
+
+.product_item_category {
+    margin-bottom: 5px;
+}
+
+.product_item_connectivity {
+    margin-bottom: 5px;
+}
+
+.product_item_brand {
+    margin-bottom: 5px;
+}
+
+.product_item_price {
     margin-bottom: 5px;
 }
 

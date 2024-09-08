@@ -31,11 +31,6 @@ def serve_db(filepath):
 
 #-----------------------------------------------------------------------------
 
-@app.route('/pagina/<username>', method='GET')
-def action_pagina(username=None):
-    return ctl.render('pagina',username = username)
-
-
 @app.route('/login_page', method='GET')
 def login(error_message = None):
     error_code = request.query.get('error_code', None)
@@ -43,11 +38,13 @@ def login(error_message = None):
         error_message = ERRORS.get(int(error_code), 0).message
     return ctl.render('login_page', error_message = error_message)
 
+
 @app.route('/login_page', method='POST')
 def action_login():
     username = request.forms.get('username')
     password = request.forms.get('password')
-    ctl.authenticate_user(username, password)
+
+    return ctl.authenticate_user(username, password)
         
 
 @app.route('/logout', method='POST')
@@ -82,9 +79,59 @@ def action_register():
 def home():
     return ctl.render('home')
 
+
 @app.route('/viewProducts', method='GET')
 def viewProducts():
     return ctl.render('viewProducts')
+
+#=======================Cart routes========================
+
+@app.route('/save-cart', method='POST')
+def save_cart():
+    data = request.json
+    username = data['username']
+    cart = data['cart']
+
+    NewDates = dtr.getUserAccountDates(username)
+    if not NewDates:
+        return {'status': 'error', 'message':'User not found'}
+    
+    NewDates['cart'] = cart
+    dtr.saveNewDates(username, NewDates)
+
+    return {'status': 'success'}
+
+
+@app.route('/get-cart', method= 'GET')
+def get_cart():
+    username = request.get_cookie('username')
+
+    if not username:
+        response.status = 400
+        return json.dumps({"status": "error", "message": "Username não fornecido"})
+
+    userDates = dtr.getUserAccountDates(username)
+
+    if 'cart' not in userDates:
+        response.status = 404
+        return json.dumps({"status": "error", "message": "Carrinho não encontrado"})
+
+    cart = userDates['cart']
+
+    response.content_type = 'application/json'
+    return json.dumps({"status": "success", "cart": cart})
+
+
+'''@app.route('/api/userBag', method='GET')
+def get_user_bag():
+    username = request.query.username
+    userAccountDates = dtr.getUserAccountDates(username)
+    if not userAccountDates:
+        return {'status': 'error', 'message': 'User not found'}
+    
+
+    bag = userAccountDates.get('bag')
+    return {'bag': bag}'''
 
 
 # ----------------- PRODUCT MANAGEMENT ROUTES (API) ----------------

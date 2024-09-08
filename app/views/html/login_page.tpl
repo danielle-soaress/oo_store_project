@@ -6,7 +6,7 @@
     <title>Login</title>
 </head>
 <body>
-    <form action="/login_page" method="post">
+    <form action="/login_page" method="post" id="login_form">
         <label for="username">Nome:</label>
         <input id="username" name="username" type="text" required /><br>
 

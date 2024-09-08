@@ -19,10 +19,23 @@ class DataRecord():
         try:
             with open("app/controllers/db/user_accounts.json", "r") as arquivo_json:
                 user_data = json.load(arquivo_json)
-                self.__user_accounts = [UserAccount(**data) for data in user_data]
+                self.__user_accounts = [
+                    UserAccount(
+                        firstname=data.get('firstname'),
+                        lastname=data.get('lastname'),
+                        username=data.get('username'),
+                        email=data.get('email'),
+                        address=data.get('address'),
+                        password=data.get('password'),
+                        userID=data.get('userID')
+                    )
+                    for data in user_data
+                ]
         except FileNotFoundError:
-            self.__user_accounts.append(UserAccount('Guest', '000000', uuid.uuid4()))
+            # Cria um usuário 'Guest' se o arquivo não for encontrado
+            self.__user_accounts = [UserAccount('Guest', 'Guest', 'guest', 'guest@example.com', 'N/A', '000000', uuid.uuid4().hex)]
         except json.JSONDecodeError:
+            # Define a lista de usuários como vazia em caso de erro de decodificação JSON
             self.__user_accounts = []
     
     def adminsInfo(self):
@@ -88,3 +101,53 @@ class DataRecord():
     def logout(self, session_id):
         if session_id in self.__authenticated_users:
             del self.__authenticated_users[session_id] # Remove o usuário logado
+
+#=============================Inserido=========================
+
+    def getUserAccountDates(self, username):
+        try:
+            with open("app/controllers/db/user_accounts.json", "r") as arquivo_json:
+                data = json.load(arquivo_json)
+
+            for user in data:
+                if user["username"] == username:
+                    return user
+        except FileNotFoundError:
+            return None
+    
+
+    def saveNewDates(self, username, newDates):
+        try:
+
+            with open("app/controllers/db/user_accounts.json", "r+") as arquivo_json:
+                data = json.load(arquivo_json)
+
+                for user in data:
+                    if user["username"] == username:
+                        user.update(newDates)
+                        break
+                
+                arquivo_json.seek(0)
+                json.dump(data, arquivo_json)
+                arquivo_json.truncate()
+
+        except FileNotFoundError:
+            print("Arquivo não encontrado.")
+        except json.JSONDecodeError:
+            print("Erro ao decodificar o JSON.")
+        except Exception as e:
+            print(f"Ocorreu um erro: {e}")
+
+
+    '''def syncBags(userBag, tempBag):
+        for tempItem in tempBag:
+            found = False
+            for item in userBag:
+                if item['id'] == tempItem['id']:
+                    item['quantity'] += tempItem['quantity']
+                    found = True
+                    break
+            if not found:
+                userBag.append(tempItem)
+        return userBag'''
+    

@@ -8,3 +8,4 @@ class UserAccount():
         self.address = address
         self.password= password
         self.userID = userID
+        self.cart = []
