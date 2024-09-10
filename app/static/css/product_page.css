@@ -1,9 +1,4 @@
-#product_info_sextion {
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
 #product_info_div {
     margin-top: 60px;
     width: 80vw;
@@ -17,6 +12,14 @@
     padding: 1rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+}
+
+section{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
 }
 
 .product_info_image {

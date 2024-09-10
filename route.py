@@ -13,6 +13,7 @@ import uuid
 dtr = DataRecord()
 app = Bottle()
 ctl = Application()
+prc = ProductRecord()
 
 
 #-----------------------------------------------------------------------------
@@ -98,14 +99,20 @@ def save_cart():
     username = data['username']
     cart = data['cart']
 
-    NewDates = dtr.getUserAccountDates(username)
-    if not NewDates:
-        return {'status': 'error', 'message':'User not found'}
+    if not username:
+        response.status = 400
+        return {'status': 'error', 'message': 'Username is required'}
     
-    NewDates['cart'] = cart
-    dtr.saveNewDates(username, NewDates)
+    if cart is None:  # Verifica se cart não é None (mesmo se estiver vazio, é válido)
+        response.status = 400
+        return {'status': 'error', 'message': 'Cart data is required'}
 
-    return {'status': 'success'}
+    if not (dtr.saveUserCart(username, cart)):
+        response.status = 500 
+        return {'status': 'error', 'message': 'Failed to save cart'}
+    
+    response.status = 200
+    return {'status': 'success', 'message': 'Cart saved successfully'}
 
 
 @app.route('/get-cart', method= 'GET')
@@ -116,16 +123,17 @@ def get_cart():
         response.status = 400
         return json.dumps({"status": "error", "message": "Username não fornecido"})
 
-    userDates = dtr.getUserAccountDates(username)
+    cart = dtr.getUserCart(username)
 
-    if 'cart' not in userDates:
-        response.status = 404
-        return json.dumps({"status": "error", "message": "Carrinho não encontrado"})
+    if not cart:
+        response.status = 400
+        return json.dumps({"status": "error", "message": "User or Cart not Found"})
+    
+    detailed_cart = prc.get_cart_products(cart)
 
-    cart = userDates['cart']
-
+    print(detailed_cart)
     response.content_type = 'application/json'
-    return json.dumps({"status": "success", "cart": cart})
+    return json.dumps({"status": "success", "cart": detailed_cart})
 
 
 '''@app.route('/api/userBag', method='GET')
@@ -140,9 +148,25 @@ def get_user_bag():
     return {'bag': bag}'''
 
 
+# ---------------- 
+
+@app.route('/viewProduct/<product_id>', method='GET')
+def viewProduct(product_id):
+    return ctl.render('viewProduct', product_id = product_id)
+
+
+
+# --------------
+
+@app.route('/payment/<username>', method='GET')
+def payment(username):
+    if ctl.is_authenticated(username):
+        return ctl.render('payment', username = username)
+    return ctl.render('login_page', error_message = "Log in to your account to proceed with payment.")
+
+
 # ----------------- PRODUCT MANAGEMENT ROUTES (API) ----------------
 
-prc = ProductRecord()
 
 @app.route('/management', method='GET')
 def management():

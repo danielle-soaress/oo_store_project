@@ -9,9 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../static/css/product_page.css">
     <link rel="stylesheet" href="../../static/css/header.css">
-
+    <link rel="stylesheet" href="../../static/css/product_page.css">
+</head>
 <body>
     <header class="header">
         <div class="header_container">

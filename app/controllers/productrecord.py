@@ -34,6 +34,29 @@ class ProductRecord:
                 return product
         return None
     
+    def get_cart_products(self, cart):
+        detailed_cart = []
+
+        for item in cart:
+            product_id = item['productId']
+            quantity = item['quantity']
+
+            product = self.get_product(product_id)
+            if product:
+                product_details = {
+                    'productId': product.id,
+                    'productName': product.name,
+                    'productCategory': product.category,
+                    'productBrand': product.brand,
+                    'productPrice': product.price,
+                    'productImg': product.imageFileName,
+                    'cardPrice': f'{(product.price*0.04 + product.price):.2f}',
+                    'quantity': quantity
+                }
+                detailed_cart.append(product_details)
+        return detailed_cart
+
+    
     def get_stockInfo(self, product_id):
         product = self.get_product(product_id)
         return product.stockStatus()

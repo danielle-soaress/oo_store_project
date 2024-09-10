@@ -93,7 +93,7 @@
                     </span>
                     <div class="cart_products_remove_all">
                         <i class="bi bi-trash-fill"></i>
-                        <p class="remove_button_text">Remove All Products</p>
+                        <p id="remove_all" class="remove_button_text">Remove All Products</p>
                     </div>
                 </div>
                 <div id="cart_products_container">
@@ -103,7 +103,7 @@
                             <h3 class="product_card_name"></h3>
                             <h3 class="product_card_prices">
                                 <p class="product_card_prices_text section_text">Cash payment: <span class="strong section_text"></span></p>
-                                <p class="product_card_prices_text section_text">Installments in {{x}} interest-free installments: <span class="strong section_text"></span></p>
+                                <p class="product_card_prices_text section_text">Installments in x interest-free installments: <span class="strong section_text"></span></p>
                             </h3>
                         </div>
                         <div class="product_card_qt_div">
@@ -139,19 +139,19 @@
                     <h3 class="section_title">Purchase Summary</h3>
                 </span>
                 <hr>
-                <p class="section_text" id="purcahse_total"><span class="strong">Total Products Value:</span></p>
+                <p class="section_text" id="purcahse_total"><span class="strong">Total Products Value: R$ {{ totalCash[0] }}</span></p>
                 <hr>
-                <p class="section_text"><span class="strong">Freight:</span></p>
+                <p class="section_text"><span class="strong">Freight: R$ {{ freight }} </span></p>
                 <hr>
-                <p class="section_text"><span class="strong">Coupon Discounts:</span></p>
+                <p class="section_text"><span class="strong">Coupon Discounts: R$ 0.00 </span></p>
                 <hr>
-                <p class="section_text" id="final_order_value"><span class="strong">Final Order Value: </span></p>
+                <p class="section_text" id="final_order_value"><span class="strong">Final Order Value: R$ {{ totalCash[1] }} </span></p>
                 <div class="total_div total_div_installments">
                     <p class="total_div_text">Total in Installments: </p>
                     <div  class="total_div_subdiv">
-                        <p id="total_in_installments">4234</p>
+                        <p id="total_in_installments">{{ totalCreditCard[1] }}</p>
                         <p class="total_div_text">
-                            Up to <span class="total_div_text" id="installments_total">423</span> 
+                            Up to <span class="total_div_text" id="installments_total">12x</span> 
                             interest-free installments 
                         </p>
                     </div>
@@ -159,11 +159,10 @@
                 <div class="total_div total_div_cash">
                     <p class="total_div_text">Total in Cash: </p>
                     <div class="total_div_subdiv">
-                        <p id="total_in_cash">423</p>
-                        <p class="total_div_text">7% discount</p>
+                        <p id="total_in_cash"> {{ totalCash[1] }}</p>
+                        <p class="total_div_text">4% discount</p>
                     </div>
                 </div>
-                
             </div>
             <button class="nextStep">Go to Payment</button>
         </div>
