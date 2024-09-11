@@ -12,7 +12,7 @@ class Cart(ABC):
         total = 0
         for item in detailed_cart:
             total += item["productPrice"]*item["quantity"]
-        return [total, total+30.00]
+        return [f'{total:2f}', f'{(total+30.00):.2f}']
     
     @abstractmethod
     def totalCreditCard(cart):
@@ -21,7 +21,7 @@ class Cart(ABC):
         for item in detailed_cart:
             itemPrice = item["productPrice"]
             total += (itemPrice*0.04+ itemPrice)*item["quantity"]
-        return [total, total+30.00]
+        return [f'{total:2f}', f'{(total+30.00):.2f}']
     
     @abstractmethod 
     def installmentsPrice(self, numberParcels, totalCreditCard):

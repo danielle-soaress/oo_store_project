@@ -29,18 +29,21 @@ function nextStep() {
 
         currentStep++;
 
-        // to show the 'previous step' button on the steps > 1
-        previousStepButton.classList.remove('hide')
-
         // step three payment simulation
-        paymentSimulation()
 
 
+        // to show the 'previous step' button on the steps > 1
+        if (currentStep == 2) {
+            previousStepButton.classList.remove('hide')
+        } else {
+            previousStepButton.classList.add('hide')
+        }
         // to change the page layout to the next stage of payment process
         sections.forEach(layout => {
             layout.classList.add('hide')
         })
 
+        // to show the correct layout
         sections[currentStep - 1].classList.remove('hide')
     }
 }
@@ -76,18 +79,6 @@ cardOption.addEventListener('change', function() {
 cashOption.addEventListener('change', function() {
     creditCardInfo.style.display = 'none';
 });
-
-
-/* ------------- PAYMENT SIMULATION ----------------------------*/
-
-
-function paymentSimulation() {
-    setTimeout(() => {
-        nextStep();
-    }, 4000)
-
-    showOrderResult(true)
-}
 
 
 /* ---- CONCLUSION STEP ------------------*/
@@ -332,3 +323,51 @@ document.getElementById('remove_all').addEventListener('click', () => {
     displayCart()
     updateCartOnServer()
 })
+
+/* ---- carregar formulário -----*/
+
+function paymentSimulation() {
+    console.log('pay pay')
+    nextStep()
+    
+    setTimeout(() => {
+        nextStep()
+    }, 4000)
+
+    showOrderResult(true)
+
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const cashOption = document.getElementById('cash-option');
+    const cardOption = document.getElementById('card-option');
+    const cardInfo = document.getElementById('credit-card-info');
+    const cardInputs = cardInfo.querySelectorAll('input');
+    const paymentForm = document.getElementById('payment-form')
+
+    // Mostra ou esconde os campos de cartão de crédito
+    cardOption.addEventListener('change', function() {
+        if (cardOption.checked) {
+            cardInfo.style.display = 'block';
+            cardInputs.forEach(input => input.required = true); // Adiciona 'required'
+        }
+    });
+
+    cashOption.addEventListener('change', function() {
+        if (cashOption.checked) {
+            cardInfo.style.display = 'none';
+            cardInputs.forEach(input => input.required = false); // Remove 'required'
+        }
+    });
+
+    paymentForm.addEventListener('submit', function(e) {
+        e.preventDefault(); // Impede o envio padrão
+
+        // Verifica se o formulário está válido
+        if (paymentForm.checkValidity()) {
+            paymentSimulation()
+        } else {
+            console.log('Form incomplete')
+        }
+    });
+});
