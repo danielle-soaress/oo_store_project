@@ -10,15 +10,14 @@ class UserAccount():
         self.userID = userID
         self.cart = []
 
-
-    def to_dict(self):
-        return {
-            "firstname": self.firstname,
-            "lastname": self.lastname,
-            "username": self.username,
-            "email": self.email,
-            "address": self.address,
-            "password": self.password,
-            "userID": self.userID,
-            "cart": self.cart
-        }
+    def toDict(self):
+            return {
+                'firstname': self.firstname,
+                'lastname': self.lastname,
+                'username': self.username,
+                'email': self.email,
+                'address': self.address,
+                'password': self.password,
+                'userID': self.userID,
+                'cart': self.cart
+            }

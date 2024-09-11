@@ -113,24 +113,32 @@ class DataRecord():
             for user in data:
                 if user["username"] == username:
                     return user
+            return None
         except FileNotFoundError:
             return None
     
 
-    def saveNewDates(self, username, newDates):
+    def saveUserCart(self, username, cart):
         try:
-
             with open("app/controllers/db/user_accounts.json", "r+") as arquivo_json:
                 data = json.load(arquivo_json)
+                
+                user_found = False
 
                 for user in data:
-                    if user["username"] == username:
-                        user.update(newDates)
+                    if user['username'] == username:
+                        user['cart'] = cart
+                        user_found = True
                         break
-                
+
+                if not user_found:
+                    print(f"Usuário '{username}' não encontrado.")
+                    return False
+
                 arquivo_json.seek(0)
-                json.dump(data, arquivo_json)
+                json.dump(data, arquivo_json, indent=4)
                 arquivo_json.truncate()
+                return True
 
         except FileNotFoundError:
             print("Arquivo não encontrado.")
@@ -139,6 +147,22 @@ class DataRecord():
         except Exception as e:
             print(f"Ocorreu um erro: {e}")
 
+    def getUserCart(self, username):
+        try:
+            user = self.getUserAccountDates(username)
+            print('entrou no getusertCart')
+            if user:
+                return user.get('cart', [])
+            else:
+                print(f"Usuário '{username}' não encontrado.")
+                return False
+
+        except FileNotFoundError:
+            print("Arquivo não encontrado.")
+        except json.JSONDecodeError:
+            print("Erro ao decodificar o JSON.")
+        except Exception as e:
+            print(f"Ocorreu um erro: {e}")
 
     def getUserAccountsDic(self, username):
         for userAccount in self.__user_accounts:
@@ -175,5 +199,5 @@ class DataRecord():
 
     def save(self):
         with open("app/controllers/db/user_accounts.json", "w") as arquivo_json:
-            userAccountDates = [userAccount.to_dict() for userAccount in self.__user_accounts]
+            userAccountDates = [userAccount.toDict() for userAccount in self.__user_accounts]
             json.dump(userAccountDates, arquivo_json, indent=4)

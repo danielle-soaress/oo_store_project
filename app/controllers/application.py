@@ -1,5 +1,6 @@
 from app.controllers.datarecord import DataRecord
 from app.controllers.productrecord import ProductRecord
+from app.models.cart import Cart
 from bottle import template, redirect, request, response
 from app.controllers.datarecord import DataRecord
 import json
@@ -19,7 +20,8 @@ class Application():
             'home': self.home,
             'management': self.management,
             'viewProduct': self.viewProduct,
-            'viewProducts': self.viewProducts
+            'viewProducts': self.viewProducts,
+            'payment': self.payment
         }
         self.__model= DataRecord()
         self.__product_model = ProductRecord()
@@ -90,15 +92,23 @@ class Application():
         session_id = request.get_cookie('session_id')
         if self.__model.checkAdmin(session_id):
             return template('app/views/html/product_management')
-        self.home()
-        return
+        return self.render('home')
+    
+    def payment(self, **args):
+        username = args.get('username', None)
+        user_account = self.__model.getUserAccountDates(username)
+        if user_account:
+            totalCash = Cart.totalCash(user_account["cart"])
+            totalCreditCard = Cart.totalCreditCard(user_account["cart"])
+            return template('app/views/html/payment', **user_account, totalCash = totalCash, \
+                            totalCreditCard = totalCreditCard, freight = 30.00 )
+        return self.render('viewProducts')
 
     def viewProducts(self):
         return template('app/views/html/page_buy')
     
     def viewProduct(self, **args):
         productID = args.get('product_id', None)
-
         product = self.__product_model.get_product(productID)
         if product:
             product_colors = product.getColors()

@@ -28,6 +28,6 @@ class Order:
     def countProducts(self, produto_id):
         return self.__productsList.get(produto_id, 0) ## return 0 if the product doesnt exist.
 
-    def cart(self): # acho que isso aq n é necessário, já q é basicamente retornar productsList
-        """Retorna uma lista de tuplas com (product_id, quantidade) para visualizar o carrinho."""
+    
+    def cart(self):
         return [(product_id, quantidade) for product_id, quantidade in self.__productsList.items()]

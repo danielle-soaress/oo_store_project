@@ -37,11 +37,6 @@
                     <i class="bi bi-person-circle"></i>
                 </div>
 
-                <!--------------ICON BAG--------------->
-                <div class="bag_icon" id="bag_icon">
-                    <i class="bi bi-bag"></i>
-                </div>
-
                 <!-------Painel lateral da bolsa--------->
                 <div class="side_bag" id="side_bag">
                     <h2>Your Bag</h2>
@@ -93,32 +88,10 @@
                     </span>
                     <div class="cart_products_remove_all">
                         <i class="bi bi-trash-fill"></i>
-                        <p class="remove_button_text">Remove All Products</p>
+                        <p id="remove_all" class="remove_button_text">Remove All Products</p>
                     </div>
                 </div>
                 <div id="cart_products_container">
-                    <div class="product_card">
-                        <img class="product_card_image"src="" alt="">
-                        <div class="section_text">
-                            <h3 class="product_card_name"></h3>
-                            <h3 class="product_card_prices">
-                                <p class="product_card_prices_text section_text">Cash payment: <span class="strong section_text"></span></p>
-                                <p class="product_card_prices_text section_text">Installments in {{x}} interest-free installments: <span class="strong section_text"></span></p>
-                            </h3>
-                        </div>
-                        <div class="product_card_qt_div">
-                            <p class="section_text">Quantity</p>
-                            <div class="product_card_qt">
-                                <i class="bi bi-caret-left-fill arrow"></i>
-                                <input required type="number" class="product_card_qt_input"/>
-                                <i class="bi bi-caret-right-fill arrow"></i>
-                            </div>
-                        </div>
-                        <div class="product_card_remove_div">
-                            <i class="bi bi-trash-fill "></i>
-                            <p class="remove_button_text">Remove</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -139,19 +112,19 @@
                     <h3 class="section_title">Purchase Summary</h3>
                 </span>
                 <hr>
-                <p class="section_text" id="purcahse_total"><span class="strong">Total Products Value:</span></p>
+                <p class="section_text" id="purcahse_total"><span class="strong">Total Products Value:</span> R$ {{ totalCash[0] }}</p>
                 <hr>
-                <p class="section_text"><span class="strong">Freight:</span></p>
+                <p class="section_text"><span class="strong">Freight:</span> R$ {{ freight }}</p>
                 <hr>
-                <p class="section_text"><span class="strong">Coupon Discounts:</span></p>
+                <p class="section_text"><span class="strong">Coupon Discounts:</span> R$ 0.00</p>
                 <hr>
-                <p class="section_text" id="final_order_value"><span class="strong">Final Order Value: </span></p>
+                <p class="section_text" id="final_order_value"><span class="strong">Final Order Value:</span> R$ {{ totalCash[1] }}</p>
                 <div class="total_div total_div_installments">
                     <p class="total_div_text">Total in Installments: </p>
                     <div  class="total_div_subdiv">
-                        <p id="total_in_installments">4234</p>
-                        <p class="total_div_text">
-                            Up to <span class="total_div_text" id="installments_total">423</span> 
+                        <p id="total_in_installments" class="strong">R$ {{ totalCreditCard[1] }}</p>
+                        <p class="total_div_text detailment">
+                            Up to <span class="total_div_text strong detailment" id="installments_total">12x</span> 
                             interest-free installments 
                         </p>
                     </div>
@@ -159,11 +132,10 @@
                 <div class="total_div total_div_cash">
                     <p class="total_div_text">Total in Cash: </p>
                     <div class="total_div_subdiv">
-                        <p id="total_in_cash">423</p>
-                        <p class="total_div_text">7% discount</p>
+                        <p id="total_in_cash" class="strong">R$ {{ totalCash[1] }}</p>
+                        <p class="total_div_text detailment">4% discount</p>
                     </div>
                 </div>
-                
             </div>
             <button class="nextStep">Go to Payment</button>
         </div>
@@ -177,24 +149,19 @@
                 </span>
                 <div class="identification-info">
                     <div class="info_group">
-                        <p class="identify_step_text strong">Full Name: </p>
-                        <p class="identify_setp_text" id="identify_info_name"></p>
+                        <p class="identify_step_text"><span class="strong" id="identify_info_name">Full Name:</span> {{ firstname }} {{ lastname }}</p>
                     </div>
                     <div class="info_group">
-                        <p class="identify_step_text strong">CPF: </p>
-                        <p class="identify_setp_text" id="identify_info_name"></p>
+                        <p class="identify_step_text"><span class="strong" id="identify_info_cpf">CPF: </span></p>
                     </div>
                     <div class="info_group">
-                        <p class="identify_step_text strong">Phone Number: </p>
-                        <p class="identify_setp_text" id="identify_info_cel"></p>
+                        <p class="identify_step_text"><span class="strong" id="identify_info_phone">Phone Number:</span></p>
                     </div>
                     <div class="info_group">
-                        <p class="identify_step_text strong">Email: </p>
-                        <p class="identify_setp_text" id="identify_info_cel"></p>
+                        <p class="identify_step_text"><span class="strong" id="identify_info_email">Email: </span>{{ email }}</p>
                     </div>
                     <div class="info_group">
-                        <p class="identify_step_text strong">Adress: </p>
-                        <p class="identify_setp_text" id="identify_info_cel"></p>
+                        <p class="identify_step_text"><span class="strong" id="identify_info_adress">Adress: </span>{{ address }}</p>
                     </div>
                 </div>
                 <button class="generic_button" id="edit_information">Edit Information</button>
@@ -207,56 +174,57 @@
             </span>
             <div class="payment-section">
                 <div class="total_div total_div_installments">
-                    <p class="total_div_text strong">Total in Installments: </p>
+                    <p class="total_div_text">Total in Installments: </p>
                     <div  class="total_div_subdiv">
-                        <p id="total_in_installments">4234</p>
-                        <p class="total_div_text">
-                            Up to <span class="total_div_text" id="installments_total">423</span> 
+                        <p id="total_in_installments" class="strong">R$ {{ totalCreditCard[1] }}</p>
+                        <p class="total_div_text detailment">
+                            Up to <span class="total_div_text strong detailment" id="installments_total">12x</span> 
                             interest-free installments 
                         </p>
                     </div>
                 </div>
                 <div class="total_div total_div_cash">
-                    <p class="total_div_text strong">Total in Cash: </p>
+                    <p class="total_div_text">Total in Cash: </p>
                     <div class="total_div_subdiv">
-                        <p id="total_in_cash">423</p>
-                        <p class="total_div_text">7% discount</p>
+                        <p id="total_in_cash" class="strong">R$ {{ totalCash[1] }}</p>
+                        <p class="total_div_text detailment">4% discount</p>
                     </div>
                 </div>
-                <h2 class="subtitle_text">Escolha sua forma de pagamento</h2>
-                <form class="payment-form">
+                <h2 class="subtitle_text">Choose your payment method</h2>
+                <form id="payment-form">
                     <div class="payment-options">
                         <label>
-                            <input type="radio" name="paymentMethod" value="cash" id="cash-option" required checked> Dinheiro
+                            <input type="radio" name="paymentMethod" value="cash" id="cash-option" required checked> Cash
                         </label>
                         <label>
-                            <input type="radio" name="paymentMethod" value="credit-card" id="card-option"> Cartão de Crédito
+                            <input type="radio" name="paymentMethod" value="credit-card" id="card-option"> Credit Card
                         </label>
                     </div>
                     <div class="credit-card-info" id="credit-card-info" style="display: none;">
                         <div class="form-group">
-                            <label for="card-number">Número do Cartão</label>
-                            <input type="text" id="card-number" name="cardNumber" placeholder="Digite o número do cartão" required>
+                            <label for="card-number">Card Number</label>
+                            <input type="text" id="card-number" name="cardNumber" placeholder="Enter your card number">
                         </div>
                         <div class="form-group">
-                            <label for="card-name">Nome no Cartão</label>
-                            <input type="text" id="card-name" name="cardName" placeholder="Digite o nome como no cartão" required>
+                            <label for="card-name">Name on Card</label>
+                            <input type="text" id="card-name" name="cardName" placeholder="Enter the name as on the card">
                         </div>
                         <div class="form-group">
-                            <label for="card-expiry">Data de Validade</label>
-                            <input type="text" id="card-expiry" name="cardExpiry" placeholder="MM/AA" required>
+                            <label for="card-expiry">Expiration Date</label>
+                            <input type="text" id="card-expiry" name="cardExpiry" placeholder="MM/YY">
                         </div>
                         <div class="form-group">
                             <label for="card-cvc">CVC</label>
-                            <input type="text" id="card-cvc" name="cardCVC" placeholder="Código de segurança" required>
+                            <input type="text" id="card-cvc" name="cardCVC" placeholder="Security code">
                         </div>
                     </div>
                     <div id="total_payment_info">
                         <p class="subtitle_text" class="section_text strong">Total:</p>
                         <p id="total_payment" class="section_text strong">4234</p>
                     </div>
-                    <button type="submit" class="generic_button nextStep">Confirmar Pagamento</button>
+                    <button type="submit" class="generic_button ">Pay</button>
                 </form>
+
             </div>
         </div>
     </section>

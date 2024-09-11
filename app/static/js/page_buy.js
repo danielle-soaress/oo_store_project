@@ -49,6 +49,7 @@ function updateTotal() {
 let cart = [];
 
 function addToCart(event) {
+    console.log(cart)
     const buttonAdd = event.target;
     const productInfos = buttonAdd.parentElement.parentElement
     const productImg = productInfos.getElementsByClassName("product_item_image")[0].src
@@ -143,47 +144,64 @@ function addToCart(event) {
 //=====================================================Save Cart==========================================================
 function getCookie(name) {
     const value = `; ${document.cookie}`; 
+    console.log('value = ' + value)
     const parts = value.split(`; ${name}=`); 
-    if (parts.length === 2) return parts.pop().split(';').shift();
+    console.log('parts =' + parts)
+    if (parts.length === 2) {
+        return parts.pop().split(';').shift();
+    } else {
+        return null; 
+    }
 } 
+
+function validateCart(cart) {
+    return cart.every(product => product.productId && product.quantity);
+}
 
 function saveCart() {
     const username = getCookie('username'); 
 
+    const cartProducts = cart.map(product => {
+        let id = product.productId.split(': ')[1];
+        return {
+            productId: id,
+            quantity: product.quantity
+        };
+    });
 
-    fetch('/save-cart', { 
+    if (validateCart(cartProducts)) {
+        console.log(username + 'está começando o processo de salvar no carrinho')
+        fetch('/save-cart', { 
+            method: 'POST', 
+            headers: { 
+                'Content-Type': 'application/json', 
+            }, 
+            body: JSON.stringify({ 
+                username: username, 
+                cart: cartProducts // Sacola com o ID e a quantidade dos produtos 
+            }) 
+        })
+        .then(async response => {
+            const data = await response.json();
+            if (!response.ok) {
+                throw new Error(data.message || 'Network response was not ok');
+            }
+            return data;
+        })
+        .then(result => { 
+            if (result.status === 'success') { 
+                console.log('Cart saved successfully!'); 
+            } else { 
+                console.error('Error:', result.message); 
+            } 
+        })
+        .catch(error => { 
+            console.error('Request failed:', error); 
+        });
 
-        method: 'POST', 
-
-        headers: { 
-
-            'Content-Type': 'application/json', 
-
-        }, 
-
-        body: JSON.stringify({ 
-            username:username, 
-            cart:cart             // Sacola com os produtos 
-        }) 
-
-    }) 
-
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    }) 
-    .then(result => { 
-        if (result.status === 'success') { 
-            console.log('Cart saved successfully!'); 
-        } else { 
-            console.error('Error:', result.message); 
-        } 
-    }) 
-    .catch(error => { 
-        console.error('Request failed:', error); 
-    }); 
+    } else {
+        console.error('Carrinho contém produtos inválidos:', cartProducts);
+    }
 }
 
 //=================================================View cart user=========================================================
@@ -365,3 +383,16 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+
+// ====== buy button action =============== 
+
+document.getElementById('buy_bag').addEventListener('click', () => {
+    const username = getCookie('username')
+
+    if (username) {
+        window.location.href = `/payment/${username}`;
+    }
+    else {
+        window.location.href = "/home"
+    }
+})
