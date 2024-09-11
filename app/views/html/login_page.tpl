@@ -50,7 +50,7 @@
                         </div>
                     %end
                     <button type="submit" class="login-button">Login</button>
-                    <p class="signup-text">Don't have an account? <a href="/signup">Sign up now</a>.</p>
+                    <p class="signup-text">Don't have an account? <a href="/register">Sign up now</a>.</p>
                 </form>
             </div>
     </section>

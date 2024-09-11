@@ -1,4 +1,26 @@
-//=================Carrinho====================
+console.log('Script carregado')
+//=======================================================Perfil===========================================================
+document.getElementById('perfil_icon').addEventListener('click', function() {
+    console.log('Icone perfil clicado')
+
+    fetch('/authenticate')
+        .then(response => response.json())
+        .then(data => {
+            console.log('Dados recebidos', data)
+
+            if (data.authenticated) {
+                window.location.href = `/pagina/${data.username}`;
+            } else {
+                window.location.href = '/login_page';
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao verificar autenticação:', error);
+            // Em caso de erro, redireciona para a página de login
+            window.location.href = '/login';
+        });
+});
+//======================================================Carrinho==========================================================
 document.getElementById("bag_icon").addEventListener("click", function() {
     document.getElementById("side_bag").classList.toggle("open");
 });
@@ -7,7 +29,7 @@ document.getElementById("close_bag").addEventListener("click", function() {
     document.getElementById("side_bag").classList.remove("open");
 });
 
-//==============Carrinho preço total===================
+//===================================================Carrinho preço total=================================================
 function updateTotal() {
     let total = 0;
     const cartProduct = document.querySelectorAll(".cart_product");
@@ -23,7 +45,7 @@ function updateTotal() {
 }
 
 
-//==============Adicionando os produtos no carrinho===========
+//===========================================Adicionando os produtos no carrinho==========================================
 let cart = [];
 
 function addToCart(event) {
@@ -90,7 +112,7 @@ function addToCart(event) {
     const tableBody = document.querySelector(".bag_table tbody")
     tableBody.append(newCartProduct)
 
-    //=================Botão de Remover==================
+    //============================================Botão de Remover========================================================
     const removeButton = newCartProduct.querySelector(".product_remove");
     removeButton.addEventListener('click', function() {
         newCartProduct.remove()
@@ -99,7 +121,7 @@ function addToCart(event) {
         saveCart()
     });
 
-    //=================Input Quantity====================
+    //==============================================Input Quantity========================================================
     const inputQuantity = newCartProduct.querySelector(".product_qty");
     inputQuantity.addEventListener('change', function() {
         const newQuantity = parseInt(inputQuantity.value, 10);
@@ -118,7 +140,7 @@ function addToCart(event) {
 }
 
 
-//=======================Save Cart============================
+//=====================================================Save Cart==========================================================
 function getCookie(name) {
     const value = `; ${document.cookie}`; 
     const parts = value.split(`; ${name}=`); 
@@ -164,7 +186,7 @@ function saveCart() {
     }); 
 }
 
-//=================View cart user======================
+//=================================================View cart user=========================================================
 function loadCart() {
     const username = getCookie('username');
 
@@ -252,12 +274,11 @@ function displayCart() {
     })    
 } 
 
-//=================Visualizar produtos================
+//=================================================Visualizar produtos====================================================
 function updateProductList() {
     fetch('/api/products')
     .then(response => response.json())
     .then(data => {
-        console.log(data);
         const productContainer = document.getElementById('viewProducts');
         productContainer.innerHTML = ''; // Limpa o container antes de adicionar novos produtos
 
@@ -304,13 +325,13 @@ function updateProductList() {
             productPrice.classList.add('product_item_price');
             productPrice.innerHTML = `<strong class = 'productPrice'>Price:</strong> R$ ${product.price.toFixed(2)}`;
 
-            //==============Botão para adicionar ao carrinho==============
+            //====================================Botão para adicionar ao carrinho========================================
             const addToCartButton = document.createElement('button');
             addToCartButton.textContent = 'Adicionar ao Carrinho';
             addToCartButton.classList.add('cart_button');
             addToCartButton.addEventListener('click', (event) => addToCart(event));
 
-            // =========Adicionar informações e botão ao container principal============
+            // ===========================Adicionar informações e botão ao container principal============================
             productTextDiv.appendChild(productName);
             productTextDiv.appendChild(productId);
             productTextDiv.appendChild(productCategory);

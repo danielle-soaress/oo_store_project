@@ -1,0 +1,125 @@
+body {
+    background-image: url('../../static/img/wave_background.png');
+    background-size: cover;
+}
+
+.hide {
+    display: none;
+}
+
+.userDates {
+    text-align: left;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 10px;
+    max-width: 600px;
+    max-height: 700px;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.userDates h3 {
+    color: #7D29D2;
+    margin-bottom: 25px;
+}
+
+.userDates p {
+    color: #7D29D2;
+    margin: 10px;
+}
+
+.userDates p::before {
+    content: attr(data-label) ":";
+    font-weight: bold;
+    color: #7D29D2;
+    display: inline-block;
+    width: 160px;
+}
+
+.userDates button {
+    margin-top: 20px;
+    color: white;
+    font-size: 15px;
+    padding: 5px 10px;
+    border-radius: 7px;
+}
+
+.edit_button {
+    margin-left: 270px;
+    background-color: #7D29D2;
+}
+
+.edit_button:hover {
+    background-color: #45a049;
+}
+
+.delete_button {
+    background-color: #7D29D2;
+}
+
+.delete_button:hover {
+    background-color: #c0392b;
+}
+
+.top_information_box h1{
+    text-align: center;
+    margin-top: -25px;
+    color: #7D29D2;
+}
+
+.editPerfil {
+    text-align: left;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 10px;
+    max-width: 600px;
+    max-height: 700px;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.close_window_button {
+    margin-left: 550px;
+    background-color: #7D29D2;
+    color: white;
+    padding: 5px 6px;
+    border-radius: 10px;
+}
+
+.close_window_button:hover {
+    background-color: #c0392b;
+}
+
+.label_div label {
+    color: #7D29D2;
+    font-size: 16px;
+}
+
+.label_div {
+    margin-bottom: 15px;
+}
+
+.label_div input {
+    border-radius: 10px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #7D29D2;
+    margin-left: 10px;
+}
+
+.updateDates {
+    background-color: #7D29D2;
+    color: white;
+    font-size: 16px;
+    margin-top: 10px;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.updateDates:hover {
+    background-color: #45a049;
+}
+
+
