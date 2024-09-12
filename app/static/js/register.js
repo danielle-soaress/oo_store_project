@@ -1,6 +1,10 @@
 const form = document.getElementById('register');
 const firstname = document.getElementById('firstname');
 const lastname = document.getElementById('lastname');
+//======================================================================================================================
+const cpf = document.getElementById('cpf');
+const telefone = document.getElementById('telefone');
+//=======================================================================================================================
 const username = document.getElementById('username');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
@@ -21,6 +25,10 @@ function checkInputs() {
     let formIsValid = true;
 
     const usernameValue = username.value.trim()
+    //===================================================================================================================
+    const cpfValue = cpf.value.trim();
+    const telefoneValue = telefone.value.trim();
+    //===================================================================================================================
     const passwordValue = password.value.trim()
     const confirm_passwordValue = confirm_password.value.trim()
 
@@ -39,6 +47,48 @@ function checkInputs() {
     } else {
         setSuccessFor(confirm_password);
     }
+
+    //==================================================================================================================
+
+    // Verificação de CPF
+    const cpfCleaned = cpfValue.replace(/[^\d]+/g, '');
+    if (cpfCleaned.length !== 11 || /^(\d)\1+$/.test(cpfCleaned)) {
+        setErrorFor(cpf, 'CPF inválido!');
+        formIsValid = false;
+    } else {
+        let soma = 0;
+        for (let i = 0; i < 9; i++) {
+            soma += parseInt(cpfCleaned.charAt(i)) * (10 - i);
+        }
+        let resto = 11 - (soma % 11);
+        let digito1 = resto > 9 ? 0 : resto;
+
+        soma = 0;
+        for (let i = 0; i < 10; i++) {
+            soma += parseInt(cpfCleaned.charAt(i)) * (11 - i);
+        }
+        resto = 11 - (soma % 11);
+        let digito2 = resto > 9 ? 0 : resto;
+
+        if (digito1 != cpfCleaned.charAt(9) || digito2 != cpfCleaned.charAt(10)) {
+            setErrorFor(cpf, 'CPF inválido!');
+            formIsValid = false;
+        } else {
+            setSuccessFor(cpf);
+        }
+    }
+
+     // Verificação de telefone
+     const telefoneCleaned = telefoneValue.replace(/[^\d]+/g, '');
+     if (telefoneCleaned.length !== 10 && telefoneCleaned.length !== 11) {
+         setErrorFor(telefone, 'Telefone inválido!');
+         formIsValid = false;
+     } else {
+         setSuccessFor(telefone);
+     }
+
+     //==================================================================================================================
+ 
 
     //Carrega o arquivo json e verifica se o username já existe
     return fetch('/db/user_accounts.json')

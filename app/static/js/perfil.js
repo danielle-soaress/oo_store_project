@@ -53,10 +53,15 @@ editDatesForm.addEventListener("submit", async function(e) {
     const userID = getCookie('userID');
     const formData = new FormData(this);
     const formUsername = formData.get('username')
+    //========================================================================================
+    const formCpf = formData.get('cpf')
+    const formTelefone = formData.get('telefone')
+    //========================================================================================
     const formPassword = formData.get('password')
     const formConfirPassword = formData.get('confirm_password')
-
-    const formIsValid = await checkInputs(formUsername, formPassword, formConfirPassword);
+//=========================================================================================================================
+    const formIsValid = await checkInputs(formUsername, formCpf, formTelefone, formPassword, formConfirPassword);
+//==========================================================================================================================
     
     if(!formIsValid) {
         console.log('Formulario inválido.')
@@ -77,6 +82,10 @@ editDatesForm.addEventListener("submit", async function(e) {
             document.getElementById("display-firstname").innerText = formData.get('firstname');
             document.getElementById("display-lastname").innerText = formData.get('lastname');
             document.getElementById("display-username").innerText = formData.get('username');
+//======================================================CPF e telefone============================================================
+            document.getElementById("display-cpf").innerText = formData.get('cpf');
+            document.getElementById("display-telefone").innerText = formData.get('telefone');
+//================================================================================================================================
             document.getElementById("display-email").innerText = formData.get('email');
             document.getElementById("display-address").innerText = formData.get('address');
             document.getElementById("display-password").innerText = formData.get('password');
@@ -104,7 +113,7 @@ function getCookie(name) {
 } 
 
 
-function checkInputs(formUsername, formPassword, formConfirPassword) {
+function checkInputs(formUsername, formCpf, formTelefone, formPassword, formConfirPassword) {
     let formIsValid = true;
 
     const usernameC = getCookie('username');
@@ -121,6 +130,43 @@ function checkInputs(formUsername, formPassword, formConfirPassword) {
         alert('As senhas não são iguais!')
         formIsValid = false;
     }
+
+    //=========================================================CPF e telefone=========================================================
+
+    // Verificação de CPF
+    const cpfCleaned = formCpf.replace(/[^\d]+/g, '');
+    if (cpfCleaned.length !== 11 || /^(\d)\1+$/.test(cpfCleaned)) {
+        alert('CPF inválido!');
+        formIsValid = false;
+    } else {
+        let soma = 0;
+        for (let i = 0; i < 9; i++) {
+            soma += parseInt(cpfCleaned.charAt(i)) * (10 - i);
+        }
+        let resto = 11 - (soma % 11);
+        let digito1 = resto > 9 ? 0 : resto;
+
+        soma = 0;
+        for (let i = 0; i < 10; i++) {
+            soma += parseInt(cpfCleaned.charAt(i)) * (11 - i);
+        }
+        resto = 11 - (soma % 11);
+        let digito2 = resto > 9 ? 0 : resto;
+
+        if (digito1 != cpfCleaned.charAt(9) || digito2 != cpfCleaned.charAt(10)) {
+            alert('CPF inválido!')
+            formIsValid = false;
+        }
+    }
+
+     // Verificação de telefone
+     const telefoneCleaned = formTelefone.replace(/[^\d]+/g, '');
+     if (telefoneCleaned.length !== 10 && telefoneCleaned.length !== 11) {
+        alert('Telefone inválido!')
+         formIsValid = false;
+     }
+
+     //===========================================================================================================================
 
     //Carrega o arquivo json e verifica se o username já existe
     return fetch('/db/user_accounts.json')

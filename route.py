@@ -62,6 +62,10 @@ def signUp():
 def action_register():
     firstname = request.forms.get('firstname')
     lastname = request.forms.get('lastname')
+    #=============================================================================================================
+    cpf = request.forms.get('cpf')
+    telefone = request.forms.get('telefone')
+    #=============================================================================================================
     username = request.forms.get('username')
     email = request.forms.get('email')
     address = request.forms.get('address')
@@ -69,7 +73,9 @@ def action_register():
     
 
     #Registrar o usuario e os dados
-    sucess = dtr.book(firstname, lastname, username, email, address, password)
+    #==========================================Telefone e CPF===========================================================
+    sucess = dtr.book(firstname, lastname, username, cpf, telefone, email, address, password)
+    #===================================================================================================================
     if sucess:
         print('success')
         return ctl.render("login_page")
@@ -97,11 +103,15 @@ def edit_account(userID):
         firstname = request.forms.get('firstname')
         lastname = request.forms.get('lastname')
         username = request.forms.get('username')
+#=======================================================CPF e telefone==============================================
+        cpf = request.forms.get('cpf')
+        telefone = request.forms.get('telefone')
+#=======================================================CPF e telefone==============================================
         email = request.forms.get('email')
         address = request.forms.get('address')
         password = request.forms.get('password')
 
-        dtr.updateDates(userID, firstname, lastname, username, email, address, password)
+        dtr.updateDates(userID, firstname, lastname, username, cpf, telefone, email, address, password)
         response.status = 200
         return json.dumps({"message": "Account updated successfully"})
     except Exception as e:

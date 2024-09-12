@@ -1,9 +1,11 @@
-
+#==============================================CPF e telefone===================================================
 class UserAccount():
-    def __init__(self, firstname, lastname, username, email, address, password, userID):
+    def __init__(self, firstname, lastname, username, cpf, telefone, email, address, password, userID):
         self.firstname = firstname
         self.lastname = lastname
         self.username= username
+        self.cpf = cpf
+        self.telefone = telefone
         self.email = email
         self.address = address
         self.password= password
@@ -15,6 +17,8 @@ class UserAccount():
                 'firstname': self.firstname,
                 'lastname': self.lastname,
                 'username': self.username,
+                'cpf': self.cpf,
+                'telefone': self.telefone,
                 'email': self.email,
                 'address': self.address,
                 'password': self.password,

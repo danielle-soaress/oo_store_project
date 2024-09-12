@@ -40,6 +40,10 @@
                 <p data-label="Firstname" id="display-firstname"> {{current_user.firstname}} </p>
                 <p data-label="Lastname" id="display-lastname"> {{current_user.lastname}} </p>
                 <p data-label="Username" id="display-username"> {{current_user.username}} </p>
+<!-------------------------------------------CPF e telefone-------------------------------------------------------->
+                <p data-label="cpf" id="display-cpf"> {{current_user.cpf}} </p>
+                <p data-label="telefone" id="display-telefone"> {{current_user.telefone}} </p>
+<!----------------------------------------------------------------------------------------------------------------->
                 <p data-label="Email" id="display-email"> {{current_user.email}} </p>
                 <p data-label="Address" id="display-address"> {{current_user.address}} </p>
                 <p data-label="Password" id="display-password"> {{current_user.password}} </p>
@@ -65,48 +69,59 @@
             <div class="top_information_box">
             <button id="close_editForm" class="close_window_button">Close</button>
             <h1 class="information_box_title">Edit Perfil</h1>
+            <br>
         </div>
         <form id="editDatesForm">
 
             <div class="label_div">
                 <label for="firstname">Firstname:</label>
-                <input id="firstname_editForm" class="perfilForm_input" type="text" name="firstname" required>
+                <input id="firstname_editForm" class="firstname type="text" name="firstname" required>
                 <br>
             </div>
 
             <div class="label_div">
                 <label for="lastname">Lastname:</label>
-                <input id="lastname_editForm"  class="perfilForm_input" type="text" name="lastname" required>
+                <input id="lastname_editForm"  class="lastname type="text" name="lastname" required>
                 <br>
             </div>
 
             <div class="label_div">
-                <label for="username">Username:</label>
-                <input id="username_editForm" class="perfilForm_input" type="text" name="username" required>
+                <label for="username">Username: </label>
+                <input id="username_editForm" class="username" type="text" name="username" required>
                 <br>
+            </div>
+<!----------------------------------------------CPF e telefone--------------------------------------------------->
+            <div class="label_div">
+                <label for="cpf">CPF:</label>
+                <input type="text" name="cpf" id="cpf" class="cpf" autocomplete="cpf"><br>
             </div>
 
             <div class="label_div">
-                <label for="email">Email:</label>
-                <input id="email_editForm" class="perfilForm_input" type="email" name="email" required>
+                <label for="telefone">Telefone:</label>
+                <input type="text" name="telefone" id="telefone" class="telefone" autocomplete="telefone"><br>
+            </div>
+<!------------------------------------------------------------------------------------------------------------------->
+            <div class="label_div">
+                <label for="email">Email: </label>
+                <input id="email_editForm" class="email" type="email" name="email" required>
                 <br>
             </div>
 
             <div class="label_div">
                 <label for="address">Address:</label>
-                <input id="address_editForm" class="perfilForm_input" type="text" name="address" required>
+                <input id="address_editForm" class="address" type="text" name="address" required>
                 <br>
             </div>
 
             <div class="label_div">
                 <label for="password">Password:</label>
-                <input id="password_editForm" class="perfilForm_input" type="password" name="password" required>
+                <input id="password_editForm" class="password" type="password" name="password" required>
                 <br>
             </div>
 
             <div class="label_div">
                 <label for="confirm_password">Confirm Password:</label>
-                <input id="confirm_password_editForm" class="perfilForm_input" type="password" name="confirm_password" required>
+                <input id="confirm_password_editForm" class="confirm_password" type="password" name="confirm_password" required>
                 <br>
             </div>
 
