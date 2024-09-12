@@ -6,7 +6,7 @@ section {
 }
 
 .main_image_section{
-    margin: 20px 0px;;
+    margin: 20px 0px;
     border-radius: 30px;
     height: 70vh;
     background: radial-gradient(circle, #EDEDED, #C1C1C1);
@@ -67,6 +67,7 @@ section {
     font-size: 14px;
     color: white;
     transition: ease .2s;
+    cursor:pointer;
 }
 
 .main_image_button:hover {
@@ -131,6 +132,7 @@ section {
     border-radius: 20px;
     transition: ease .5s;
     font-size: 14px;
+    cursor: pointer;
 }
 
 .purple_card_button:hover,.black_card_button:hover {

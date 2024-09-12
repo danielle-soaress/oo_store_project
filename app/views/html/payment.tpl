@@ -20,9 +20,9 @@
                 <img src="../../static/img/logo.png" alt="Tune Wave Logo" id="header_logo">
                 <nav class="header_nav_left">
                     <ul class="header_nav_left_list">
-                        <a class="header_link" href=""><li class="header_nav_item">Home</li></a>
-                        <a class="header_link" href=""><li class="header_nav_item">Loja</li></a>
-                        <a class="header_link" href=""><li class="header_nav_item">Contato</li></a>
+                        <a class="header_link" href="/home"><li class="header_nav_item">Home</li></a>
+                        <a class="header_link" href="/viewProducts"><li class="header_nav_item">Loja</li></a>
+                        <a class="header_link" href="/contact"><li class="header_nav_item">Contato</li></a>
                     </ul>
                 </nav>
             </div>

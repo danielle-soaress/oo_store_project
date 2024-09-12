@@ -88,9 +88,6 @@ class DataRecord():
 
     def checkAdmin(self, session_id):
         current_user = self.getCurrentUser(session_id)
-        print(current_user)
-        print('admins ')
-        print(self.__admins)
         if current_user:
             for adminID in self.__admins:
                 if adminID == current_user.userID:
@@ -101,6 +98,8 @@ class DataRecord():
     def logout(self, session_id):
         if session_id in self.__authenticated_users:
             del self.__authenticated_users[session_id] # Remove o usuário logado
+
+    
 
 #=============================Inserido=========================
 

@@ -44,11 +44,6 @@
         "address": "Samambaia Norte",
         "password": "12345678",
         "userID": "d650f2a1-9209-4eed-920f-fb5580727d4d",
-        "cart": [
-            {
-                "productId": "d2c0e545-1f04-49c6-a097-e46020f95cb9",
-                "quantity": 1
-            }
-        ]
+        "cart": []
     }
 ]

@@ -31,9 +31,6 @@ def serve_db(filepath):
 
 
 #-----------------------------------------------------------------------------
-
-@app.route('/pagina/<username>', method='GET')
-def action_pagina(username=None):
     return ctl.render('pagina',username = username)
 
 
@@ -85,6 +82,7 @@ def action_register():
 @app.route('/home', method='GET')
 def home():
     return ctl.render('home')
+
 
 
 @app.route('/viewProducts', method='GET')
@@ -147,6 +145,28 @@ def get_user_bag():
     bag = userAccountDates.get('bag')
     return {'bag': bag}'''
 
+# -------- filter store routes ---------- 
+
+def filter_products_by_category(products, category):
+    return [product for product in products if product["category"].lower() == category.lower()]
+
+def filter_products_by_connect(products, connect):
+    return [product for product in products if product["connectivity"].lower() == connect.lower()]
+
+@app.route('/api/products/<criterion>/<name>', method='GET')
+def filtered_products(criterion, name):
+    with open('app/controllers/db/products.json') as f:
+        products = json.load(f)
+
+    if criterion == 'connectivity':
+        filtered_products = filter_products_by_connect(products, name)
+    elif criterion == 'category':
+        filtered_products = filter_products_by_category(products, name)
+    else:
+        return {'error': 'Invalid criterion'}, 400
+
+    response.content_type = 'application/json'
+    return json.dumps(filtered_products, indent=4)
 
 # ---------------- 
 
@@ -163,6 +183,11 @@ def payment(username):
     if ctl.is_authenticated(username):
         return ctl.render('payment', username = username)
     return ctl.render('login_page', error_message = "Log in to your account to proceed with payment.")
+
+@app.route('/contact', method='GET')
+def contact():
+    return ctl.render('contact')
+
 
 
 # ----------------- PRODUCT MANAGEMENT ROUTES (API) ----------------
@@ -192,7 +217,6 @@ def delete_product(product_id):
 @app.route('/api/products/<product_id>', method='PATCH')
 def edit_product(product_id):
     try:
-        print('chegou aqui 0')
         name = request.forms.get('name')
         price_str = request.forms.get('price')
         category = request.forms.get('category')
@@ -214,7 +238,35 @@ def edit_product(product_id):
     except Exception as e:
         response.status = 500
         return json.dumps({"error": str(e)})
-    
+
+@app.route('/api/products/stock/<product_id>', method='PATCH')
+def edit_stock(product_id):
+    try:
+        quantities = request.forms.getall('quantity[]')
+        colors = request.forms.getall('color[]')
+
+        product_stock = dict(zip(colors, quantities))
+
+        print(product_stock)
+        
+        result = []
+
+        for key, value in product_stock:
+            r = prc.update_product_stock(product_id, key, value)
+            result.append(r)
+
+        print(result)
+
+        if all(x is None for x in result):
+            response.status = 400
+            return json.dumps({"error": "Something went wrong... Verify if the new quantity is greater or equal to 0."})
+
+        response.status = 200
+        return json.dumps({"message": "Stock updated successfully"})
+    except Exception as e:
+        response.status = 500
+        return json.dumps({"error": str(e)})
+
 @app.route('/api/products', method='POST')
 def add_product():
     try:
@@ -236,7 +288,6 @@ def add_product():
             price = float(price_str)
 
         ## image processing
-        print('checkpoint2')
         image = request.files.get('image')
         if image:
             filename = generate_unique_filename(image.filename)
@@ -248,7 +299,6 @@ def add_product():
             image.save(file_path)
             imageFileName = filename
         
-        print('checkpoint1')
         ## color stock processing
         colors = request.forms.getall('colorStock')
         quantities = request.forms.getall('colorStockQuantity')
@@ -264,7 +314,6 @@ def add_product():
             return json.dumps({"error": "All colors must have quantity information. The number of colors is not equal to the number of quantity information."})
         prc.create_product(name, price, category, connectivity, description, brand, colorStock, imageFileName)
         response.status = 204
-        print('deu certo')
         return json.dumps({"message": "Product created successfully"})
     except Exception as e:
         response.status = 500
@@ -287,4 +336,4 @@ def generate_unique_filename(filename):
 
 
 if __name__ == '__main__':
-    run(app, host='localhost', port=8080, debug=True)
+    run(app, host='localhost', port=8080, debug=True, reloader=True)

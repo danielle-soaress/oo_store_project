@@ -1,104 +1,12 @@
+/* ==== general settings ======*/
+
 body {
     color: #333;
-    display: flex;
-    flex-direction: column;
     min-height: 100vh;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/*====================Header========================*/
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    font-family: 'Raleway', sans-serif;
-    color: black;
-    font-size: 14px;
-}
-
-body {
-    display: flex;
-    width: 100vw;
-    height: 100vh;
     flex-direction: column;
     align-items: center;
 }
 
-header {
-    width: 100vw;
-    height: 10vh;
-    min-height: 10vh;
-    background-color: #F5F5F5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-
-.header_container {
-    width: 85vw;
-    max-width: 1440px;
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
-}
-
-#header_logo {
-    width: 110px;
-    height: auto;
-
-}
-
-.header_left_container {
-   display: flex;
-   flex: 1;
-   gap: 20px;
-   align-items: center;
-
-}
-
-.header_nav_left_list {
-    display: flex;
-    flex-direction: row;
-    text-decoration: none;
-    list-style: none;
-    gap: 10px;
-}
-.header_nav_item {
-    width: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.header_right_container {
-    display: flex;
-    flex: 2;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 20px;
-}
-
-.header_link {
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.header_link:visited {
-    color: black;
-}
-
-.bi-moon-fill:hover {
-    cursor: pointer;
-    animation: pulse 0.5s ease;
-}
 .side_bag {
     position: fixed;
     top: 0;
@@ -109,13 +17,12 @@ header {
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
     transition: right 0.3s ease;
     padding: 20px;
-    z-index: 2;
+    z-index: 20;
 }
 
 .side_bag.open {
     right: 0; /* Exibe o painel lateral */
 }
-
 
 .bag_icon, .perfil_icon {
     cursor: pointer;

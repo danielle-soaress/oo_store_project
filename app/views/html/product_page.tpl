@@ -11,6 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="../../static/css/header.css">
     <link rel="stylesheet" href="../../static/css/product_page.css">
+    <link  rel="stylesheet" href="../../static/css/footer.css">
 </head>
 <body>
     <header class="header">
@@ -19,9 +20,9 @@
                 <img src="../../static/img/logo.png" alt="Tune Wave Logo" id="header_logo">
                 <nav class="header_nav_left">
                     <ul class="header_nav_left_list">
-                        <a class="header_link" href=""><li class="header_nav_item">Home</li></a>
-                        <a class="header_link" href=""><li class="header_nav_item">Loja</li></a>
-                        <a class="header_link" href=""><li class="header_nav_item">Contato</li></a>
+                        <a class="header_link" href="/home"><li class="header_nav_item">Home</li></a>
+                        <a class="header_link" href="/viewProducts"><li class="header_nav_item">Loja</li></a>
+                        <a class="header_link" href="/contact"><li class="header_nav_item">Contato</li></a>
                     </ul>
                 </nav>
             </div>
@@ -29,15 +30,15 @@
                 <div id="search_bar">
                     <i class="bi bi-search"></i>
                     <input id="search_input" type="text" placeholder="headset gaming"/>
-                    <i class="bi bi-caret-right-fill"></i>
+
                 </div>
                 <!--------------ICON PERFIL------------->
-                <div class="perfil_icon" id="perfil_icon">
+                <div style="{{'display: block;' if authenticated else 'display: none;'}}" class="perfil_icon" id="perfil_icon">
                     <i class="bi bi-person-circle"></i>
                 </div>
 
                 <!--------------ICON BAG--------------->
-                <div class="bag_icon" id="bag_icon">
+                <div style="{{'display: block;' if authenticated else 'display: none;'}}" class="bag_icon" id="bag_icon">
                     <i class="bi bi-bag"></i>
                 </div>
 
@@ -54,8 +55,10 @@
 
                     <!------------Botão Close-------------->
                     <button id="close_bag" class="close_bag">Close</button>
-                </div> 
-                <i class="bi bi-moon-fill"></i>
+                </div>
+                <a style="{{'display: block;' if authenticated else 'display: none;'}}" class="header_link">
+                    <button class="logout_button" onclick="logout()">Log out</button>
+                </a>
             </div>
         </div>        
     </header>
@@ -98,6 +101,31 @@
             </div>
         </div>
     </section>
+    <footer class="footer">
+        <div class="footer_container">
+            <div class="footer_left">
+                <img src="../../static/img/white_logo.png" alt="Tune Wave Logo" id="footer_logo">
+                <p class="footer_description">Discover the perfect sound experience with TuneWave. Elevate your listening and feel every beat.</p>
+            </div>
+            <div class="footer_center">
+                <h3 class="footer_title">Quick Links</h3>
+                <ul class="footer_links">
+                    <li><a href="/home" class="footer_link">Home</a></li>
+                    <li><a href="/viewProducts" class="footer_link">Shop</a></li>
+                    <li><a href="/contact" class="footer_link">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer_right">
+                <h3 class="footer_title">Connect with Us</h3>
+                <div class="footer_social">
+                    <a href="#" class="footer_social_icon"><i class="bi bi-facebook social_icon"></i></a>
+                    <a href="#" class="footer_social_icon"><i class="bi bi-twitter social_icon"></i></a>
+                    <a href="#" class="footer_social_icon"><i class="bi bi-instagram social_icon"></i></a>
+                </div>
+                <p class="footer_copyright">&copy; 2024 TuneWave. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
     <script>
         const colorContainer = document.querySelector('#product_info_colors_container');
         const colors = JSON.parse(colorContainer.getAttribute('data-colors'));
@@ -111,8 +139,8 @@
     </script>
 
 
-    
-    <script src="../../static/js/page_buy.js"></script>
+    <script src="../../static/js/header.js"></script>
+    <script src="../../static/js/cart.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.min.js"></script>

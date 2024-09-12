@@ -1,244 +1,172 @@
 [
     {
-        "id": "123",
-        "name": "Headphone Model X",
-        "price": 199.99,
-        "category": "Over-Ear",
+        "id": "1",
+        "name": "Wireless Headphones X1",
+        "price": 120.0,
+        "category": "Headphones",
         "connectivity": "Wireless",
-        "description": "High-quality over-ear headphones with noise cancellation.",
+        "description": "Comfortable over-ear headphones with noise cancellation.",
         "brand": "SoundTech",
         "colorStock": {
-            "black": 15,
-            "silver": 10
+            "black": 20,
+            "silver": 15
         },
-        "imageFileName": "main_image_headphone.png"
+        "imageFileName": "hdw_1.jpg"
     },
     {
-        "id": "179b08e7-514a-4244-98f7-74657494409c",
-        "name": "headphone",
-        "price": 342.0,
+        "id": "2",
+        "name": "Bluetooth Earbuds Y2",
+        "price": 89.99,
         "category": "Earbuds",
         "connectivity": "Wireless",
-        "description": "....",
-        "brand": "Sony",
-        "colorStock": {
-            "#FFF": 7
-        },
-        "imageFileName": "e29e5ca6-5be8-4177-8d10-fff33e3647aa_earbuds_home.png"
-    },
-    {
-        "id": "d2c0e545-1f04-49c6-a097-e46020f95cb9",
-        "name": "headphone",
-        "price": 342.0,
-        "category": "Earbuds",
-        "connectivity": "Wireless",
-        "description": "....",
-        "brand": "Sony",
-        "colorStock": {
-            "#FFF": 7
-        },
-        "imageFileName": "noise_cancelling_headphones.png"
-    },
-    {
-        "id": "127",
-        "name": "Bluetooth Earbuds",
-        "price": 69.99,
-        "category": "In-Ear",
-        "connectivity": "Wireless",
-        "description": "Affordable Bluetooth earbuds with good sound quality.",
+        "description": "Compact Bluetooth earbuds with excellent sound quality.",
         "brand": "SoundFlex",
         "colorStock": {
-            "black": 25,
-            "pink": 10
+            "black": 50,
+            "white": 30,
+            "blue": 25
         },
-        "imageFileName": "bluetooth_earbuds.png"
+        "imageFileName": "ebw_2.jpg"
     },
     {
-        "id": "128",
-        "name": "Studio Monitor Headphones",
-        "price": 349.99,
-        "category": "Over-Ear",
+        "id": "3",
+        "name": "Wired Gaming Headset Z3",
+        "price": 150.0,
+        "category": "Headsets",
         "connectivity": "Wired",
-        "description": "Professional studio monitor headphones for accurate sound.",
-        "brand": "StudioPro",
+        "description": "High-performance gaming headset with a built-in microphone.",
+        "brand": "GameGear",
+        "colorStock": {
+            "red": 10,
+            "black": 20
+        },
+        "imageFileName": "hsw_3.jpg"
+    },
+    {
+        "id": "4",
+        "name": "Noise Cancelling Earbuds A4",
+        "price": 110.0,
+        "category": "Noise_Cancelling",
+        "connectivity": "Wireless",
+        "description": "Noise-cancelling earbuds with long battery life.",
+        "brand": "QuietZone",
+        "colorStock": {
+            "black": 18,
+            "gray": 12
+        },
+        "imageFileName": "p_4.jpg"
+    },
+    {
+        "id": "5",
+        "name": "Sports Earphones B5",
+        "price": 55.0,
+        "category": "In_Ear",
+        "connectivity": "Wired",
+        "description": "Water-resistant earphones designed for sports.",
+        "brand": "SportySound",
+        "colorStock": {
+            "white": 25,
+            "black": 30
+        },
+        "imageFileName": "p_5.jpg"
+    },
+    {
+        "id": "6",
+        "name": "Studio Headphones C6",
+        "price": 200.0,
+        "category": "Headphones",
+        "connectivity": "Wired",
+        "description": "High-fidelity studio headphones for professional use.",
+        "brand": "ProAudio",
         "colorStock": {
             "black": 10,
-            "silver": 6
+            "white": 15
         },
-        "imageFileName": "studio_monitor_headphones.png"
+        "imageFileName": "p_6.jpg"
     },
     {
-        "id": "129",
-        "name": "Sport Earbuds",
-        "price": 79.99,
-        "category": "In-Ear",
+        "id": "7",
+        "name": "Noise Cancelling Headphones D7",
+        "price": 170.0,
+        "category": "Noise_Cancelling",
         "connectivity": "Wireless",
-        "description": "Sweat-resistant earbuds designed for sports and exercise.",
-        "brand": "FitAudio",
-        "colorStock": {
-            "blue": 15,
-            "green": 8
-        },
-        "imageFileName": "sport_earbuds.png"
-    },
-    {
-        "id": "130",
-        "name": "Compact Travel Headphones",
-        "price": 89.99,
-        "category": "On-Ear",
-        "connectivity": "Wired",
-        "description": "Foldable headphones perfect for travel.",
-        "brand": "TravelSound",
-        "colorStock": {
-            "black": 12,
-            "blue": 10
-        },
-        "imageFileName": "compact_travel_headphones.png"
-    },
-    {
-        "id": "131",
-        "name": "Premium Wireless Headphones",
-        "price": 399.99,
-        "category": "Over-Ear",
-        "connectivity": "Wireless",
-        "description": "Luxury wireless headphones with high-fidelity sound.",
-        "brand": "LuxAudio",
-        "colorStock": {
-            "black": 5,
-            "gold": 3
-        },
-        "imageFileName": "premium_wireless_headphones.png"
-    },
-    {
-        "id": "132",
-        "name": "Noise Cancelling Earbuds",
-        "price": 149.99,
-        "category": "In-Ear",
-        "connectivity": "Wireless",
-        "description": "Noise cancelling earbuds with a comfortable fit.",
-        "brand": "QuietTech",
+        "description": "Premium noise-cancelling headphones with comfortable padding.",
+        "brand": "QuietSound",
         "colorStock": {
             "black": 20,
-            "white": 10
+            "blue": 10
         },
-        "imageFileName": "noise_cancelling_earbuds.png"
+        "imageFileName": "p_7.jpg"
     },
     {
-        "id": "27ee5600-ceb3-4e89-b3a1-4d9ba7742548",
-        "name": "produtinho",
-        "price": 12.0,
-        "category": "Headphones",
+        "id": "8",
+        "name": "True Wireless Earbuds E8",
+        "price": 75.0,
+        "category": "Earbuds",
         "connectivity": "Wireless",
-        "description": "descri\u00e7\u00e3o longa e legal aqui",
-        "brand": "JBL",
+        "description": "True wireless earbuds with a sleek charging case.",
+        "brand": "ClearSound",
         "colorStock": {
-            "#000": 12
+            "white": 22,
+            "black": 18
         },
-        "imageFileName": "d7b7e2ef-c655-4129-94fd-5db9f5f8ac27_61kd0kZDgcL._AC_SX679_.jpg"
+        "imageFileName": "p_8.jpg"
     },
     {
-        "id": "8ba5db08-6929-4c12-9720-6598f93a076e",
-        "name": "produtinho",
-        "price": 12.0,
+        "id": "9",
+        "name": "Hybrid Headphones F9",
+        "price": 130.0,
         "category": "Headphones",
-        "connectivity": "Wireless",
-        "description": "descri\u00e7\u00e3o longa e legal aqui",
-        "brand": "JBL",
+        "connectivity": "Hybrid",
+        "description": "Headphones with both wired and wireless modes for flexibility.",
+        "brand": "DualSound",
         "colorStock": {
-            "#000": 12
+            "gray": 12,
+            "black": 8
         },
-        "imageFileName": "8a626c54-50c2-40d0-9e8d-833df42c16e7_61kd0kZDgcL._AC_SX679_.jpg"
+        "imageFileName": "p_9.jpg"
     },
     {
-        "id": "ca379e67-4c9f-4bd8-9ba0-f434d6f3811d",
-        "name": "produto",
-        "price": 12.0,
-        "category": "Headphones",
+        "id": "10",
+        "name": "In-Ear Wireless G10",
+        "price": 65.0,
+        "category": "In_Ear",
         "connectivity": "Wireless",
-        "description": "descri\u00e7\u00e3o longa e legal aqui",
-        "brand": "JBL",
+        "description": "Comfortable in-ear wireless earphones with a sleek design.",
+        "brand": "ZenAudio",
         "colorStock": {
-            "#000": 12
+            "white": 14,
+            "red": 20
         },
-        "imageFileName": "708990c2-d660-4a83-bbd8-8c2794a49389_61kd0kZDgcL._AC_SX679_.jpg"
+        "imageFileName": "p_10.jpg"
     },
     {
-        "id": "060d047b-ce43-44a3-9a06-61c03cdc0044",
-        "name": "aaaa",
-        "price": 12.0,
-        "category": "Headphones",
-        "connectivity": "Wireless",
-        "description": "adasd",
-        "brand": "dasda",
+        "id": "11",
+        "name": "Premium Headsets H11",
+        "price": 210.0,
+        "category": "Headsets",
+        "connectivity": "Wired",
+        "description": "Professional headsets for gamers and audio enthusiasts.",
+        "brand": "GameMax",
         "colorStock": {
-            "#fff": 12
+            "black": 25,
+            "green": 10
         },
-        "imageFileName": "001858d9-01db-43a5-8780-97dd363fcc3e_61kd0kZDgcL._AC_SX679_.jpg"
+        "imageFileName": "p_11.jpg"
     },
     {
-        "id": "1376abcd-35bb-45a0-9444-e46c3771dbc4",
-        "name": "aaa",
-        "price": 32.0,
-        "category": "Headphones",
+        "id": "12",
+        "name": "Gaming Headsets Ultra M12",
+        "price": 590.0,
+        "category": "Headsets",
         "connectivity": "Wireless",
-        "description": "dasda",
-        "brand": "dsada",
+        "description": "Professional headsets for gamers and audio enthusiasts.",
+        "brand": "TurboGaming",
         "colorStock": {
-            "#fff": 12
+            "blue": 25,
+            "black": 25,
+            "green": 10
         },
-        "imageFileName": "53d1ba96-578d-4740-8d7d-2bcd9bf8bec5_61kd0kZDgcL._AC_SX679_.jpg"
-    },
-    {
-        "id": "a4b93a6c-7b3d-4944-8875-24f4f147a34b",
-        "name": "dasda",
-        "price": 12.0,
-        "category": "Headphones",
-        "connectivity": "Wireless",
-        "description": "dasda",
-        "brand": "dasda",
-        "colorStock": {
-            "#fff": 12,
-            "#000": 43
-        },
-        "imageFileName": "d63f09c8-b67a-4247-92e8-96e94a3903ba_61kd0kZDgcL._AC_SX679_.jpg"
-    },
-    {
-        "id": "3de353ba-37e3-4d6d-866c-6ba54a601f65",
-        "name": "aaaa",
-        "price": 43.0,
-        "category": "Headphones",
-        "connectivity": "Wireless",
-        "description": "dasdas",
-        "brand": "dasdas",
-        "colorStock": {
-            "#fff": 12
-        },
-        "imageFileName": "6a75e89f-89db-4c71-b465-5aa139dce1f5_61kd0kZDgcL._AC_SX679_.jpg"
-    },
-    {
-        "id": "685d880e-7ab0-468d-8eb0-1331375fff63",
-        "name": "dsada",
-        "price": 12.0,
-        "category": "Headphones",
-        "connectivity": "Wireless",
-        "description": "dasd",
-        "brand": "dasda",
-        "colorStock": {
-            "#fff": 12
-        },
-        "imageFileName": "51690b5c-bf1e-4968-87d4-6d5d490ebee1_61kd0kZDgcL._AC_SX679_.jpg"
-    },
-    {
-        "id": "98211a83-63cd-4f9d-a7a2-80cc1b86fbb6",
-        "name": "fsdfs",
-        "price": 14.0,
-        "category": "Headphones",
-        "connectivity": "Wireless",
-        "description": "fsdfs",
-        "brand": "fsdf",
-        "colorStock": {
-            "#fff": 12
-        },
-        "imageFileName": "f7dbf30c-7f34-4f98-a9f4-87b22fffbea4_61kd0kZDgcL._AC_SX679_.jpg"
+        "imageFileName": "p_12.jpg"
     }
 ]

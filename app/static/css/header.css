@@ -87,7 +87,7 @@ header {
     color: black;
 }
 
-.login_button {
+.login_button, .logout_button, .register_button {
     padding: 6px 10px;
     outline: none;
     border: none;
@@ -100,26 +100,7 @@ header {
     cursor: pointer;
 }
 
-.register_button {
-    padding: 6px 10px;
-    outline: none;
-    border: none;
-    background-color: #7D29D2;
-    border-radius: 10px;
-    color: white;
-    font-weight: 500;
-    font-size: 12px;
-    transition: ease-in-out .2s;
-    cursor: pointer;
-}
-
-
-.login_button:hover{
-    transform: scale(1.1);
-    transition: ease-in-out .2s;
-}
-
-.register_button:hover{
+.login_button:hover, .register_button:hover, .logout_button:hover {
     transform: scale(1.1);
     transition: ease-in-out .2s;
 }

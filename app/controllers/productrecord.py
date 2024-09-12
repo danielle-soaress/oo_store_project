@@ -56,7 +56,6 @@ class ProductRecord:
                 detailed_cart.append(product_details)
         return detailed_cart
 
-    
     def get_stockInfo(self, product_id):
         product = self.get_product(product_id)
         return product.stockStatus()
@@ -82,14 +81,13 @@ class ProductRecord:
             return product
         return None
     
-    def update_product_stock(self, product_id, color, quantitySold):
+    def update_product_stock(self, product_id, color, quantity):
         product = self.get_product(product_id)
         if product:
-            newColorStock = product.getStockForColor(color) - quantitySold
-            if newColorStock >=0:
-                product.setColorStock(color, newColorStock)
+            if quantity >=0:
+                product.setColorStock(color, quantity)
                 self.save()
-                return product
+                return True
         return None
 
     def delete_product(self, product_id):

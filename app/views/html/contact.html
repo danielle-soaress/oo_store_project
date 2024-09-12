@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link  rel="stylesheet" href="../../static/css/contact.css">
+    <link  rel="stylesheet" href="../../static/css/header.css">
+    <link  rel="stylesheet" href="../../static/css/footer.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <title>Tune Wave: Contact</title>
+</head>
+<body>
+    <header class="header">
+        <div class="header_container">
+            <div class="header_left_container">
+                <img src="../../static/img/logo.png" alt="Tune Wave Logo" id="header_logo">
+                <nav class="header_nav_left">
+                    <ul class="header_nav_left_list">
+                        <a class="header_link" href="/home"><li class="header_nav_item">Home</li></a>
+                        <a class="header_link" href="/viewProducts"><li class="header_nav_item">Loja</li></a>
+                        <a class="header_link" href="/contact"><li class="header_nav_item">Contato</li></a>
+                    </ul>
+                </nav>
+            </div>
+            <div class="header_right_container">
+                
+            </div>
+        </div>
+    </header>
+    <section class="contact-page">
+        <div class="contact-container">
+            <div class="contact-header">
+                <h1>Entre em Contato</h1>
+            </div>
+
+            <div class="contact-info">
+                <h2>Informações de Contato</h2>
+                <p><strong>Email:</strong> contato@tunewave.com</p>
+                <p><strong>Telefone:</strong> +55 (61) 1234-5678</p>
+                <p><strong>Endereço:</strong> Universidade de Brasília (UnB) Campus Gama. St. Leste Projeção A - Gama Leste, Brasília  </p>
+            </div>
+
+            <div class="contact-form">
+                <h2>Envie uma Mensagem</h2>
+                <form action="/send-message" method="post">
+                    <label for="name">Nome:</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="message">Mensagem:</label>
+                    <textarea id="message" name="message" rows="6" required></textarea>
+
+                    <button type="submit">Enviar Mensagem</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="footer_container">
+            <div class="footer_left">
+                <img src="../../static/img/white_logo.png" alt="Tune Wave Logo" id="footer_logo">
+                <p class="footer_description">Discover the perfect sound experience with TuneWave. Elevate your listening and feel every beat.</p>
+            </div>
+            <div class="footer_center">
+                <h3 class="footer_title">Quick Links</h3>
+                <ul class="footer_links">
+                    <li><a href="/home" class="footer_link">Home</a></li>
+                    <li><a href="/viewProducts" class="footer_link">Shop</a></li>
+                    <li><a href="/contact" class="footer_link">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer_right">
+                <h3 class="footer_title">Connect with Us</h3>
+                <div class="footer_social">
+                    <a href="#" class="footer_social_icon"><i class="bi bi-facebook social_icon"></i></a>
+                    <a href="#" class="footer_social_icon"><i class="bi bi-twitter social_icon"></i></a>
+                    <a href="#" class="footer_social_icon"><i class="bi bi-instagram social_icon"></i></a>
+                </div>
+                <p class="footer_copyright">&copy; 2024 TuneWave. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script>
+    function redirectLogin(){
+        window.location.href="login_page";
+    }
+</script>
+<script src='../../static/js/product_management.js'></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.min.js"></script>
+</body>
+</html>

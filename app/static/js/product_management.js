@@ -38,7 +38,6 @@ function showAlert(message, alertType) {
     }, 3000);
 }
 
-
 /*-------------------------------- UPDATE PRODUCTS LIST ------------------------------------*/
 function updateProductList() {
     fetch('/api/products')
@@ -100,7 +99,7 @@ function updateProductList() {
             const btnStock = document.createElement('button');
             btnStock.classList.add('product_item_action_button');
             btnStock.textContent = 'Stock Information';
-            btnStock.addEventListener("click", () => StockInformation(product.name, 'in-stock', product.colorStock))
+            //btnStock.addEventListener("click", () => console.log('oi'))
 
             const btnEdit = document.createElement('button');
             btnEdit.classList.add('product_item_action_button');
@@ -129,22 +128,24 @@ function updateProductList() {
 
 updateProductList()
 
-
 /*----------------------- "SEE STOCK INFORMATION" ACTION -------------------------------*/
 
-const StockProductName = document.querySelector('#stock_product_name')
-const StockProductStatus = document.querySelector('#stock_product_status')
-const StockProductColorsDiv = document.querySelector('#stock_product_colors')
-const StockInformationDiv = document.querySelector('#stock_information')
-const informationBox = document.querySelector('#information_box')
+const StockProductName = document.getElementById('stock_product_name')
+const StockProductStatus = document.getElementById('stock_product_status')
+const StockContainer = document.getElementById('stock_product_colors')
+const StockInformationDiv = document.getElementById('stock_information')
+const informationBox = document.getElementById('information_box')
+const stockForm = document.getElementById('product_item_colors')
 
-function StockInformation(productName, productStatus, productStock) {
+/*
+function StockInformation(productId, productName, productStatus, productStock) {
     StockInformationDiv.classList.remove('hide')
     informationBox.classList.remove('hide')
     StockProductName.innerHTML = `${productName}`;
     StockProductStatus.innerHTML = `${productStatus}`;
 
-    StockProductColorsDiv.innerHTML = '';
+    StockContainer.innerHTML = '';
+    stockForm.dataset.productId = `${productId}`;
 
     for (var color in productStock) {
         const colorDiv = document.createElement('div');
@@ -159,24 +160,60 @@ function StockInformation(productName, productStatus, productStock) {
         inputElement.type = 'number';
         inputElement.min = '0';
         inputElement.step = '1';
+        inputElement.name = 'quantity[]'
         inputElement.value = productStock[color];
+
+        // Campo oculto para armazenar a cor
+        const hiddenColorInput = document.createElement('input');
+        hiddenColorInput.type = 'hidden';
+        hiddenColorInput.name = 'color[]';
+        hiddenColorInput.value = color;
 
         colorDiv.appendChild(colorCircle);
         colorDiv.appendChild(inputElement);
-        StockProductColorsDiv.appendChild(colorDiv);
+        colorDiv.appendChild(hiddenColorInput);
+        StockContainer.appendChild(colorDiv);
     }
 }
-
+*/
 function closeStockInformation() {
     informationBox.classList.add('hide')
     StockInformationDiv.classList.add('hide')
 }
 
-function saveStockInformation() {
-    informationBox.classList.add('hide')
-    StockInformationDiv.classList.add('hide')
-}
+stockForm.addEventListener('submit', function (event) {
+    console.log(' submittING');
+    event.preventDefault();
+    console.log('Form submitted');
+    const formData = new FormData(this);
+    const productId = this.dataset.productId; 
 
+    console.log(formData)
+    console.log(productId)
+
+    fetch(`/api/products/stock/${productId}`, {
+        method: 'PATCH',
+        body: formData
+    })
+    .then(async response => {
+        const data = await response.json();
+        return ({ ok: response.ok, data });
+    })
+    .then(({ ok, data }) => {
+        if (ok) {
+            showAlert(data.message, 'success');
+            updateProductList();
+            closeStockInformation();
+        } else {
+            alert(`Erro: ${data.error}`);
+        }
+    })
+    .catch(error => {
+        console.log(error)
+        alert('Erro na comunicação com o servidor.');
+    });
+
+})
 
 /* ------------------- "DELETE" ACTION ---------------------------------------------*/
 
@@ -206,8 +243,6 @@ function deleteProduct(productID) {
         alert('Erro na comunicação com o servidor.');
     });
 }
-
-
 
 /* --------------------------------- "ADD" PRODUCT ACTION - (PRODUCT FORM)  -----------------------------*/
 
@@ -292,13 +327,11 @@ productForm.addEventListener('submit', function (event) {
     }
 })
 
-
 /* --------------------------------- "EDIT" PRODUCT ACTION - (PRODUCT FORM)  -----------------------------*/
 const editFormContainer = document.getElementById('edit_product')
 const editProductForm = document.getElementById('editProductForm')
 const productIDText = document.getElementById('editForm_productId')
 const closeEditFormButton = document.getElementById('close_editForm')
-
 
 function openEditForm(product_ID, productName, productPrice, productCategory, productConnectivity, productDescription, productBrand) {
     const nameInput = document.getElementById('name_editForm')
@@ -321,7 +354,6 @@ function openEditForm(product_ID, productName, productPrice, productCategory, pr
     editFormContainer.classList.remove('hide')
 }
 
-
 closeEditFormButton.addEventListener('click', () => closeEditForm())
 
 function closeEditForm() {
@@ -331,7 +363,6 @@ function closeEditForm() {
     productIDText.innerHTML = ''
     editProductForm.dataset.productId = ' '
 }
-
 
 // submit form action
 editProductForm.addEventListener('submit', function (event) {
@@ -354,6 +385,7 @@ editProductForm.addEventListener('submit', function (event) {
             showAlert(data.message, 'success');
             updateProductList();
             closeProductWindow();
+            closeEditForm();
         } else {
             alert(`Erro: ${data.error}`);
         }
