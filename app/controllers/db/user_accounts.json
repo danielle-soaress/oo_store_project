@@ -1,15 +1,5 @@
 [
     {
-        "firstname": "Beatriz",
-        "lastname": "Higa",
-        "username": "Beatriz",
-        "email": "beatriz@gmail.com",
-        "address": "Guara",
-        "password": "87654321",
-        "userID": "59e0df66-d872-450d-92eb-8b3a4ad10f8b",
-        "cart": []
-    },
-    {
         "firstname": "Henrique",
         "lastname": "Moura",
         "username": "Henrique",
@@ -28,5 +18,20 @@
         "password": "12345678",
         "userID": "d650f2a1-9209-4eed-920f-fb5580727d4d",
         "cart": []
+    },
+    {
+        "firstname": "Leticia",
+        "lastname": "Higa",
+        "username": "Leticia",
+        "email": "leticiahiga11@gmail.com",
+        "address": "Guara",
+        "password": "12345678",
+        "userID": "23c965d8-7aa6-46fe-94c0-54613f716ed0",
+        "cart": [
+            {
+                "productId": "123",
+                "quantity": 1
+            }
+        ]
     }
 ]

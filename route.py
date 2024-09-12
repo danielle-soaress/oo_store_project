@@ -76,33 +76,33 @@ def action_register():
         return ctl.render("login_page")
     
 #------------------------------------------------PERFIL---------------------------------------------------------------
-@app.route('/pagina/<username>', method='GET')
-def action_pagina(username=None):
-    return ctl.render('pagina',username = username)
+@app.route('/pagina/<userID>', method='GET')
+def action_pagina(userID=None):
+    return ctl.render('pagina',userID = userID)
 
 
-@app.route('/api/pagina/<username>', method='DELETE')
-def delete_account(username):
+@app.route('/api/pagina/<userID>', method='DELETE')
+def delete_account(userID):
     try:
-        dtr.delete_account(username)
+        dtr.delete_account(userID)
         response.status = 204
         return json.dumps({"message": "Account deleted successfully"})
     except Exception as e:
         response.status = 500
         return json.dumps({"error": str(e)})
     
-@app.route('/api/pagina/<username>', method='PATCH')
-def edit_account(username):
+@app.route('/api/pagina/<userID>', method='PATCH')
+def edit_account(userID):
     try:
         print('chegou aqui 0')
         firstname = request.forms.get('firstname')
         lastname = request.forms.get('lastname')
-        usernameN = request.forms.get('username')
+        username = request.forms.get('username')
         email = request.forms.get('email')
         address = request.forms.get('address')
         password = request.forms.get('password')
 
-        dtr.updateDates(username, firstname, lastname, usernameN, email, address, password)
+        dtr.updateDates(userID, firstname, lastname, username, email, address, password)
         response.status = 200
         return json.dumps({"message": "Account updated successfully"})
     except Exception as e:
@@ -119,8 +119,8 @@ def check_auth():
     print(f"Usuário retornado: {user}")
     
     if user:
-        print(f"User found: {user.username}") 
-        return {'authenticated': True, 'username': user.username}
+        print(f"User found: {user.userID}") 
+        return {'authenticated': True, 'userID': user.userID}
     else:
         print("No user found") 
         return {'authenticated': False}
@@ -141,18 +141,18 @@ def viewProducts():
 @app.route('/save-cart', method='POST')
 def save_cart():
     data = request.json
-    username = data['username']
+    userID = data['userID']
     cart = data['cart']
 
-    if not username:
+    if not userID:
         response.status = 400
-        return {'status': 'error', 'message': 'Username is required'}
+        return {'status': 'error', 'message': 'userID is required'}
     
     if cart is None:  # Verifica se cart não é None (mesmo se estiver vazio, é válido)
         response.status = 400
         return {'status': 'error', 'message': 'Cart data is required'}
 
-    if not (dtr.saveUserCart(username, cart)):
+    if not (dtr.saveUserCart(userID, cart)):
         response.status = 500 
         return {'status': 'error', 'message': 'Failed to save cart'}
     
@@ -162,13 +162,13 @@ def save_cart():
 
 @app.route('/get-cart', method= 'GET')
 def get_cart():
-    username = request.get_cookie('username')
+    userID = request.get_cookie('userID')
 
-    if not username:
+    if not userID:
         response.status = 400
-        return json.dumps({"status": "error", "message": "Username não fornecido"})
+        return json.dumps({"status": "error", "message": "userID não fornecido"})
 
-    cart = dtr.getUserCart(username)
+    cart = dtr.getUserCart(userID)
 
     if not cart:
         response.status = 400
@@ -179,18 +179,6 @@ def get_cart():
     print(detailed_cart)
     response.content_type = 'application/json'
     return json.dumps({"status": "success", "cart": detailed_cart})
-
-
-'''@app.route('/api/userBag', method='GET')
-def get_user_bag():
-    username = request.query.username
-    userAccountDates = dtr.getUserAccountDates(username)
-    if not userAccountDates:
-        return {'status': 'error', 'message': 'User not found'}
-    
-
-    bag = userAccountDates.get('bag')
-    return {'bag': bag}'''
 
 
 # ---------------- 

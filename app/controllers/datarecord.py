@@ -4,14 +4,15 @@ import json
 import uuid
 import os
 
+
 authenticated_users = {}
+
 class DataRecord():
     """Banco de dados JSON para o recurso Usuários"""
 
     def __init__(self):
         self.__user_accounts = []
         self.__admins = []
-        
         self.read()
         self.adminsInfo()
 
@@ -104,21 +105,27 @@ class DataRecord():
             del authenticated_users[session_id] # Remove o usuário logado
 
 #=============================Inserido=========================
+    def getUserID(self, username):
+        for user in self.__user_accounts:
+            if user.username == username:
+                return user.userID
+        return None
 
-    def getUserAccountDates(self, username):
+
+    def getUserAccountDates(self, userID):
         try:
             with open("app/controllers/db/user_accounts.json", "r") as arquivo_json:
                 data = json.load(arquivo_json)
 
             for user in data:
-                if user["username"] == username:
+                if user["userID"] == userID:
                     return user
             return None
         except FileNotFoundError:
             return None
     
 
-    def saveUserCart(self, username, cart):
+    def saveUserCart(self, userID, cart):
         try:
             with open("app/controllers/db/user_accounts.json", "r+") as arquivo_json:
                 data = json.load(arquivo_json)
@@ -126,13 +133,13 @@ class DataRecord():
                 user_found = False
 
                 for user in data:
-                    if user['username'] == username:
+                    if user['userID'] == userID:
                         user['cart'] = cart
                         user_found = True
                         break
 
                 if not user_found:
-                    print(f"Usuário '{username}' não encontrado.")
+                    print(f"Usuário '{userID}' não encontrado.")
                     return False
 
                 arquivo_json.seek(0)
@@ -147,14 +154,14 @@ class DataRecord():
         except Exception as e:
             print(f"Ocorreu um erro: {e}")
 
-    def getUserCart(self, username):
+    def getUserCart(self, userID):
         try:
-            user = self.getUserAccountDates(username)
-            print('entrou no getusertCart')
+            user = self.getUserAccountDates(userID)
+            print('entrou no getUsertCart')
             if user:
                 return user.get('cart', [])
             else:
-                print(f"Usuário '{username}' não encontrado.")
+                print(f"Usuário '{userID}' não encontrado.")
                 return False
 
         except FileNotFoundError:
@@ -164,17 +171,22 @@ class DataRecord():
         except Exception as e:
             print(f"Ocorreu um erro: {e}")
 
-    def getUserAccountsDic(self, username):
+    def getUserAccountsDic(self, userID):
         for userAccount in self.__user_accounts:
-            if userAccount.username == username:
+            if userAccount.userID == userID:
                 return userAccount
         return None
 
 
-    def updateDates(self, idUsername, firstname=None, lastname=None, username=None, email=None, address=None, password=None):
-        userAccount = self.getUserAccountsDic(idUsername)
+    def updateDates(self, userID, firstname=None, lastname=None, username=None, email=None, address=None, password=None):
+        userAccount = self.getUserAccountsDic(userID)
         print(userAccount)
         if userAccount:
+            print(userAccount)
+
+            cart = self.getUserCart(userID)
+            print('Carrinho antes da atualização:', cart)
+
             if firstname:
                 userAccount.firstname = firstname
                 print(userAccount.firstname)
@@ -188,12 +200,17 @@ class DataRecord():
                 userAccount.address = address
             if password:
                 userAccount.password = password
+
+            if cart is not None:
+                userAccount.cart = cart
+                print('Carrinho restaurado:', userAccount.cart)
+
             self.save()
             return userAccount
         return None
 
-    def delete_account(self, username):
-            self.__user_accounts = [userAccount for userAccount in self.__user_accounts if userAccount.username != username]
+    def delete_account(self, userID):
+            self.__user_accounts = [userAccount for userAccount in self.__user_accounts if userAccount.userID != userID]
             self.save()
 
 

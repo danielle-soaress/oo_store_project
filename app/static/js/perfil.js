@@ -10,15 +10,15 @@ document.getElementById("close_editForm").onclick = function() {
 
 /* ------------------- "DELETE" ACTION ---------------------------------------------*/
 document.getElementById("delete_button").addEventListener("click", function() {
-    const usernameC = getCookie('username');
-    console.log(usernameC)
-    deleteProfile(usernameC);
+    const userID = getCookie('userID');
+    console.log(userID)
+    deleteProfile(userID);
 });
 
-function deleteProfile(username) {
+function deleteProfile(userID) {
     if (confirm("Are you sure you want to delete your profile? This action cannot be undone.")) {
 
-        fetch(`/api/pagina/${username}`, {
+        fetch(`/api/pagina/${userID}`, {
                 method: 'DELETE'
         })
         .then(async response => {
@@ -50,7 +50,7 @@ editDatesForm.addEventListener("submit", async function(e) {
     console.log('Clicou no update dates.')
     e.preventDefault();
     
-    const username = getCookie('username');
+    const userID = getCookie('userID');
     const formData = new FormData(this);
     const formUsername = formData.get('username')
     const formPassword = formData.get('password')
@@ -64,7 +64,7 @@ editDatesForm.addEventListener("submit", async function(e) {
     }
 
     
-    fetch(`/api/pagina/${username}`, {
+    fetch(`/api/pagina/${userID}`, {
         method: 'PATCH',
         body: formData
     })
@@ -81,7 +81,6 @@ editDatesForm.addEventListener("submit", async function(e) {
             document.getElementById("display-address").innerText = formData.get('address');
             document.getElementById("display-password").innerText = formData.get('password');
 
-            alert('Perfil atualizado com sucesso!')
         } else {
             alert(`Erro: ${data.error}`);
         }
