@@ -4,80 +4,106 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/static/css/register.css">
+    <link rel="stylesheet" href="../../static/css/register.css">
+    <link rel="stylesheet" href="../../static/css/header.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Sign Up</h1>
+    <header class="header">
+        <div class="header_container">
+            <div class="header_left_container">
+                <img src="../../static/img/logo.png" alt="Tune Wave Logo" id="header_logo">
+                <nav class="header_nav_left">
+                    <ul class="header_nav_left_list">
+                        <a class="header_link" href="/home"><li class="header_nav_item">Home</li></a>
+                        <a class="header_link" href="/viewProducts"><li class="header_nav_item">Loja</li></a>
+                        <a class="header_link" href="/contact"><li class="header_nav_item">Contato</li></a>
+                    </ul>
+                </nav>
+            </div>
+            <div class="header_right_container">
+                <a class="header_link"><button class="register_button" onclick="redirectToRegister()">Sign Up</button></a>
+                <i class="bi bi-search"></i>
+                <i class="bi bi-moon-fill"></i>
+            </div>
         </div>
+    </header>
 
-        <form class="form" action="/register" method="post" id="register">
-            <div class="two_form">
+
+    <section class="register_section">
+        <div class="container">
+            <div class="title">
+                <h1>Sign Up</h1>
+            </div>
+
+            <form class="form" action="/register" method="post" id="register">
+                <div class="two_form">
+                    <div class="form_control">
+                        <label for="firstname">FirstName</label>
+                        <input type="text" name="firstname" id="firstname" autocomplete="given-name" required><br>
+                    </div>
+                    <div class="form_control">
+                        <label for="lastname">LastName</label>
+                        <input type="text" name="lastname" id="lastname" autocomplete="family-name" required><br>
+                    </div>
+                </div>
+                
                 <div class="form_control">
-                    <label for="firstname">FirstName</label>
-                    <input type="text" name="firstname" id="firstname" autocomplete="given-name" required><br>
+                    <label for="username">UserName</label>
+                    <input type="text" name="username" id="username" autocomplete="username"><br>
+
+                    <i><img class="img-success" src="/static/img/success-icon.svg" alt=""></i>
+                    <i><img class="img-error" src="/static/img/error-icon.svg" alt=""></i>
+
+                    <small></small>
                 </div>
                 <div class="form_control">
-                    <label for="lastname">LastName</label>
-                    <input type="text" name="lastname" id="lastname" autocomplete="family-name" required><br>
+                    <label for="email">Email</label>  
+                    <input type="email" name="email" id="email" autocomplete="email"><br>
+
+                    <i><img class="img-success" src="/static/img/success-icon.svg" alt=""></i>
+                    <i><img class="img-error" src="/static/img/error-icon.svg" alt=""></i>
+
+                    <small></small>
                 </div>
-            </div>
-            
-            <div class="form_control">
-                <label for="username">UserName</label>
-                <input type="text" name="username" id="username" autocomplete="username"><br>
+                <div class="form_control">
+                    <label for="address">Address</label>
+                    <input type="text" name="address" id="address" autocomplete="street-address" required><br>  
+                </div>
+                <div class="form_control">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" autocomplete="new-password" required><br>  
 
-                <i><img class="img-success" src="/static/img/success-icon.svg" alt=""></i>
-                <i><img class="img-error" src="/static/img/error-icon.svg" alt=""></i>
+                    <i><img class="img-success" src="/static/img/success-icon.svg" alt=""></i>
+                    <i><img class="img-error" src="/static/img/error-icon.svg" alt=""></i>
 
-                <small></small>
-            </div>
-            <div class="form_control">
-                <label for="email">Email</label>  
-                <input type="email" name="email" id="email" autocomplete="email"><br>
+                    <small></small>
+                </div>
+                <div class="form_control">
+                    <label for="confirm_password">Confirm your password</label>
+                    <input type="password" name="confirm_password" id="confirm_password" autocomplete="new-password" required><br>
+                
+                    <i><img class="img-success" src="/static/img/success-icon.svg" alt=""></i>
+                    <i><img class="img-error" src="/static/img/error-icon.svg" alt=""></i>
 
-                <i><img class="img-success" src="/static/img/success-icon.svg" alt=""></i>
-                <i><img class="img-error" src="/static/img/error-icon.svg" alt=""></i>
+                    <small></small>
+                </div>
 
-                <small></small>
-            </div>
-            <div class="form_control">
-                <label for="address">Address</label>
-                <input type="text" name="address" id="address" autocomplete="street-address" required><br>  
-            </div>
-            <div class="form_control">
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" autocomplete="new-password" required><br>  
+                <button type="submit">Sign Up</button> <br>
 
-                <i><img class="img-success" src="/static/img/success-icon.svg" alt=""></i>
-                <i><img class="img-error" src="/static/img/error-icon.svg" alt=""></i>
+                <div class="form_control">
+                
 
-                <small></small>
-            </div>
-            <div class="form_control">
-                <label for="confirm_password">Confirm your password</label>
-                <input type="password" name="confirm_password" id="confirm_password" autocomplete="new-password" required><br>
-            
-                <i><img class="img-success" src="/static/img/success-icon.svg" alt=""></i>
-                <i><img class="img-error" src="/static/img/error-icon.svg" alt=""></i>
-
-                <small></small>
-            </div>
-
-            <button type="submit">Sign Up</button> <br>
-
-            <div class="form_control">
-            
-
-                <span>Have an account? <a href="#" onclick="redirectLogin()">Sign In</a></span>
-            </div>
-        </form>
+                    <span>Have an account? <a href="#" onclick="redirectLogin()">Sign In</a></span>
+                </div>
+            </form>
         
-    </div>
+        </div>
+        <br>
+    </section>
+    
       
 
     <script>
