@@ -1,30 +1,13 @@
 [
     {
-        "firstname": "Leticia",
+        "firstname": "Beatriz",
         "lastname": "Higa",
-        "username": "Leticia",
-        "email": "higaleticia12@gmail.com",
+        "username": "Beatriz",
+        "email": "beatriz@gmail.com",
         "address": "Guara",
-        "password": "12345678",
+        "password": "87654321",
         "userID": "59e0df66-d872-450d-92eb-8b3a4ad10f8b",
-        "cart": [
-            {
-                "productId": "123",
-                "quantity": 1
-            },
-            {
-                "productId": "d2c0e545-1f04-49c6-a097-e46020f95cb9",
-                "quantity": 1
-            },
-            {
-                "productId": "128",
-                "quantity": 1
-            },
-            {
-                "productId": "130",
-                "quantity": 1
-            }
-        ]
+        "cart": []
     },
     {
         "firstname": "Henrique",

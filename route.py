@@ -31,8 +31,11 @@ def serve_db(filepath):
 
 
 #-----------------------------------------------------------------------------
+<<<<<<< HEAD
     return ctl.render('pagina',username = username)
 
+=======
+>>>>>>> 1f2f9c89b50a946df0576c84fcc77a175a8b072c
 
 @app.route('/login_page', method='GET')
 def login(error_message = None):
@@ -77,8 +80,58 @@ def action_register():
         print('success')
         return ctl.render("login_page")
     
-#----------------------------------- HOME, STORE AND PRODUCTS PAGES ------------------------------------------
+#------------------------------------------------PERFIL---------------------------------------------------------------
+@app.route('/pagina/<username>', method='GET')
+def action_pagina(username=None):
+    return ctl.render('pagina',username = username)
 
+
+@app.route('/api/pagina/<username>', method='DELETE')
+def delete_account(username):
+    try:
+        dtr.delete_account(username)
+        response.status = 204
+        return json.dumps({"message": "Account deleted successfully"})
+    except Exception as e:
+        response.status = 500
+        return json.dumps({"error": str(e)})
+    
+@app.route('/api/pagina/<username>', method='PATCH')
+def edit_account(username):
+    try:
+        print('chegou aqui 0')
+        firstname = request.forms.get('firstname')
+        lastname = request.forms.get('lastname')
+        usernameN = request.forms.get('username')
+        email = request.forms.get('email')
+        address = request.forms.get('address')
+        password = request.forms.get('password')
+
+        dtr.updateDates(username, firstname, lastname, usernameN, email, address, password)
+        response.status = 200
+        return json.dumps({"message": "Account updated successfully"})
+    except Exception as e:
+        response.status = 500
+        return json.dumps({"error": str(e)})
+
+
+@app.route('/authenticate', methods='GET')
+def check_auth():
+    session_id = request.get_cookie('session_id')
+    print(f"Session ID: {session_id}")  
+    print(f"Tipo de session_id: {type(session_id)}")
+    user = dtr.getCurrentUser(session_id)
+    print(f"Usuário retornado: {user}")
+    
+    if user:
+        print(f"User found: {user.username}") 
+        return {'authenticated': True, 'username': user.username}
+    else:
+        print("No user found") 
+        return {'authenticated': False}
+
+    
+#----------------------------------- HOME, STORE AND PRODUCTS PAGES ------------------------------------------
 @app.route('/home', method='GET')
 def home():
     return ctl.render('home')

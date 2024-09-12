@@ -4,16 +4,17 @@ import json
 import uuid
 import os
 
-
+authenticated_users = {}
 class DataRecord():
     """Banco de dados JSON para o recurso Usuários"""
 
     def __init__(self):
         self.__user_accounts = []
         self.__admins = []
-        self.__authenticated_users = {}
+        
         self.read()
         self.adminsInfo()
+
 
     def read(self):
         try:
@@ -71,8 +72,8 @@ class DataRecord():
     
 
     def getCurrentUser(self,session_id):
-        if session_id in self.__authenticated_users:
-            return self.__authenticated_users[session_id]
+        if session_id in authenticated_users:
+            return authenticated_users[session_id]
         else:
             return None
 
@@ -82,7 +83,7 @@ class DataRecord():
             print(user.username)
             if user.username == username and user.password == password:
                 session_id = str(uuid.uuid4())  # Gera um ID de sessão único
-                self.__authenticated_users[session_id] = user
+                authenticated_users[session_id] = user
                 return session_id  # Retorna o ID de sessão para o usuário
         return None
 
@@ -97,7 +98,7 @@ class DataRecord():
 
     def logout(self, session_id):
         if session_id in self.__authenticated_users:
-            del self.__authenticated_users[session_id] # Remove o usuário logado
+            del authenticated_users[session_id] # Remove o usuário logado
 
     
 
@@ -162,15 +163,40 @@ class DataRecord():
         except Exception as e:
             print(f"Ocorreu um erro: {e}")
 
-    '''def syncBags(userBag, tempBag):
-        for tempItem in tempBag:
-            found = False
-            for item in userBag:
-                if item['id'] == tempItem['id']:
-                    item['quantity'] += tempItem['quantity']
-                    found = True
-                    break
-            if not found:
-                userBag.append(tempItem)
-        return userBag'''
-    
+    def getUserAccountsDic(self, username):
+        for userAccount in self.__user_accounts:
+            if userAccount.username == username:
+                return userAccount
+        return None
+
+
+    def updateDates(self, idUsername, firstname=None, lastname=None, username=None, email=None, address=None, password=None):
+        userAccount = self.getUserAccountsDic(idUsername)
+        print(userAccount)
+        if userAccount:
+            if firstname:
+                userAccount.firstname = firstname
+                print(userAccount.firstname)
+            if lastname:
+                userAccount.lastname = lastname
+            if username:
+                userAccount.username = username
+            if email:
+                userAccount.email = email
+            if address:
+                userAccount.address = address
+            if password:
+                userAccount.password = password
+            self.save()
+            return userAccount
+        return None
+
+    def delete_account(self, username):
+            self.__user_accounts = [userAccount for userAccount in self.__user_accounts if userAccount.username != username]
+            self.save()
+
+
+    def save(self):
+        with open("app/controllers/db/user_accounts.json", "w") as arquivo_json:
+            userAccountDates = [userAccount.toDict() for userAccount in self.__user_accounts]
+            json.dump(userAccountDates, arquivo_json, indent=4)
