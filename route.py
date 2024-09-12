@@ -214,10 +214,10 @@ def viewProduct(product_id):
 
 # --------------
 
-@app.route('/payment/<username>', method='GET')
-def payment(username):
-    if ctl.is_authenticated(username):
-        return ctl.render('payment', username = username)
+@app.route('/payment/<userID>', method='GET')
+def payment(userID):
+    if ctl.is_authenticated(userID):
+        return ctl.render('payment', userID = userID)
     return ctl.render('login_page', error_message = "Log in to your account to proceed with payment.")
 
 @app.route('/contact', method='GET')

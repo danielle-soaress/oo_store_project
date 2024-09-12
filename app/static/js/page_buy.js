@@ -388,10 +388,10 @@ document.addEventListener('DOMContentLoaded', () => {
 // ====== buy button action =============== 
 
 document.getElementById('buy_bag').addEventListener('click', () => {
-    const username = getCookie('username')
+    const userID = getCookie('userID')
 
-    if (username) {
-        window.location.href = `/payment/${username}`;
+    if (userID) {
+        window.location.href = `/payment/${userID}`;
     }
     else {
         window.location.href = "/home"

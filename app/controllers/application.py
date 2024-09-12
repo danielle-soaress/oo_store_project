@@ -101,8 +101,8 @@ class Application():
         return self.render('home')
     
     def payment(self, **args):
-        username = args.get('username', None)
-        user_account = self.__model.getUserAccountDates(username)
+        userID = args.get('userID', None)
+        user_account = self.__model.getUserAccountDates(userID)
         if user_account:
             totalCash = Cart.totalCash(user_account["cart"])
             totalCreditCard = Cart.totalCreditCard(user_account["cart"])
