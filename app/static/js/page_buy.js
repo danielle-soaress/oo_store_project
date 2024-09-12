@@ -9,7 +9,7 @@ document.getElementById('perfil_icon').addEventListener('click', function() {
             console.log('Dados recebidos', data)
 
             if (data.authenticated) {
-                window.location.href = `/pagina/${data.username}`;
+                window.location.href = `/pagina/${data.userID}`;
             } else {
                 window.location.href = '/login_page';
             }
@@ -159,7 +159,8 @@ function validateCart(cart) {
 }
 
 function saveCart() {
-    const username = getCookie('username'); 
+    const userID = getCookie('userID'); 
+    console.log(userID) 
 
     const cartProducts = cart.map(product => {
         let id = product.productId.split(': ')[1];
@@ -170,14 +171,14 @@ function saveCart() {
     });
 
     if (validateCart(cartProducts)) {
-        console.log(username + 'está começando o processo de salvar no carrinho')
+        console.log(userID + ' está começando o processo de salvar no carrinho')
         fetch('/save-cart', { 
             method: 'POST', 
             headers: { 
                 'Content-Type': 'application/json', 
             }, 
             body: JSON.stringify({ 
-                username: username, 
+                userID: userID,  
                 cart: cartProducts // Sacola com o ID e a quantidade dos produtos 
             }) 
         })
@@ -206,14 +207,14 @@ function saveCart() {
 
 //=================================================View cart user=========================================================
 function loadCart() {
-    const username = getCookie('username');
+    const userID = getCookie('userID');
 
-    if (!username) {
-        console.error('Usuário não autenticado.');
+    if (!userID) {
+        console.error('userID não autenticado.');
         return;
     }
 
-    fetch(`/get-cart?username=${encodeURIComponent(username)}`)
+    fetch(`/get-cart?userID=${encodeURIComponent(userID)}`)
         .then(response => response.json())
         .then(data => {
             if (data.status === 'success') {
@@ -387,10 +388,10 @@ document.addEventListener('DOMContentLoaded', () => {
 // ====== buy button action =============== 
 
 document.getElementById('buy_bag').addEventListener('click', () => {
-    const username = getCookie('username')
+    const userID = getCookie('userID')
 
-    if (username) {
-        window.location.href = `/payment/${username}`;
+    if (userID) {
+        window.location.href = `/payment/${userID}`;
     }
     else {
         window.location.href = "/home"

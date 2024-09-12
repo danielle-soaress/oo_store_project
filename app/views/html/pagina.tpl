@@ -5,8 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
     <link rel="stylesheet" href="../../static/css/perfil.css">
+    <link rel="stylesheet" href="../../static/css/header.css">
 </head>
 <body>
+
+    <header class="header">
+        <div class="header_container">
+            <div class="header_left_container">
+                <img src="../../static/img/logo.png" alt="Tune Wave Logo" id="header_logo">
+                <nav class="header_nav_left">
+                    <ul class="header_nav_left_list">
+                        <a class="header_link" href="/home"><li class="header_nav_item">Home</li></a>
+                        <a class="header_link" href="/viewProducts"><li class="header_nav_item">Loja</li></a>
+                        <a class="header_link" href="/contact"><li class="header_nav_item">Contato</li></a>
+                    </ul>
+                </nav>
+            </div>
+            <div class="header_right_container">
+                <a class="header_link"><button class="login_button" onclick="redirectToLogin()">Sign In</button></a>
+                <i class="bi bi-search"></i>
+                <i class="bi bi-moon-fill"></i>
+            </div>
+        </div>
+    </header>
 
     
 
@@ -98,7 +119,11 @@
 
     % end
 
-
+    <script>
+        function redirectToLogin() {
+            window.location.href = '/login_page';
+        }
+    </script>
     <script src="../../static/js/perfil.js"></script>
 </body>
 </html>

@@ -1,13 +1,18 @@
 [
     {
-        "firstname": "Beatriz",
+        "firstname": "Leticia",
         "lastname": "Higa",
-        "username": "Beatriz",
-        "email": "beatriz@gmail.com",
+        "username": "Leticia",
+        "email": "leticiahiga11@gmail.com",
         "address": "Guara",
-        "password": "87654321",
+        "password": "12345678",
         "userID": "59e0df66-d872-450d-92eb-8b3a4ad10f8b",
-        "cart": []
+        "cart": [
+            {
+                "productId": "1",
+                "quantity": 1
+            }
+        ]
     },
     {
         "firstname": "Henrique",

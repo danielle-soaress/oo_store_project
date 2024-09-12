@@ -2,10 +2,7 @@ from app.controllers.datarecord import DataRecord
 from app.controllers.productrecord import ProductRecord
 from app.models.cart import Cart
 from bottle import template, redirect, request, response
-from app.controllers.datarecord import DataRecord
 import json
-
-dtr = DataRecord()
 
 
 class Application():
@@ -35,8 +32,8 @@ class Application():
             return content()
         
     def pagina(self, **args):
-        username = args.get('username', None)
-        if self.is_authenticated(username):
+        userID = args.get('userID', None)
+        if self.is_authenticated(userID):
             session_id= request.get_cookie('session_id')
             user = self.__model.getCurrentUser(session_id)
             return template('app/views/html/pagina', \
@@ -56,18 +53,20 @@ class Application():
 
 
 
-    def is_authenticated(self, username):
+    def is_authenticated(self, userID):
         session_id = request.get_cookie('session_id')
         current_user = self.__model.getCurrentUser(session_id)
-        return username == current_user.username
+        return userID == current_user.userID
     
 
 #===========================Modificado=========================
     def authenticate_user(self, username, password): #login function
         session_id = self.__model.checkUser(username, password)
         if session_id:
+            userID = self.__model.getUserID(username)
             response.set_cookie('session_id', session_id, httponly=True, secure=True, max_age=3600)
             response.set_cookie('username', username, secure=True, max_age=3600)
+            response.set_cookie('userID', userID, secure=True, max_age=3600)
             return redirect('/viewProducts')
         return redirect('/login_page?error_code=1')
 
@@ -102,8 +101,8 @@ class Application():
         return self.render('home')
     
     def payment(self, **args):
-        username = args.get('username', None)
-        user_account = self.__model.getUserAccountDates(username)
+        userID = args.get('userID', None)
+        user_account = self.__model.getUserAccountDates(userID)
         if user_account:
             totalCash = Cart.totalCash(user_account["cart"])
             totalCreditCard = Cart.totalCreditCard(user_account["cart"])
