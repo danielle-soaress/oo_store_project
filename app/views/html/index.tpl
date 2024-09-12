@@ -118,8 +118,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.min.js"></script>
-<<<<<<< HEAD:app/views/html/index.tpl
-=======
     <script>
         function redirectToLogin() {
             window.location.href = '/login_page';
@@ -140,6 +138,5 @@
             window.location.href = '/viewProducts'
         }
     </script>
->>>>>>> 1f2f9c89b50a946df0576c84fcc77a175a8b072c:app/views/html/index.html
 </body>
 </html>
