@@ -31,11 +31,6 @@ def serve_db(filepath):
 
 
 #-----------------------------------------------------------------------------
-<<<<<<< HEAD
-    return ctl.render('pagina',username = username)
-
-=======
->>>>>>> 1f2f9c89b50a946df0576c84fcc77a175a8b072c
 
 @app.route('/login_page', method='GET')
 def login(error_message = None):
