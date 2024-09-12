@@ -31,6 +31,10 @@ def serve_db(filepath):
 
 
 #-----------------------------------------------------------------------------
+<<<<<<< HEAD
+
+=======
+>>>>>>> 0ff474f8ea6f36341a7106c4db1f2bf98140982d
 @app.route('/login_page', method='GET')
 def login(error_message = None):
     error_code = request.query.get('error_code', None)
