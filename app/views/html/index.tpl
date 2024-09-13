@@ -27,11 +27,11 @@
                 </nav>
             </div>
             <div class="header_right_container">
-                <a style="{{'display: none;' if authenticated else 'display: block;'}}" class="header_link">
-                    <button class="login_button" onclick="redirectToLogin()">Sign In</button>
+                <a id="login_b" style="{{'display: none;' if authenticated else 'display: block;'}}" class="header_link">
+                    <button class="login_button">Sign In</button>
                 </a>
-                <a style="{{'display: none;' if authenticated else 'display: block;'}}" class="header_link">
-                    <button class="register_button" onclick="redirectToRegister()">Sign Up</button>
+                <a id="register_b" style="{{'display: none;' if authenticated else 'display: block;'}}" class="header_link">
+                    <button class="register_button">Sign Up</button>
                 </a>
                 <a style="{{'display: block;' if authenticated else 'display: none;'}}" class="header_link">
                     <div class="perfil_icon" id="perfil_icon">
@@ -39,7 +39,7 @@
                     </div>
                 </a>
                 <a style="{{'display: block;' if authenticated else 'display: none;'}}" class="header_link">
-                    <button class="logout_button" onclick="logout()">Log out</button>
+                    <button class="logout_button" id="logout_b">Log out</button>
                 </a>
             </div>
         </div>
@@ -118,25 +118,5 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.min.js"></script>
-    <script>
-        function redirectToLogin() {
-            window.location.href = '/login_page';
-        }
-    </script>
-    <script>
-        function redirectToRegister() {
-            window.location.href = '/register';
-        }
-    </script>
-    <script>
-        function redirectToHome() {
-            window.location.href = '/home'
-        }
-    </script>
-    <script>
-        function redirectToLoja() {
-            window.location.href = '/viewProducts'
-        }
-    </script>
 </body>
 </html>

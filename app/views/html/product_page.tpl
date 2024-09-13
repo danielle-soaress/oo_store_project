@@ -11,7 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="../../static/css/header.css">
     <link rel="stylesheet" href="../../static/css/product_page.css">
-    <link  rel="stylesheet" href="../../static/css/footer.css">
+    <link rel="stylesheet" href="../../static/css/footer.css">
 </head>
 <body>
     <header class="header">
@@ -64,7 +64,7 @@
     </header>
     <section id="product_info_section">
         <div id="product_info_div">
-            <img src="../../static/img/6a75e89f-89db-4c71-b465-5aa139dce1f5_61kd0kZDgcL._AC_SX679_.jpg" alt="" class="product_info_image">
+            <img src="../../static/img/{{img}}" alt="" class="product_info_image">
             <div class="product_info_text">
                 <div class="tags_div">
                     <div class="tag">{{ category }}</div>
@@ -84,11 +84,11 @@
                 <div id="product_info_price">
                     <div id="product_info_payment_div">
                         <span>
-                            <p id="product_info_price_in_cash">{{ cash_price }}</p>
+                            <p id="product_info_price_in_cash"> R$ {{ cash_price }}</p>
                             <p class="product_info_payment_info product_info_paragraph">
                                 <span class="strong">Cash</span> with up to <span class="strong">7% OFF</span>
                             </p>
-                            <p id="product_info_price_credit">{{ credit_price }}</p>
+                            <p id="product_info_price_credit"> R$ {{ credit_price }}</p>
                             <p class="product_info_payment_info product_info_paragraph">
                                 Up to <span class="strong">{{ parcels_qt }}x of R$ {{ parcels }}</span> interest-free on credit card
                             </p>

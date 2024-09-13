@@ -111,16 +111,9 @@ let cart = []
 
 
 function loadCart() {
-    const path = window.location.pathname;
-    const segments = path.split('/');
-    const username = segments[segments.length - 1];
+    const userID = getCookie('userID');
 
-    if (!username) {
-        console.error('Usuário não autenticado.');
-        return;
-    }
-
-    fetch(`/get-cart?username=${encodeURIComponent(username)}`)
+    fetch(`/get-cart?userID=${encodeURIComponent(userID)}`)
         .then(response => response.json())
         .then(data => {
             if (data.status === 'success') {
@@ -150,7 +143,7 @@ function displayCart() {
 
         const productImage = document.createElement('img');
         productImage.classList.add('product_card_image');
-        productImage.src = product.productImg;
+        productImage.src = `../../static/img/${product.productImg}`;
         productImage.alt = product.productName;
 
         const productName = document.createElement('h3');
@@ -263,11 +256,10 @@ function validateCart(cart) {
 }
 
 function updateCartOnServer() {
-    const path = window.location.pathname;
-    const segments = path.split('/');
-    const username = segments[segments.length - 1];
+    const userID = getCookie('userID'); 
+    console.log(userID) 
 
-    if (!username) {
+    if (!userID) {
         console.error('Usuário não autenticado.');
         return;
     }
@@ -288,7 +280,7 @@ function updateCartOnServer() {
                 'Content-Type': 'application/json', 
             }, 
             body: JSON.stringify({ 
-                username: username, 
+                userID: userID, 
                 cart: cartProducts // Sacola com o ID e a quantidade dos produtos 
             }) 
         })

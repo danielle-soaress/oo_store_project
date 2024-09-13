@@ -22,9 +22,9 @@
                 </nav>
             </div>
             <div class="header_right_container">
-                <a class="header_link"><button class="login_button" onclick="redirectToLogin()">Sign In</button></a>
-                <i class="bi bi-search"></i>
-                <i class="bi bi-moon-fill"></i>
+                <a style="{{'display: block;' if authenticated else 'display: none;'}}" class="header_link">
+                    <button class="logout_button" id="logout_b">Log out</button>
+                </a>
             </div>
         </div>
     </header>
@@ -125,5 +125,6 @@
         }
     </script>
     <script src="../../static/js/perfil.js"></script>
+    <script src="../../static/js/header.js"></script>
 </body>
 </html>

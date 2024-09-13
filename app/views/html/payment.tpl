@@ -51,7 +51,6 @@
                     <!------------Botão Close-------------->
                     <button id="close_bag" class="close_bag">Close</button>
                 </div> 
-                <i class="bi bi-moon-fill"></i>
             </div>
         </div>        
     </header>

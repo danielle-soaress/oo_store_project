@@ -7,12 +7,7 @@
         "address": "Guara",
         "password": "12345678",
         "userID": "59e0df66-d872-450d-92eb-8b3a4ad10f8b",
-        "cart": [
-            {
-                "productId": "1",
-                "quantity": 1
-            }
-        ]
+        "cart": []
     },
     {
         "firstname": "Henrique",
@@ -25,13 +20,50 @@
         "cart": []
     },
     {
-        "firstname": "Danielle",
-        "lastname": "Soares",
-        "username": "danielle",
-        "email": "email@gmail.com",
-        "address": "Samambaia Norte",
-        "password": "12345678",
+        "firstname": "danielle",
+        "lastname": "soares",
+        "username": "danini",
+        "email": "silvasoaresdanielle2@gmail.com",
+        "address": "QR 204 conjunto 5 casa 26",
+        "password": "123456789",
         "userID": "d650f2a1-9209-4eed-920f-fb5580727d4d",
-        "cart": []
+        "cart": [
+            {
+                "productId": "3",
+                "quantity": 1
+            },
+            {
+                "productId": "1",
+                "quantity": 1
+            },
+            {
+                "productId": "2",
+                "quantity": 1
+            },
+            {
+                "productId": "5",
+                "quantity": 1
+            },
+            {
+                "productId": "6",
+                "quantity": 1
+            },
+            {
+                "productId": "7",
+                "quantity": 1
+            },
+            {
+                "productId": "9",
+                "quantity": 1
+            },
+            {
+                "productId": "10",
+                "quantity": 1
+            },
+            {
+                "productId": "11",
+                "quantity": 1
+            }
+        ]
     }
 ]

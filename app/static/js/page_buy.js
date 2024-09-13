@@ -60,7 +60,7 @@ function addToCart(event) {
     const productPrice = productInfos.getElementsByClassName("product_item_price")[0].textContent
     const productPriceValue = parseFloat(productPrice.replace(/[^0-9,.]/g, '').replace(',', '.'));
 
-
+    console.log('src = ' + src)
     //Verifica se o produto está no carrinho
     const existingProduct = cart.find(product => product.productId === productId);
     if (existingProduct) {
@@ -248,7 +248,7 @@ function displayCart() {
         ` 
         <td class="productIdentification"> 
 
-            <img src="${product.productImg}" alt="${product.productName}" class="img_product"> 
+            <img src="../../static/img/${product.productImg}" alt="${product.productName}" class="img_product"> 
             <div class="info"> 
                 <strong class="name_product">${product.productName}</strong> 
                 <div class="id">${product.productId}</div> 

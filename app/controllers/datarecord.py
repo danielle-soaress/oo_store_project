@@ -97,7 +97,7 @@ class DataRecord():
         return None
 
     def logout(self, session_id):
-        if session_id in self.__authenticated_users:
+        if session_id in authenticated_users:
             del authenticated_users[session_id] # Remove o usuário logado
 
     

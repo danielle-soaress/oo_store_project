@@ -27,8 +27,6 @@
             </div>
             <div class="header_right_container">
                 <a class="header_link"><button class="register_button" onclick="redirectToRegister()">Sign Up</button></a>
-                <i class="bi bi-search"></i>
-                <i class="bi bi-moon-fill"></i>
             </div>
         </div>
     </header>
@@ -54,5 +52,6 @@
                 </form>
             </div>
     </section>
+    <script src="../../static/js/header.js"></script>
 </body>
 </html>

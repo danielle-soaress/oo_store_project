@@ -33,20 +33,20 @@
                     <input id="search_input" type="text" placeholder="headset gaming"/>
                     <i class="bi bi-caret-right-fill"></i>
                 </div>
-                <!--------------ICON PERFIL------------->
-                <div class="perfil_icon" id="perfil_icon">
-                    <i class="bi bi-person-circle" id="perfil_icon"></i>
-                </div>
 
                 <!--------------ICON BAG--------------->
                 <div class="bag_icon" id="bag_icon">
                     <i class="bi bi-bag"></i>
                 </div>
+                
+                <!--------------ICON PERFIL------------->
+                <div style="{{'display: block;' if authenticated else 'display: none;'}}" class="perfil_icon" id="perfil_icon">
+                    <i class="bi bi-person-circle" id="perfil_icon"></i>
+                </div>
 
                 <!-------Painel lateral da bolsa--------->
                 <div class="side_bag" id="side_bag">
                     <h2>Your Bag</h2>
-
                     <div id="bag_itens">
                     <!--------Itens do carrinho------->
                         <table class="bag_table">
@@ -76,7 +76,11 @@
 
                     <!------------Botão Close-------------->
                     <button id="close_bag" class="close_bag">Close</button>
-                </div> 
+                </div>
+
+                <a id="logout_b" style="{{'display: block;' if authenticated else 'display: none;'}}" class="header_link">
+                    <button class="logout_button">Log out</button>
+                </a>
             </div>
         </div>        
     </header>
@@ -140,6 +144,7 @@
         </div>
     </footer>
 
+    <script src="../../static/js/header.js"></script>
     <script src="../../static/js/page_buy.js"></script>
     <script src="../../static/js/filter.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

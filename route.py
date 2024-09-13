@@ -31,10 +31,6 @@ def serve_db(filepath):
 
 
 #-----------------------------------------------------------------------------
-<<<<<<< HEAD
-
-=======
->>>>>>> 0ff474f8ea6f36341a7106c4db1f2bf98140982d
 @app.route('/login_page', method='GET')
 def login(error_message = None):
     error_code = request.query.get('error_code', None)
@@ -42,19 +38,16 @@ def login(error_message = None):
         error_message = ERRORS.get(int(error_code), 0).message
     return ctl.render('login_page', error_message = error_message)
 
-
 @app.route('/login_page', method='POST')
 def action_login():
     username = request.forms.get('username')
     password = request.forms.get('password')
 
     return ctl.authenticate_user(username, password)
-        
 
 @app.route('/logout', method='POST')
 def logout():
-    ctl.logout_user()
-    return redirect('/login_page')
+    return ctl.render('logout')
 
 
 @app.route('/register', method='GET')
@@ -83,7 +76,6 @@ def action_register():
 def action_pagina(userID=None):
     return ctl.render('pagina',userID = userID)
 
-
 @app.route('/api/pagina/<userID>', method='DELETE')
 def delete_account(userID):
     try:
@@ -97,7 +89,6 @@ def delete_account(userID):
 @app.route('/api/pagina/<userID>', method='PATCH')
 def edit_account(userID):
     try:
-        print('chegou aqui 0')
         firstname = request.forms.get('firstname')
         lastname = request.forms.get('lastname')
         username = request.forms.get('username')
@@ -116,16 +107,11 @@ def edit_account(userID):
 @app.route('/authenticate', methods='GET')
 def check_auth():
     session_id = request.get_cookie('session_id')
-    print(f"Session ID: {session_id}")  
-    print(f"Tipo de session_id: {type(session_id)}")
     user = dtr.getCurrentUser(session_id)
-    print(f"Usuário retornado: {user}")
     
     if user:
-        print(f"User found: {user.userID}") 
         return {'authenticated': True, 'userID': user.userID}
     else:
-        print("No user found") 
         return {'authenticated': False}
 
     
@@ -133,7 +119,6 @@ def check_auth():
 @app.route('/home', method='GET')
 def home():
     return ctl.render('home')
-
 
 
 @app.route('/viewProducts', method='GET')
@@ -180,7 +165,6 @@ def get_cart():
     
     detailed_cart = prc.get_cart_products(cart)
 
-    print(detailed_cart)
     response.content_type = 'application/json'
     return json.dumps({"status": "success", "cart": detailed_cart})
 
@@ -287,15 +271,11 @@ def edit_stock(product_id):
 
         product_stock = dict(zip(colors, quantities))
 
-        print(product_stock)
-        
         result = []
 
         for key, value in product_stock:
             r = prc.update_product_stock(product_id, key, value)
             result.append(r)
-
-        print(result)
 
         if all(x is None for x in result):
             response.status = 400
@@ -319,7 +299,6 @@ def add_product():
         colorStock = {}
         imageFileName = None
         price = None
-        print('checkpoint0')
         ## price processing
         if not is_valid_float(price_str):
             response.status = 400
@@ -357,7 +336,6 @@ def add_product():
         return json.dumps({"message": "Product created successfully"})
     except Exception as e:
         response.status = 500
-        print('error ' + str(e))
         return json.dumps({"error": str(e)})
 
 # Regex para verificar cores hexadecimais

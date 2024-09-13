@@ -10,8 +10,9 @@ class Application():
     def __init__(self):
 #============removi a pagina================
         self.pages = {
-            'pagina': self.pagina,
             'login_page': self.login_page,
+            'pagina': self.pagina,
+            'logout': self.logout,
             'login': self.login,
             'register': self.register,
             'home': self.home,
@@ -37,11 +38,10 @@ class Application():
             session_id= request.get_cookie('session_id')
             user = self.__model.getCurrentUser(session_id)
             return template('app/views/html/pagina', \
-            transfered=True, current_user=user)
+            transfered=True, current_user=user, authenticated = True)
         return template('app/views/html/pagina', \
-        transfered=False)
-
-
+        transfered=False, authenticated = False)
+    
     def login(self):
         session_id= request.get_cookie('session_id')
         current_user= self.__model.getCurrentUser(session_id)
@@ -50,8 +50,13 @@ class Application():
             username= current_user.username)
         return template('app/views/html/login', \
         transfered=False, username= None)
-
-
+    
+    def logout(self):
+        print('entrou no logout app')
+        session_id= request.get_cookie('session_id')
+        if session_id:
+            self.__model.logout(session_id)
+        return self.render('home')
 
     def is_authenticated(self, userID):
         session_id = request.get_cookie('session_id')
@@ -111,7 +116,10 @@ class Application():
         return self.render('viewProducts')
 
     def viewProducts(self):
-        return template('app/views/html/page_buy')
+        session_id = request.get_cookie('session_id')
+        if self.__model.getCurrentUser(session_id):
+            return template('app/views/html/page_buy', authenticated = True)
+        return template('app/views/html/page_buy', authenticated = False)
     
     def viewProduct(self, **args):
         productID = args.get('product_id', None)
@@ -120,12 +128,13 @@ class Application():
         if product:
             product_colors = product.getColors()
             parcels_info= product.creditCardParcels()
+            print(product.imageFileName)
             if self.__model.getCurrentUser(session_id):
-                return template('app/views/html/product_page', availability = product.stockStatus(), name = product.name, id = product.id, cash_price = product.price,\
+                return template('app/views/html/product_page', img = product.imageFileName, availability = product.stockStatus(), name = product.name, id = product.id, cash_price = product.price,\
                              category = product.category, brand = product.brand, connect = product.connectivity, desc= product.description, \
-                             colors = json.dumps(product_colors), credit_price = product.creditCardPrice(), parcels = parcels_info[1], parcels_qt = parcels_info[0], authenticated = True)
+                             colors = json.dumps(product_colors), credit_price = f'{product.creditCardPrice():.2f}', parcels = parcels_info[1], parcels_qt = parcels_info[0], authenticated = True)
             else:
-                return template('app/views/html/product_page', availability = product.stockStatus(), name = product.name, id = product.id, cash_price = product.price,\
+                return template('app/views/html/product_page', img = product.imageFileName, availability = product.stockStatus(), name = product.name, id = product.id, cash_price = product.price,\
                              category = product.category, brand = product.brand, connect = product.connectivity, desc= product.description, \
-                             colors = json.dumps(product_colors), credit_price = product.creditCardPrice(), parcels = parcels_info[1], parcels_qt = parcels_info[0], authenticated = False)
+                             colors = json.dumps(product_colors), credit_price = f'{product.creditCardPrice():.2f}', parcels = parcels_info[1], parcels_qt = parcels_info[0], authenticated = False)
     
