@@ -84,8 +84,9 @@ class ProductRecord:
     def update_product_stock(self, product_id, quantity):
         product = self.get_product(product_id)
         if product:
-            if quantity >=0:
-                product.stock(quantity)
+            quantity = int(quantity)
+            if quantity >= 0:
+                product.stock=quantity
                 self.save()
                 return True
         return None

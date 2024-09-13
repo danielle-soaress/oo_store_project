@@ -2,12 +2,12 @@
     {
         "id": "1",
         "name": "Wireless Headphones X1",
-        "price": 120.0,
+        "price": 130.0,
         "category": "Headphones",
         "connectivity": "Wireless",
         "description": "Comfortable over-ear headphones with noise cancellation.",
         "brand": "SoundTech",
-        "stock": 35,
+        "stock": 44,
         "imageFileName": "hdw_1.jpg"
     },
     {
@@ -18,7 +18,7 @@
         "connectivity": "Wireless",
         "description": "Compact Bluetooth earbuds with excellent sound quality.",
         "brand": "SoundFlex",
-        "stock": 105,
+        "stock": 54,
         "imageFileName": "ebw_2.jpg"
     },
     {
@@ -130,5 +130,16 @@
         "brand": "TurboGaming",
         "stock": 60,
         "imageFileName": "p_12.jpg"
+    },
+    {
+        "id": "c6cde2a3-785d-4b51-8623-98e2fe9417d9",
+        "name": "Headset Gaming V32 Pink",
+        "price": 399.0,
+        "category": "Headsets",
+        "connectivity": "Wired",
+        "description": "Beautiful headset.",
+        "brand": "VGaming",
+        "stock": 20,
+        "imageFileName": "a4e652b5-73b4-4b8c-b415-872bc53af9b0_headset_catalog.jpg"
     }
 ]

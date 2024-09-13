@@ -130,24 +130,20 @@ updateProductList()
 
 /*----------------------- "SEE STOCK INFORMATION" ACTION -------------------------------*/
 
-const StockProductName = document.getElementById('stock_product_name')
 const StockProductStatus = document.getElementById('stock_product_status')
-const StockContainer = document.getElementById('stock_product_colors')
 const StockInformationDiv = document.getElementById('stock_information')
+const stockInput = document.getElementById('quantity_input')
 const informationBox = document.getElementById('information_box')
 const stockForm = document.getElementById('product_item_colors')
 
 function StockInformation(productId, productName, productStatus, productStock) {
-    console.log('stock ' + productStock)
     StockInformationDiv.classList.remove('hide')
     informationBox.classList.remove('hide')
-    StockProductName.innerHTML = `${productName}`;
-    StockProductStatus.innerHTML = `${productStatus}`;
+    StockProductStatus.innerHTML = `Status: ${productStatus}`;
 
-    StockContainer.innerHTML = '';
-    stockForm.dataset.productId = `${productId}`;
+    stockForm.dataset.pID = `${productId}`;
 
-    console.log('stock ' + productStock)
+    stockInput.value=productStock;
 }
 
 function closeStockInformation() {
@@ -155,38 +151,47 @@ function closeStockInformation() {
     StockInformationDiv.classList.add('hide')
 }
 
-stockForm.addEventListener('submit', function (event) {
-    console.log(' submittING');
-    event.preventDefault();
-    console.log('Form submitted');
-    const formData = new FormData(this);
-    const productId = this.dataset.productId; 
+stockForm.addEventListener('submit', (e) => {
+    e.preventDefault(); 
+    
+    const qtd = stockInput.value
 
-    console.log(formData)
-    console.log(productId)
+    if (qtd) {
+        fetch(`/api/products/stock/${stockForm.dataset.pID}`, { 
+            method: 'PATCH', 
+            headers: { 
+                'Content-Type': 'application/json', 
+            }, 
+            body: JSON.stringify({ 
+                quantity: qtd
+            }) 
+        })
+        .then(async response => {
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(errorText || 'Network response was not ok');
+            }
 
-    fetch(`/api/products/stock/${productId}`, {
-        method: 'PATCH',
-        body: formData
-    })
-    .then(async response => {
-        const data = await response.json();
-        return ({ ok: response.ok, data });
-    })
-    .then(({ ok, data }) => {
-        if (ok) {
-            showAlert(data.message, 'success');
-            updateProductList();
-            closeStockInformation();
-        } else {
-            alert(`Erro: ${data.error}`);
-        }
-    })
-    .catch(error => {
-        console.log(error)
-        alert('Erro na comunicação com o servidor.');
-    });
+            const data = await response.json();
+            return data;
+        })
+        .then(result => { 
+            if (result.message === 'Stock updated successfully') { 
+                showAlert(result.message, 'success');
+                closeStockInformation(); 
+                updateProductList(); 
+            } else { 
+                console.error('Error:', result.message); 
+            } 
+        })
+        .catch(error => { 
+            showAlert(error, 'error')
+            console.error('Request failed:', error); 
+        });
 
+    } else {
+        console.error('Invalid Number...');
+    }
 })
 
 
@@ -208,6 +213,7 @@ function deleteProduct(productID) {
     })
     .then(({ ok, data }) => {
         if (ok) {
+            
             showAlert(data.message, 'success')
             updateProductList();
         } else {
@@ -224,25 +230,10 @@ function deleteProduct(productID) {
 
 const addProductContainer = document.getElementById('add_product')
 const productForm = document.getElementById('productForm')
-const addColorStockButton = document.getElementById('add_color_productForm')
-const ColorStockcontainer = document.getElementById('colorStockContainer');
 const closeProductWindowButton = document.getElementById('close_productForm')
 const openProductWindowButton = document.querySelector('#add_product_button')
 
-// button to add more colors to the stock.
-addColorStockButton.addEventListener('click', () => addColorStock())
 
-function addColorStock() {
-    const div = document.createElement('div');
-    div.className = 'color-stock';
-    div.innerHTML = `
-        <input  class="productForm_input" type="text" name="colorStock" placeholder="Hex Color (ex: #FFFFFF)" required>
-        <input  class="productForm_input" style="width: 90px;" type="number" name="colorStockQuantity" placeholder="Quantity" min="0" required>
-        `;
-    ColorStockcontainer.appendChild(div);
-}
-
-// button to open form window
 openProductWindowButton.addEventListener('click', () => openProductWindow());
 
 function openProductWindow() {
@@ -258,9 +249,6 @@ function closeProductWindow() {
     addProductContainer.classList.add('hide')
     informationBox.classList.add('hide')
     productForm.reset();
-    ColorStockcontainer.innerHTML = ''
-    addColorStock()
-
 }
 
 // submit form action
@@ -274,31 +262,37 @@ productForm.addEventListener('submit', function (event) {
         alert('Please select an image file.');
         event.preventDefault(); 
     } else {
-
         const formData = new FormData(this);
-
         fetch('/api/products', {
             method: 'POST',
             body: formData
         })
         .then(async response => {
-            console.log('processando resposta json')
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(errorText || 'Network response was not ok');
+            }
+    
+            if (response.status === 204) {
+                return { ok: true, data: { message: "Product created successfully" } };
+            }
+    
             const data = await response.json();
-            return ({ ok: response.ok, data });
+            return { ok: response.ok, data };
         })
         .then(({ ok, data }) => {
+            console.log('processou o json e entrou no utlimo then');
             if (ok) {
                 showAlert(data.message, 'success');
-                updateProductList();
                 closeProductWindow();
+                updateProductList();
             } else {
                 alert(`Erro: ${data.error}`);
             }
         })
         .catch(error => {
-            console.log(error)
+            showAlert(error, 'error')
             alert('Erro na comunicação com o servidor ' + error);
-            console.log(error)
         });
     }
 })
@@ -342,7 +336,6 @@ function closeEditForm() {
 
 // submit form action
 editProductForm.addEventListener('submit', function (event) {
-    console.log('oiiii232i')
     event.preventDefault();
     
     const formData = new FormData(this);
@@ -367,7 +360,6 @@ editProductForm.addEventListener('submit', function (event) {
         }
     })
     .catch(error => {
-        console.log(error)
         alert('Erro na comunicação com o servidor.');
     });
 

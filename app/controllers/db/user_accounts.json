@@ -1,12 +1,7 @@
 [
     {
-<<<<<<< HEAD
         "firstname": "danielle",
         "lastname": "soares",
-=======
-        "firstname": "Danielle",
-        "lastname": "Soares",
->>>>>>> f9280da920f8574ad306fb8b81742f41c7a4f484
         "username": "dani",
         "cpf": "123.456.789-09",
         "telefone": "6112341234",

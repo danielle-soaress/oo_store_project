@@ -56,28 +56,22 @@ class Application():
         session_id= request.get_cookie('session_id')
         if session_id:
             self.__model.logout(session_id)
+            response.set_cookie('session_id', '', expires=0)
+            response.set_cookie('username', '', expires=0)
+            response.set_cookie('userID', '', expires=0)
         return self.render('/login_page?message_code=4')
     
     def logoutAdmin(self):
-        session_id= request.get_cookie('session_id')
-        if session_id:
-            self.__model.logoutAdmin(session_id)
+        admin_session = request.get_cookie('admin_session')
+        if admin_session:
+            self.__model.logoutAdmin(admin_session)
+            response.set_cookie('admin_session', '', expires=0)
         return self.render('/admin_login?message_code=4')
 
     def is_authenticated(self, userID):
         session_id = request.get_cookie('session_id')
         current_user = self.__model.getCurrentUser(session_id)
         return userID == current_user.userID
-    
-
-    def loginAdmins(self):
-        session_id= request.get_cookie('session_id')
-        current_user= self.__model.getCurrentUser(session_id)
-        if current_user:
-            return template('app/views/html/login', \
-            username= current_user.username)
-        return template('app/views/html/login', \
-        transfered=False, username= None)
     
 
 #===========================Modificado=========================
@@ -91,13 +85,12 @@ class Application():
             return redirect('/viewProducts')
         return redirect('/login_page?message_code=1')
 
-
     def authenticate_admin(self, username, password): #login function
-        session_id = self.__model.authenticateAdmin(username, password)
-        if session_id:
-            print(session_id + ' esse é o session id do admin')
-            response.set_cookie('admin_session', session_id, httponly=True, secure=True, max_age=3600)
-            return self.render('management')
+        admin_session = self.__model.authenticateAdmin(username, password)
+        if admin_session:
+            print(admin_session + ' esse é o session id do admin')
+            response.set_cookie('admin_session', admin_session, httponly=True, secure=True, max_age=3600)
+            return redirect('/management')
         return redirect('/admin_login?message_code=1')
 #==============================================================
 
