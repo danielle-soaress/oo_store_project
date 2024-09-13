@@ -289,7 +289,6 @@ function updateCartOnServer() {
 
     console.log(cartProducts)
     if (validateCart(cartProducts)) {
-        console.log(username + 'está começando o processo de salvar no carrinho')
         fetch('/save-cart', { 
             method: 'POST', 
             headers: { 

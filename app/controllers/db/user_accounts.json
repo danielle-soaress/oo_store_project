@@ -35,7 +35,15 @@
         "userID": "083944c3-d04b-440d-b7c8-d7189241e4c6",
         "cart": [
             {
+                "productId": "1",
+                "quantity": 1
+            },
+            {
                 "productId": "2",
+                "quantity": 2
+            },
+            {
+                "productId": "3",
                 "quantity": 1
             }
         ]

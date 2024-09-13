@@ -143,6 +143,9 @@ def save_cart():
     userID = data['userID']
     cart = data['cart']
 
+    print(userID)
+    print(cart)
+
     if not userID:
         response.status = 400
         return {'status': 'error', 'message': 'userID is required'}

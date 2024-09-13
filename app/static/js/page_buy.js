@@ -54,13 +54,14 @@ function addToCart(event) {
     const productInfos = buttonAdd.parentElement.parentElement
     const productImg = productInfos.getElementsByClassName("product_item_image")[0].src
     const productName = productInfos.getElementsByClassName("product_item_name")[0].textContent
-    const productId = productInfos.getElementsByClassName("product_item_id")[0].textContent
-    const productCategory = productInfos.getElementsByClassName("product_item_category")[0].textContent
-    const productBrand = productInfos.getElementsByClassName("product_item_brand")[0].textContent
+    const productId = productInfos.getElementsByClassName("product_item_id")[0].textContent.split(': ')[1]
+    const productCategory = productInfos.getElementsByClassName("product_item_category")[0].textContent.split(': ')[1]
+    const productBrand = productInfos.getElementsByClassName("product_item_brand")[0].textContent.split(': ')[1]
     const productPrice = productInfos.getElementsByClassName("product_item_price")[0].textContent
     const productPriceValue = parseFloat(productPrice.replace(/[^0-9,.]/g, '').replace(',', '.'));
     //Verifica se o produto está no carrinho
     const existingProduct = cart.find(product => product.productId === productId);
+
     if (existingProduct) {
         // Se o produto já está no carrinho, aumentar a quantidade
         existingProduct.quantity++;
@@ -80,6 +81,7 @@ function addToCart(event) {
         quantity: 1
     };
 
+    console.log(newProduct)
     cart.push(newProduct);
 
 
@@ -158,15 +160,15 @@ function validateCart(cart) {
 
 function saveCart() {
     const userID = getCookie('userID'); 
-    console.log(userID) 
 
     const cartProducts = cart.map(product => {
-        let id = product.productId.split(': ')[1];
         return {
-            productId: id,
+            productId: product.productId,
             quantity: product.quantity
         };
     });
+
+    console.log(cartProducts)
 
     if (validateCart(cartProducts)) {
         console.log(userID + ' está começando o processo de salvar no carrinho')
@@ -238,6 +240,7 @@ function displayCart() {
     }
 
     cart.forEach(product => {
+        console.log(product)
 
         let newCartProduct = document.createElement("tr"); 
         newCartProduct.classList.add("cart_product"); 
@@ -249,9 +252,9 @@ function displayCart() {
             <img src="../../static/img/${product.productImg}" alt="${product.productName}" class="img_product"> 
             <div class="info"> 
                 <strong class="name_product">${product.productName}</strong> 
-                <div class="id">${product.productId}</div> 
-                <div class="category">${product.productCategory}</div> 
-                <div class="brand">${product.productBrand}</div> 
+                <div class="id">Id: ${product.productId}</div> 
+                <div class="category">Category: ${product.productCategory}</div> 
+                <div class="brand">Brand: ${product.productBrand}</div> 
             </div> 
         </td> 
         <td> 
