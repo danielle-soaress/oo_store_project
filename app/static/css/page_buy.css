@@ -103,6 +103,10 @@ body {
     padding: 0px 20px;;
 }
 
+.bi-caret-right-fill {
+    cursor: pointer;
+}
+
 table {
     width: 100%;
     margin-bottom: auto;

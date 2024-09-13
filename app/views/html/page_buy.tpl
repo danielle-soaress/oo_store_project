@@ -31,7 +31,7 @@
                 <div id="search_bar">
                     <i class="bi bi-search"></i>
                     <input id="search_input" type="text" placeholder="headset gaming"/>
-                    <i class="bi bi-caret-right-fill"></i>
+                    <i class="bi bi-caret-right-fill" id="search_button"></i>
                 </div>
 
                 <!--------------ICON BAG--------------->

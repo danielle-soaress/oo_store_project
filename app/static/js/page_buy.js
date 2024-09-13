@@ -29,6 +29,24 @@ document.getElementById("close_bag").addEventListener("click", function() {
     document.getElementById("side_bag").classList.remove("open");
 });
 
+//===================================================SearchForm=================================================
+/*document.getElementById('search_bar').addEventListener('submit', (event) => {
+    event.preventDefault()
+    const query = document.getElementById('search_input').value;
+    searchProducts(query);
+});
+
+
+function searchProducts(query) {
+    fetch(`/api/products?query=${encodeURIComponent(query)}`)
+    .then(response => response.json())
+    .then(data => {
+        updateProductList(data.products)
+    })
+    .catch(error => {
+        console.error('Error fetching products', error);
+    });
+}*/
 //===================================================Carrinho preço total=================================================
 function updateTotal() {
     let total = 0;
@@ -295,14 +313,35 @@ function displayCart() {
 } 
 
 //=================================================Visualizar produtos====================================================
-function updateProductList() {
+
+function updateProductList(searchQuery ='') {
+
     fetch('/api/products')
     .then(response => response.json())
     .then(data => {
         const productContainer = document.getElementById('viewProducts');
         productContainer.innerHTML = ''; // Limpa o container antes de adicionar novos produtos
 
-        data.forEach(product => {
+        //Garanti que o searchQuery seja uma string
+        const query = typeof searchQuery === 'string' ? searchQuery.toLowerCase() : '';
+
+        //Filtra os produtos baseado pelo input search
+        const filteredProducts = query ? data.filter(product => {
+            return product.name.toLowerCase().includes(query) || 
+            product.category.toLowerCase().includes(query) ||
+            product.brand.toLowerCase().includes(query);
+        }) : data;
+
+        //Se os produtos não forem encontrados
+        if (filteredProducts.length === 0) {
+            const noProductsMessage = document.createElement('p');
+            noProductsMessage.textContent = 'No products found.';
+            productContainer.appendChild(noProductsMessage);
+            return;
+        }
+
+        //Mostra os produtos filtrados ou todos
+        filteredProducts.forEach(product => {
             const productItem = document.createElement('div');
             productItem.classList.add('product_item');
 
@@ -374,9 +413,23 @@ function updateProductList() {
         });
     })
     .catch(error => {
-        console.error('Error fetching products', error);
+        console.error('Erro ao buscar produtos', error);
     });
 }
+
+//============================================================
+document.getElementById('search_button').addEventListener('click', function() {
+    const search_input = document.getElementById('search_input').value;
+    updateProductList(search_input);
+});
+
+document.getElementById('search_input').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        const search_input = document.getElementById('search_input').value;
+        updateProductList(search_input)
+    }
+});
+//============================================================
 
 document.addEventListener('DOMContentLoaded', () => {
     updateProductList(),
