@@ -139,3 +139,22 @@ input[type="password"]:focus {
     width: 100%;
     font-size: 12px;
 }
+
+.floating-login-button {
+    position: fixed;
+    top: 12vh;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #7D29D2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.floating-login-button:hover {
+    background-color: #9a40e8;
+}

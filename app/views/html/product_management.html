@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div id="right_header">
-                <p class="right_header_p">Admin, <a class=" header_link right_header_p_purple">Logout</span></a>
+                <p class="right_header_p">Admin, <a class=" header_link right_header_p_purple" onclick="logout()">Logout</a>
             </div>
         </div>
     </header>
@@ -219,6 +219,25 @@
 <script>
     function redirectLogin(){
         window.location.href="login_page";
+    }
+</script>
+
+<script>
+    function logout() {
+        fetch('/admin_logout', {
+            method: 'POST',
+        })
+        .then(response => {
+            if (response.ok) {
+                window.location.href = '/admin_login?message_code=4';
+            } else {
+                alert('Logout failed. Please try again.');
+            }
+        })
+        .catch(error => {
+            console.error('Error during logout:', error);
+            alert('An error occurred. Please try again.');
+        });
     }
 </script>
 <script src='../../static/js/product_management.js'></script>

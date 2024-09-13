@@ -8,12 +8,13 @@ import json
 class Application():
 
     def __init__(self):
-#============removi a pagina================
         self.pages = {
             'login_page': self.login_page,
             'pagina': self.pagina,
-            'logout': self.logout,
+            'logoutUser': self.logoutUser,
+            'logoutAdmin': self.logoutAdmin,
             'login': self.login,
+            'adminLogin': self.adminLogin,
             'register': self.register,
             'home': self.home,
             'management': self.management,
@@ -51,17 +52,32 @@ class Application():
         return template('app/views/html/login', \
         transfered=False, username= None)
     
-    def logout(self):
-        print('entrou no logout app')
+    def logoutUser(self):
         session_id= request.get_cookie('session_id')
         if session_id:
             self.__model.logout(session_id)
-        return self.render('home')
+        return self.render('/login_page?message_code=4')
+    
+    def logoutAdmin(self):
+        session_id= request.get_cookie('session_id')
+        if session_id:
+            self.__model.logoutAdmin(session_id)
+        return self.render('/admin_login?message_code=4')
 
     def is_authenticated(self, userID):
         session_id = request.get_cookie('session_id')
         current_user = self.__model.getCurrentUser(session_id)
         return userID == current_user.userID
+    
+
+    def loginAdmins(self):
+        session_id= request.get_cookie('session_id')
+        current_user= self.__model.getCurrentUser(session_id)
+        if current_user:
+            return template('app/views/html/login', \
+            username= current_user.username)
+        return template('app/views/html/login', \
+        transfered=False, username= None)
     
 
 #===========================Modificado=========================
@@ -73,15 +89,17 @@ class Application():
             response.set_cookie('username', username, secure=True, max_age=3600)
             response.set_cookie('userID', userID, secure=True, max_age=3600)
             return redirect('/viewProducts')
-        return redirect('/login_page?error_code=1')
+        return redirect('/login_page?message_code=1')
 
+
+    def authenticate_admin(self, username, password): #login function
+        session_id = self.__model.authenticateAdmin(username, password)
+        if session_id:
+            print(session_id + ' esse é o session id do admin')
+            response.set_cookie('admin_session', session_id, httponly=True, secure=True, max_age=3600)
+            return self.render('management')
+        return redirect('/admin_login?message_code=1')
 #==============================================================
-
-    def logout_user(self):
-        session_id = request.get_cookie('session_id')
-        self.__model.logout(session_id)
-        response.delete_cookie('session_id')
-        redirect('/login')
 
     def register(self):
         return template('app/views/html/register')
@@ -99,11 +117,15 @@ class Application():
         error_message = args.get('error_message', None)
         return template('app/views/html/login_page', error_message=error_message)
     
+    def adminLogin(self, **args):
+        error_message = args.get('error_message', None)
+        return template('app/views/html/admin_login', error_message=error_message)
+    
     def management(self, **args):
-        session_id = request.get_cookie('session_id')
-        if self.__model.checkAdmin(session_id):
+        admin_session = request.get_cookie('admin_session')
+        if self.__model.checkAdmin(admin_session):
             return template('app/views/html/product_management')
-        return self.render('home')
+        return redirect('/admin_login?message_code=3')
     
     def payment(self, **args):
         userID = args.get('userID', None)

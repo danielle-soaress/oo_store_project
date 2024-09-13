@@ -16,7 +16,6 @@ if (loginButton) {
 const logoutButton = document.getElementById('logout_b');
 if (logoutButton) {
     logoutButton.addEventListener('click', () => {
-        console.log('clicouu!!');
         fetch('/logout', {
             method: 'POST',
         })
