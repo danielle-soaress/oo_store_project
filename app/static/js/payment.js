@@ -260,7 +260,7 @@ function displayCart() {
         removeButton.addEventListener('click', () => {
             newCartProduct.remove();
             console.log(cart)
-            cart.splice(index, 1); 
+            cart.splice(index, 1);
             console.log(cart)
             updateCartOnServer();
         });
@@ -286,7 +286,7 @@ function updateCartOnServer() {
             quantity: product.quantity
         };
     });
-
+    console.log('atualizando carrinho')
     console.log(cartProducts)
     if (validateCart(cartProducts)) {
         fetch('/save-cart', { 
