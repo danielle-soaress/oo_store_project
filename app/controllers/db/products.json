@@ -7,10 +7,7 @@
         "connectivity": "Wireless",
         "description": "Comfortable over-ear headphones with noise cancellation.",
         "brand": "SoundTech",
-        "colorStock": {
-            "black": 20,
-            "silver": 15
-        },
+        "stock": 35,
         "imageFileName": "hdw_1.jpg"
     },
     {
@@ -21,11 +18,7 @@
         "connectivity": "Wireless",
         "description": "Compact Bluetooth earbuds with excellent sound quality.",
         "brand": "SoundFlex",
-        "colorStock": {
-            "black": 50,
-            "white": 30,
-            "blue": 25
-        },
+        "stock": 105,
         "imageFileName": "ebw_2.jpg"
     },
     {
@@ -36,10 +29,7 @@
         "connectivity": "Wired",
         "description": "High-performance gaming headset with a built-in microphone.",
         "brand": "GameGear",
-        "colorStock": {
-            "red": 10,
-            "black": 20
-        },
+        "stock": 30,
         "imageFileName": "hsw_3.jpg"
     },
     {
@@ -50,10 +40,7 @@
         "connectivity": "Wireless",
         "description": "Noise-cancelling earbuds with long battery life.",
         "brand": "QuietZone",
-        "colorStock": {
-            "black": 18,
-            "gray": 12
-        },
+        "stock": 30,
         "imageFileName": "p_4.jpg"
     },
     {
@@ -64,10 +51,7 @@
         "connectivity": "Wired",
         "description": "Water-resistant earphones designed for sports.",
         "brand": "SportySound",
-        "colorStock": {
-            "white": 25,
-            "black": 30
-        },
+        "stock": 55,
         "imageFileName": "p_5.jpg"
     },
     {
@@ -78,10 +62,7 @@
         "connectivity": "Wired",
         "description": "High-fidelity studio headphones for professional use.",
         "brand": "ProAudio",
-        "colorStock": {
-            "black": 10,
-            "white": 15
-        },
+        "stock": 25,
         "imageFileName": "p_6.jpg"
     },
     {
@@ -92,10 +73,7 @@
         "connectivity": "Wireless",
         "description": "Premium noise-cancelling headphones with comfortable padding.",
         "brand": "QuietSound",
-        "colorStock": {
-            "black": 20,
-            "blue": 10
-        },
+        "stock": 30,
         "imageFileName": "p_7.jpg"
     },
     {
@@ -106,10 +84,7 @@
         "connectivity": "Wireless",
         "description": "True wireless earbuds with a sleek charging case.",
         "brand": "ClearSound",
-        "colorStock": {
-            "white": 22,
-            "black": 18
-        },
+        "stock": 40,
         "imageFileName": "p_8.jpg"
     },
     {
@@ -120,10 +95,7 @@
         "connectivity": "Hybrid",
         "description": "Headphones with both wired and wireless modes for flexibility.",
         "brand": "DualSound",
-        "colorStock": {
-            "gray": 12,
-            "black": 8
-        },
+        "stock": 20,
         "imageFileName": "p_9.jpg"
     },
     {
@@ -134,10 +106,7 @@
         "connectivity": "Wireless",
         "description": "Comfortable in-ear wireless earphones with a sleek design.",
         "brand": "ZenAudio",
-        "colorStock": {
-            "white": 14,
-            "red": 20
-        },
+        "stock": 34,
         "imageFileName": "p_10.jpg"
     },
     {
@@ -148,10 +117,7 @@
         "connectivity": "Wired",
         "description": "Professional headsets for gamers and audio enthusiasts.",
         "brand": "GameMax",
-        "colorStock": {
-            "black": 25,
-            "green": 10
-        },
+        "stock": 35,
         "imageFileName": "p_11.jpg"
     },
     {
@@ -162,11 +128,7 @@
         "connectivity": "Wireless",
         "description": "Professional headsets for gamers and audio enthusiasts.",
         "brand": "TurboGaming",
-        "colorStock": {
-            "blue": 25,
-            "black": 25,
-            "green": 10
-        },
+        "stock": 60,
         "imageFileName": "p_12.jpg"
     }
 ]

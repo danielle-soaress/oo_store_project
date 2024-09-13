@@ -1,3 +1,9 @@
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return null;
+}
 
 const registerButton = document.getElementById('register_b');
 if (registerButton) {
@@ -31,4 +37,16 @@ if (logoutButton) {
             alert('An error occurred. Please try again.');
         });
     });
+}
+
+
+const userButton = document.getElementById('user_b');
+if (userButton) {
+    userButton.addEventListener('click', () => {
+        console.log('clicou nobota')
+        const usernameCookie = getCookie('userID');
+        if (usernameCookie) {
+            window.location.href = `/pagina/${usernameCookie}`;
+        }
+    })
 }

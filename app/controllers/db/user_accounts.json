@@ -1,38 +1,24 @@
 [
     {
-        "firstname": null,
-        "lastname": null,
-        "username": null,
-        "cpf": null,
-        "telefone": null,
-        "email": null,
-        "address": null,
-        "password": null,
-        "userID": null,
-        "cart": []
-    },
-    {
-        "firstname": null,
-        "lastname": null,
-        "username": null,
-        "cpf": null,
-        "telefone": null,
-        "email": null,
-        "address": null,
-        "password": null,
-        "userID": null,
-        "cart": []
-    },
-    {
-        "firstname": "Danielle",
-        "lastname": "Soares",
+        "firstname": "danielle",
+        "lastname": "soares",
         "username": "dani",
-        "cpf": "3123123",
-        "telefone": "423423",
-        "email": "silvasoaresdanielle2@gmail.com",
-        "address": "123",
-        "password": "123123123",
-        "userID": "083944c3-d04b-440d-b7c8-d7189241e4c6",
-        "cart": []
+        "cpf": "123.456.789-09",
+        "telefone": "6112341234",
+        "email": "daskodk@gmail.com",
+        "address": "dkaodkos",
+        "password": "senha123",
+        "userID": "3bef092a-6ea5-45dd-bd06-bda507864966",
+        "cart": [
+            {
+                "productId": "3",
+                "quantity": 1
+            },
+            {
+                "productId": "2",
+                "quantity": 1
+            }
+        ],
+        "orders": []
     }
 ]

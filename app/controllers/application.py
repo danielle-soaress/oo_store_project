@@ -148,15 +148,14 @@ class Application():
         product = self.__product_model.get_product(productID)
         session_id = request.get_cookie('session_id')
         if product:
-            product_colors = product.getColors()
             parcels_info= product.creditCardParcels()
             print(product.imageFileName)
             if self.__model.getCurrentUser(session_id):
                 return template('app/views/html/product_page', img = product.imageFileName, availability = product.stockStatus(), name = product.name, id = product.id, cash_price = product.price,\
-                             category = product.category, brand = product.brand, connect = product.connectivity, desc= product.description, \
-                             colors = json.dumps(product_colors), credit_price = f'{product.creditCardPrice():.2f}', parcels = parcels_info[1], parcels_qt = parcels_info[0], authenticated = True)
+                            category = product.category, brand = product.brand, connect = product.connectivity, desc= product.description, \
+                            credit_price = f'{product.creditCardPrice():.2f}', parcels = parcels_info[1], parcels_qt = parcels_info[0], authenticated = True)
             else:
                 return template('app/views/html/product_page', img = product.imageFileName, availability = product.stockStatus(), name = product.name, id = product.id, cash_price = product.price,\
-                             category = product.category, brand = product.brand, connect = product.connectivity, desc= product.description, \
-                             colors = json.dumps(product_colors), credit_price = f'{product.creditCardPrice():.2f}', parcels = parcels_info[1], parcels_qt = parcels_info[0], authenticated = False)
+                            category = product.category, brand = product.brand, connect = product.connectivity, desc= product.description, \
+                            credit_price = f'{product.creditCardPrice():.2f}', parcels = parcels_info[1], parcels_qt = parcels_info[0], authenticated = False)
     

@@ -29,13 +29,15 @@
             <div class="header_right_container">
                 <div id="search_bar">
                     <i class="bi bi-search"></i>
-                    <input id="search_input" type="text" placeholder="headset gaming"/>
+                    <input id="search_input" type="text" placeholder="headset"/>
                     <i class="bi bi-caret-right-fill search_arrow"></i>
                 </div>
                 <!--------------ICON PERFIL------------->
-                <div class="perfil_icon" id="perfil_icon">
-                    <i class="bi bi-person-circle"></i>
-                </div>
+                <a id="user_b" class="header_link">
+                    <div class="perfil_icon" id="perfil_icon">
+                        <i class="bi bi-person-circle"></i>
+                    </div>
+                </a>
 
                 <!-------Painel lateral da bolsa--------->
                 <div class="side_bag" id="side_bag">
@@ -51,6 +53,10 @@
                     <!------------Botão Close-------------->
                     <button id="close_bag" class="close_bag">Close</button>
                 </div> 
+
+                <a class="header_link">
+                    <button class="logout_button" id="logout_b">Log out</button>
+                </a>
             </div>
         </div>        
     </header>
@@ -242,6 +248,7 @@
             <button class="retryButton hide" onclick="retryOrder()">Tentar novamente</button>
         </div>
     </section>
+    <script src="../../static/js/header.js"></script>
     <script src="../../static/js/payment.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>

@@ -66,7 +66,7 @@ section{
     width: fit-content;
     padding: 5px 15px;
     border-radius: 5px;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 
 #product_info_availability {
@@ -75,28 +75,9 @@ section{
     font-weight: 500;
 }
 
-
-.product_info_colors {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+#product_info_brand {
     margin-bottom: 20px;
 }
-
-#product_info_colors_container {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-}
-
-.product_info_color {
-    width: 30px;
-    height: 30px;
-    border: 1px solid rgb(255, 255, 255);
-    outline: 1px solid rgba(0, 0, 0, 0.548);
-    border-radius: 20px;
-}
-
 
 #product_info_payment_div {
     display: flex;

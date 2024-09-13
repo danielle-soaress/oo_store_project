@@ -2,9 +2,20 @@ class Order:
     def __init__(self, id, ownerID, data, status, productsList):
         self.__id = id
         self.__ownerID = ownerID
-        self.__data = data
         self.__status = status
         self.__productsList = productsList  # Dictionary {produto_id: quantidade}
+
+    @property
+    def ownerID(self):
+        return self.__ownerID
+    
+    @property
+    def id(self):
+        return self.__id
+    
+    @property
+    def status(self):
+        return self.__status
 
     def countProducts(self, produto_id):
         return self.__productsList.get(produto_id, 0)
@@ -27,7 +38,3 @@ class Order:
 
     def countProducts(self, produto_id):
         return self.__productsList.get(produto_id, 0) ## return 0 if the product doesnt exist.
-
-    
-    def cart(self):
-        return [(product_id, quantidade) for product_id, quantidade in self.__productsList.items()]

@@ -10,6 +10,7 @@ class UserAccount():
         self.password= password
         self.userID = userID
         self.cart = []
+        self.orders = []
 
     def toDict(self):
             return {
@@ -22,5 +23,6 @@ class UserAccount():
                 'address': self.address,
                 'password': self.password,
                 'userID': self.userID,
-                'cart': self.cart
+                'cart': self.cart,
+                'orders': self.orders
             }

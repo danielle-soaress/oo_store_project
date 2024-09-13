@@ -30,12 +30,12 @@
             <div class="header_right_container">
                 <div id="search_bar">
                     <i class="bi bi-search"></i>
-                    <input id="search_input" type="text" placeholder="headset gaming"/>
+                    <input id="search_input" type="text" placeholder="headset"/>
                     <i class="bi bi-caret-right-fill" id="search_button"></i>
                 </div>
 
                 <!--------------ICON BAG--------------->
-                <div class="bag_icon" id="bag_icon">
+                <div style="{{'display: block;' if authenticated else 'display: none;'}}" class="bag_icon" id="bag_icon">
                     <i class="bi bi-bag"></i>
                 </div>
                 

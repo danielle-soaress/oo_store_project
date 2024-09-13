@@ -1,5 +1,5 @@
 class Product:
-    def __init__(self, id, name, price, category, connectivity, description, brand, colorStock, imageFileName):
+    def __init__(self, id, name, price, category, connectivity, description, brand, stock, imageFileName):
         self.__id = id
         self.__name = name
         self.__price = price
@@ -7,7 +7,7 @@ class Product:
         self.__connectivity = connectivity
         self.__description = description
         self.__brand = brand
-        self.__colorStock = colorStock
+        self.__stock = stock
         self.__imageFileName = imageFileName
 
     @property
@@ -70,41 +70,21 @@ class Product:
     def imageFileName(self, value):
         self.__imageFileName = value
 
+    @property
+    def stock(self):
+        return self.__stock
+    
+    @stock.setter
+    def stock(self, value):
+        self.__stock = value
 
-    
-    def setColorStock(self, color, quantity):
-        self.__colorStock[color] = quantity
-
-    def getColorStock(self):
-        return self.__colorStock
-
-    def getStockForColor(self, color):
-        return self.__colorStock.get(color, 0)
-    
-    
-    def getColors(self): # this function gets all product colors
-        colors = []
-        for chave, valor in self.__colorStock.items():
-            colors.append(str(chave))
-        return colors
-    
-    def getStock(self): # this function gets the quantity of products in stock.
-        quantity = 0
-        for chave, valor in self.__colorStock.items():
-            quantity+= valor
-        return quantity
-    
-    def colorStockStatus(self, color):
-        if self.getStockForColor(color) == 0:
-            return 'Sold Out'
-        else:
-            return 'In Stock'
-        
     def stockStatus(self):
-        if self.getStock() == 0:
+        if self.__stock > 0:
+            return 'In Stock'
+        elif self.__stock == 0:
             return 'Sold Out'
         else:
-            return 'In Stock'
+            return 'Undefined'
         
     def creditCardPrice(self):
         return (0.04*self.__price + self.__price)

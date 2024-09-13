@@ -29,7 +29,7 @@
             <div class="header_right_container">
                 <div id="search_bar">
                     <i class="bi bi-search"></i>
-                    <input id="search_input" type="text" placeholder="headset gaming"/>
+                    <input id="search_input" type="text" placeholder="headset"/>
 
                 </div>
                 
@@ -39,9 +39,11 @@
                 </div>
 
                 <!--------------ICON PERFIL------------->
-                <div style="{{'display: block;' if authenticated else 'display: none;'}}" class="perfil_icon" id="perfil_icon">
-                    <i class="bi bi-person-circle"></i>
-                </div>
+                <a id="user_b" style="{{'display: block;' if authenticated else 'display: none;'}}" class="header_link">
+                    <div class="perfil_icon" id="perfil_icon">
+                        <i class="bi bi-person-circle"></i>
+                    </div>
+                </a>
 
                 <!-------Painel lateral da bolsa--------->
                 <div class="side_bag" id="side_bag">
@@ -60,6 +62,7 @@
                 <a style="{{'display: block;' if authenticated else 'display: none;'}}" class="header_link">
                     <button class="logout_button" onclick="logout()">Log out</button>
                 </a>
+                
             </div>
         </div>        
     </header>
@@ -76,12 +79,6 @@
                     <p id="product_info_availability">{{ availability }}</p>
                 </div>
                 <p id="product_info_brand" class="product_info_paragraph"><span class="strong">Brand:</span> {{ brand }}</p>
-                <div class="product_info_colors">
-                    <p class="product_info_colors_title product_info_paragraph">Available colors:</p>
-                    <div id="product_info_colors_container" data-colors="{{ colors }}">
-                        
-                    </div>
-                </div>
                 <div id="product_info_price">
                     <div id="product_info_payment_div">
                         <span>
@@ -127,17 +124,7 @@
             </div>
         </div>
     </footer>
-    <script>
-        const colorContainer = document.querySelector('#product_info_colors_container');
-        const colors = JSON.parse(colorContainer.getAttribute('data-colors'));
-        console.log(colors);
-        colors.forEach(color => {
-            const div = document.createElement('div');
-            div.className = 'product_info_color';
-            div.style.backgroundColor = color;
-            colorContainer.appendChild(div);
-        });
-    </script>
+
 
 
     <script src="../../static/js/header.js"></script>

@@ -33,7 +33,7 @@
                 <a id="register_b" style="{{'display: none;' if authenticated else 'display: block;'}}" class="header_link">
                     <button class="register_button">Sign Up</button>
                 </a>
-                <a style="{{'display: block;' if authenticated else 'display: none;'}}" class="header_link">
+                <a id="user_b" style="{{'display: block;' if authenticated else 'display: none;'}}" class="header_link">
                     <div class="perfil_icon" id="perfil_icon">
                         <i class="bi bi-person-circle"></i>
                     </div>

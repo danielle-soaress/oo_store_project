@@ -1,7 +1,6 @@
 from app.controllers.application import Application
 from app.models.message import MESSAGES, Message
 from bottle import Bottle, run, request, static_file, response
-from bottle import redirect
 from app.controllers.datarecord import DataRecord
 from app.controllers.productrecord import ProductRecord
 import json

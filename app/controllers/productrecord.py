@@ -21,9 +21,9 @@ class ProductRecord:
             if not any(product.id == new_id for product in self.__products):
                 return new_id
 
-    def create_product(self,name, price, category, connectivity, description, brand, colorStock, imageFileName):
+    def create_product(self,name, price, category, connectivity, description, brand, stock, imageFileName):
         ProductID = self.generate_unique_id()
-        new_product = Product(ProductID, name, price, category, connectivity, description, brand, colorStock, imageFileName)
+        new_product = Product(ProductID, name, price, category, connectivity, description, brand, stock, imageFileName)
         self.__products.append(new_product)
         self.save()
         return True
@@ -81,11 +81,11 @@ class ProductRecord:
             return product
         return None
     
-    def update_product_stock(self, product_id, color, quantity):
+    def update_product_stock(self, product_id, quantity):
         product = self.get_product(product_id)
         if product:
             if quantity >=0:
-                product.setColorStock(color, quantity)
+                product.stock(quantity)
                 self.save()
                 return True
         return None

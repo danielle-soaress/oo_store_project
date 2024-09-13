@@ -99,7 +99,7 @@ function updateProductList() {
             const btnStock = document.createElement('button');
             btnStock.classList.add('product_item_action_button');
             btnStock.textContent = 'Stock Information';
-            //btnStock.addEventListener("click", () => console.log('oi'))
+            btnStock.addEventListener("click", () => StockInformation(product.id, product.name, 'In-Stock', product.stock))
 
             const btnEdit = document.createElement('button');
             btnEdit.classList.add('product_item_action_button');
@@ -137,8 +137,8 @@ const StockInformationDiv = document.getElementById('stock_information')
 const informationBox = document.getElementById('information_box')
 const stockForm = document.getElementById('product_item_colors')
 
-/*
 function StockInformation(productId, productName, productStatus, productStock) {
+    console.log('stock ' + productStock)
     StockInformationDiv.classList.remove('hide')
     informationBox.classList.remove('hide')
     StockProductName.innerHTML = `${productName}`;
@@ -147,35 +147,9 @@ function StockInformation(productId, productName, productStatus, productStock) {
     StockContainer.innerHTML = '';
     stockForm.dataset.productId = `${productId}`;
 
-    for (var color in productStock) {
-        const colorDiv = document.createElement('div');
-        colorDiv.classList.add('color_info');
-
-        const colorCircle = document.createElement('div');
-        colorCircle.classList.add('p_color');
-        colorCircle.style.backgroundColor = `${color}`;
-
-        const inputElement = document.createElement('input');
-        inputElement.classList.add('quantity_input');
-        inputElement.type = 'number';
-        inputElement.min = '0';
-        inputElement.step = '1';
-        inputElement.name = 'quantity[]'
-        inputElement.value = productStock[color];
-
-        // Campo oculto para armazenar a cor
-        const hiddenColorInput = document.createElement('input');
-        hiddenColorInput.type = 'hidden';
-        hiddenColorInput.name = 'color[]';
-        hiddenColorInput.value = color;
-
-        colorDiv.appendChild(colorCircle);
-        colorDiv.appendChild(inputElement);
-        colorDiv.appendChild(hiddenColorInput);
-        StockContainer.appendChild(colorDiv);
-    }
+    console.log('stock ' + productStock)
 }
-*/
+
 function closeStockInformation() {
     informationBox.classList.add('hide')
     StockInformationDiv.classList.add('hide')
@@ -215,7 +189,9 @@ stockForm.addEventListener('submit', function (event) {
 
 })
 
-/* ------------------- "DELETE" ACTION ---------------------------------------------*/
+
+
+// ------------------- "DELETE" ACTION ---------------------------------------------*/
 
 function deleteProduct(productID) {
     fetch(`/api/products/${productID}`, {
@@ -244,7 +220,7 @@ function deleteProduct(productID) {
     });
 }
 
-/* --------------------------------- "ADD" PRODUCT ACTION - (PRODUCT FORM)  -----------------------------*/
+//--------------------------------- "ADD" PRODUCT ACTION - (PRODUCT FORM)  -----------------------------*/
 
 const addProductContainer = document.getElementById('add_product')
 const productForm = document.getElementById('productForm')
@@ -327,7 +303,7 @@ productForm.addEventListener('submit', function (event) {
     }
 })
 
-/* --------------------------------- "EDIT" PRODUCT ACTION - (PRODUCT FORM)  -----------------------------*/
+// --------------------------------- "EDIT" PRODUCT ACTION - (PRODUCT FORM)  -----------------------------*/
 const editFormContainer = document.getElementById('edit_product')
 const editProductForm = document.getElementById('editProductForm')
 const productIDText = document.getElementById('editForm_productId')
@@ -396,5 +372,6 @@ editProductForm.addEventListener('submit', function (event) {
     });
 
 })
+
 
 
