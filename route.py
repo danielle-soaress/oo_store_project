@@ -1,5 +1,5 @@
 from app.controllers.application import Application
-from app.models.error import ERRORS, Error
+from app.models.message import MESSAGES, Message
 from bottle import Bottle, run, request, static_file, response
 from bottle import redirect
 from app.controllers.datarecord import DataRecord
@@ -33,9 +33,9 @@ def serve_db(filepath):
 #-----------------------------------------------------------------------------
 @app.route('/login_page', method='GET')
 def login(error_message = None):
-    error_code = request.query.get('error_code', None)
-    if error_code:
-        error_message = ERRORS.get(int(error_code), 0).message
+    message_code = request.query.get('message_code', None)
+    if message_code:
+        error_message = MESSAGES.get(int(message_code), 0).message
     return ctl.render('login_page', error_message = error_message)
 
 @app.route('/login_page', method='POST')
@@ -47,7 +47,7 @@ def action_login():
 
 @app.route('/logout', method='POST')
 def logout():
-    return ctl.render('logout')
+    return ctl.render('logoutUser')
 
 
 @app.route('/register', method='GET')
@@ -77,6 +77,27 @@ def action_register():
         print('success')
         return ctl.render("login_page")
     
+
+# ----------- LOGIN FOR ADMINS ------------------- #
+
+@app.route('/admin_login', method='POST')
+def action_login():
+    username = request.forms.get('username')
+    password = request.forms.get('password')
+
+    return ctl.authenticate_admin(username, password)
+
+@app.route('/admin_login', method='GET')
+def adminLogin(error_message = None):
+    message_code = request.query.get('message_code', None)
+    if message_code:
+        error_message = MESSAGES.get(int(message_code), 0).message
+    return ctl.render('adminLogin', error_message = error_message)
+
+@app.route('/admin_logout', method='POST')
+def adminLogout():
+    return ctl.render('logoutAdmin')
+
 #------------------------------------------------PERFIL---------------------------------------------------------------
 @app.route('/pagina/<userID>', method='GET')
 def action_pagina(userID=None):
@@ -224,7 +245,6 @@ def payment(userID):
 @app.route('/contact', method='GET')
 def contact():
     return ctl.render('contact')
-
 
 
 # ----------------- PRODUCT MANAGEMENT ROUTES (API) ----------------

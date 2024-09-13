@@ -1,19 +1,20 @@
 from app.models.user_account import UserAccount
+from app.models.admin import Admin
 from bottle import redirect
 import json
 import uuid
 import os
 
-authenticated_users = {}
 
 class DataRecord():
-    """Banco de dados JSON para o recurso Usuários"""
+    authenticated_users = {}
+    admin = {}
 
     def __init__(self):
         self.__user_accounts = []
         self.__admins = []        
         self.read()
-        self.adminsInfo()
+        self.readAdmins()
 
 #=========================================CPF e telefone=====================================================
     def read(self):
@@ -40,18 +41,21 @@ class DataRecord():
         except json.JSONDecodeError:
             # Define a lista de usuários como vazia em caso de erro de decodificação JSON
             self.__user_accounts = []
-#====================================================================================================================
-    
-    def adminsInfo(self):
+#==================================================================================================================== 
+    def readAdmins(self):
         try:
             with open("app/controllers/db/admins.json", "r") as arquivo_json:
                 admins_data = json.load(arquivo_json)
-                admins = []
-                for item in admins_data:
-                    admins.append(item["id"])
-                self.__admins = admins
+                self.__admins = [
+                    Admin(
+                        adminId=data.get('userID'),
+                        username=data.get('username'),
+                        password=data.get('password')
+                    )
+                    for data in admins_data
+                ]
         except FileNotFoundError:
-            self.__admins.append(UserAccount('Guest', '000000', uuid.uuid4()))
+            self.__admins.append(Admin(uuid.uuid4(), 'Guest', '000000'))
     
     def generate_unique_id(self):
         #Gera um UUID único e garante que ele não se repita no banco de dados
@@ -66,7 +70,6 @@ class DataRecord():
         id = self.generate_unique_id()
         new_user= UserAccount(firstname, lastname, username, cpf, telefone, email, address, password, id)
         self.__user_accounts.append(new_user)
-    #===================================================================================================================
 
         #Salva no arquivo.json
         with open("app/controllers/db/user_accounts.json", "w") as arquivo_json:
@@ -77,35 +80,45 @@ class DataRecord():
     
 
     def getCurrentUser(self,session_id):
-        if session_id in authenticated_users:
-            return authenticated_users[session_id]
+        if session_id in DataRecord.authenticated_users:
+            return DataRecord.authenticated_users[session_id]
         else:
             return None
 
     def checkUser(self, username, password):
         self.read()
         for user in self.__user_accounts:
-            print(user.username)
             if user.username == username and user.password == password:
                 session_id = str(uuid.uuid4())  # Gera um ID de sessão único
-                authenticated_users[session_id] = user
+                DataRecord.authenticated_users[session_id] = user
                 return session_id  # Retorna o ID de sessão para o usuário
         return None
 
-    def checkAdmin(self, session_id):
-        current_user = self.getCurrentUser(session_id)
-        if current_user:
-            for adminID in self.__admins:
-                if adminID == current_user.userID:
-                    return True
-            return False
+    def authenticateAdmin(self, username, password):
+        self.readAdmins()
+        for user in self.__admins:
+            if user.username == username and user.password == password:
+                session_id = str(uuid.uuid4()) 
+                DataRecord.admin[session_id] = user
+
+                print(DataRecord.admin)
+                return session_id  # Retorna o ID de sessão para o usuário
         return None
+    
+    def checkAdmin(self, session_id):
+        if session_id in DataRecord.admin:
+            print(session_id)
+            return True
+        else:
+            return False
+        
+    def logoutAdmin(self, session_id):
+        if session_id in DataRecord.admin:
+            del DataRecord.admin[session_id] # Remove o usuário logado
 
     def logout(self, session_id):
-        if session_id in authenticated_users:
-            del authenticated_users[session_id] # Remove o usuário logado
-
-    
+        if session_id in DataRecord.authenticated_users:
+            del DataRecord.authenticated_users[session_id] # Remove o usuário logado
 
 #=============================Inserido=========================
     def getUserID(self, username):

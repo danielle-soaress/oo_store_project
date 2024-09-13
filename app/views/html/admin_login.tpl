@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
-    <title>Login</title>
+    <title>Tune Wave: Admin Login</title>
 </head>
 <body>
     <header class="header">
@@ -25,15 +25,12 @@
                     </ul>
                 </nav>
             </div>
-            <div class="header_right_container">
-                <a class="header_link"><button class="register_button" onclick="redirectToRegister()">Sign Up</button></a>
-            </div>
         </div>
     </header>
     <section class="login_section">
             <div class="login-form">
-                <h2>Welcome back!</h2>
-                <form action="/login_page" method="POST">
+                <h2>Admins Login</h2>
+                <form action="/admin_login" method="POST">
                     <div class="form-group">
                         <i class="bi bi-person-circle"></i>
                         <input id="username" name="username" type="text" placeholder="Username" required /><br>
@@ -48,13 +45,9 @@
                         </div>
                     %end
                     <button type="submit" class="login-button">Login</button>
-                    <p class="signup-text">Don't have an account? <a href="/register">Sign up now</a>.</p>
                 </form>
             </div>
     </section>
-    <button class="floating-login-button" onclick="window.location.href='/admin_login'">
-        Admins Login
-    </button>
     <script src="../../static/js/header.js"></script>
 </body>
 </html>
