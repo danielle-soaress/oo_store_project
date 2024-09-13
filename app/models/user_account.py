@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 class UserAccount():
     def __init__(self, firstname, lastname, username, email, address, password, userID):
         self.__firstname = firstname
@@ -8,6 +9,21 @@ class UserAccount():
         self.__password = password
         self.__userID = userID
         self.__cart = []
+=======
+#==============================================CPF e telefone===================================================
+class UserAccount():
+    def __init__(self, firstname, lastname, username, cpf, telefone, email, address, password, userID):
+        self.firstname = firstname
+        self.lastname = lastname
+        self.username= username
+        self.cpf = cpf
+        self.telefone = telefone
+        self.email = email
+        self.address = address
+        self.password= password
+        self.userID = userID
+        self.cart = []
+>>>>>>> 259e9f7af19468d60c589b5c3ae69ebe8675cd77
 
     # Getters
     @property
@@ -73,6 +89,7 @@ class UserAccount():
 
     # Convert object to dictionary
     def toDict(self):
+<<<<<<< HEAD
         return {
             'firstname': self.__firstname,
             'lastname': self.__lastname,
@@ -83,3 +100,17 @@ class UserAccount():
             'userID': self.__userID,
             'cart': self.__cart
         }
+=======
+            return {
+                'firstname': self.firstname,
+                'lastname': self.lastname,
+                'username': self.username,
+                'cpf': self.cpf,
+                'telefone': self.telefone,
+                'email': self.email,
+                'address': self.address,
+                'password': self.password,
+                'userID': self.userID,
+                'cart': self.cart
+            }
+>>>>>>> 259e9f7af19468d60c589b5c3ae69ebe8675cd77

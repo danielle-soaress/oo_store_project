@@ -15,7 +15,7 @@ class DataRecord():
         self.read()
         self.adminsInfo()
 
-
+#=========================================CPF e telefone=====================================================
     def read(self):
         try:
             with open("app/controllers/db/user_accounts.json", "r") as arquivo_json:
@@ -25,6 +25,8 @@ class DataRecord():
                         firstname=data.get('firstname'),
                         lastname=data.get('lastname'),
                         username=data.get('username'),
+                        cpf=data.get('cpf'),
+                        telefone=data.get('telefone'),
                         email=data.get('email'),
                         address=data.get('address'),
                         password=data.get('password'),
@@ -38,6 +40,7 @@ class DataRecord():
         except json.JSONDecodeError:
             # Define a lista de usuários como vazia em caso de erro de decodificação JSON
             self.__user_accounts = []
+#====================================================================================================================
     
     def adminsInfo(self):
         try:
@@ -57,11 +60,13 @@ class DataRecord():
             if not any(user.userID == new_id for user in self.__user_accounts):
                 return new_id
 
-    def book(self,firstname, lastname, username, email, address, password):
+    #==========================================Telefone e CPF===========================================================
+    def book(self,firstname, lastname, username, cpf, telefone, email, address, password):
         #Se não existir, cria e adiciona o novo usuario
         id = self.generate_unique_id()
-        new_user= UserAccount(firstname, lastname, username, email, address, password, id)
+        new_user= UserAccount(firstname, lastname, username, cpf, telefone, email, address, password, id)
         self.__user_accounts.append(new_user)
+    #===================================================================================================================
 
         #Salva no arquivo.json
         with open("app/controllers/db/user_accounts.json", "w") as arquivo_json:
@@ -174,8 +179,8 @@ class DataRecord():
                 return userAccount
         return None
 
-
-    def updateDates(self, userID, firstname=None, lastname=None, username=None, email=None, address=None, password=None):
+#====================================================CPF e telefone======================================================
+    def updateDates(self, userID, firstname=None, lastname=None, username=None, cpf=None, telefone=None, email=None, address=None, password=None):
         userAccount = self.getUserAccountsDic(userID)
         print(userAccount)
         if userAccount:
@@ -191,6 +196,10 @@ class DataRecord():
                 userAccount.lastname = lastname
             if username:
                 userAccount.username = username
+            if cpf:
+                userAccount.cpf = cpf
+            if telefone:
+                userAccount.telefone = telefone
             if email:
                 userAccount.email = email
             if address:
@@ -205,6 +214,7 @@ class DataRecord():
             self.save()
             return userAccount
         return None
+#====================================================================================================================
 
     def delete_account(self, userID):
             self.__user_accounts = [userAccount for userAccount in self.__user_accounts if userAccount.userID != userID]
