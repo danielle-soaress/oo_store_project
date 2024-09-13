@@ -156,6 +156,22 @@ def home():
 def viewProducts():
     return ctl.render('viewProducts')
 
+#=========================================Search Products==================================
+'''@app.route('/search', method='GET')
+def search_products():
+    query = request.query.get('query').lower()
+    with open('app/controllers/db/products.json') as arquivo_json:
+        products = json.load(arquivo_json)
+
+    #Filtra os produtos pelo nome ou descrição que contém o query
+
+    filtered_products = [
+        product for product in products
+        if query in product['name'].lower() or query in product['description'].lower()
+    ]
+
+    return ctl.render('searchResults', products=filtered_products)'''
+
 #=======================Cart routes========================
 
 @app.route('/save-cart', method='POST')
