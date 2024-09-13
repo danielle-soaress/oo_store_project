@@ -67,97 +67,106 @@ function updateTotal() {
 let cart = [];
 
 function addToCart(event) {
-    console.log(cart)
-    const buttonAdd = event.target;
-    const productInfos = buttonAdd.parentElement.parentElement
-    const productImg = productInfos.getElementsByClassName("product_item_image")[0].src
-    const productName = productInfos.getElementsByClassName("product_item_name")[0].textContent
-    const productId = productInfos.getElementsByClassName("product_item_id")[0].textContent.split(': ')[1]
-    const productCategory = productInfos.getElementsByClassName("product_item_category")[0].textContent.split(': ')[1]
-    const productBrand = productInfos.getElementsByClassName("product_item_brand")[0].textContent.split(': ')[1]
-    const productPrice = productInfos.getElementsByClassName("product_item_price")[0].textContent
-    const productPriceValue = parseFloat(productPrice.replace(/[^0-9,.]/g, '').replace(',', '.'));
-    //Verifica se o produto está no carrinho
-    const existingProduct = cart.find(product => product.productId === productId);
+//========================Modificação==========================================
+    const userID = getCookie('userID');
 
-    if (existingProduct) {
-        // Se o produto já está no carrinho, aumentar a quantidade
-        existingProduct.quantity++;
-        displayCart(cart);  
-        saveCart();        
-        updateTotal();   
-        return;
-    }
+    if(userID) {
+        console.log(cart)
+        const buttonAdd = event.target;
+        const productInfos = buttonAdd.parentElement.parentElement
+        const productImg = productInfos.getElementsByClassName("product_item_image")[0].src
+        const productName = productInfos.getElementsByClassName("product_item_name")[0].textContent
+        const productId = productInfos.getElementsByClassName("product_item_id")[0].textContent.split(': ')[1]
+        const productCategory = productInfos.getElementsByClassName("product_item_category")[0].textContent.split(': ')[1]
+        const productBrand = productInfos.getElementsByClassName("product_item_brand")[0].textContent.split(': ')[1]
+        const productPrice = productInfos.getElementsByClassName("product_item_price")[0].textContent
+        const productPriceValue = parseFloat(productPrice.replace(/[^0-9,.]/g, '').replace(',', '.'));
+        //Verifica se o produto está no carrinho
+        const existingProduct = cart.find(product => product.productId === productId);
 
-    const newProduct = {
-        productId,
-        productName,
-        productCategory,
-        productBrand,
-        productPrice: productPriceValue,
-        productImg,
-        quantity: 1
-    };
-
-    console.log(newProduct)
-    cart.push(newProduct);
-
-
-    let newCartProduct = document.createElement("tr")
-    newCartProduct.classList.add("cart_product")
-
-    newCartProduct.innerHTML = 
-    `
-    <td class="productIdentification">
-        <img src="${productImg}" alt="${productName}" class="img_product">
-        <div class="info">
-            <strong class="name_product">${productName}</strong>
-            <div class="id">${productId}</div>
-            <div class="category">${productCategory}</div>
-            <div class="brand">${productBrand}</div>
-        </div>
-    </td>
-    <td>
-        <span class="price_product">R$ ${productPriceValue}</span>
-    </td>
-    <td>
-        <input type="number" value="1" min="1" class="product_qty">
-    </td>
-    <td>
-        <button type="button" class="product_remove">Remove</button>
-    </td>
-    `
-        
-    const tableBody = document.querySelector(".bag_table tbody")
-    tableBody.append(newCartProduct)
-
-    //============================================Botão de Remover========================================================
-    const removeButton = newCartProduct.querySelector(".product_remove");
-    removeButton.addEventListener('click', function() {
-        newCartProduct.remove()
-        cart = cart.filter(product => product.productId !== productId);//Remove do cart = []
-        updateTotal();
-        saveCart()
-    });
-
-    //==============================================Input Quantity========================================================
-    const inputQuantity = newCartProduct.querySelector(".product_qty");
-    inputQuantity.addEventListener('change', function() {
-        const newQuantity = parseInt(inputQuantity.value, 10);
-        if (newQuantity > 0) {
-            const product = cart.find(product => product.productId === productId);
-            if (product) {
-                product.quantity = newQuantity;
-                updateTotal();
-                saveCart();
-            }
+        if (existingProduct) {
+            // Se o produto já está no carrinho, aumentar a quantidade
+            existingProduct.quantity++;
+            displayCart(cart);  
+            saveCart();        
+            updateTotal();   
+            return;
         }
-    });
 
-    updateTotal();
-    saveCart();
+        const newProduct = {
+            productId,
+            productName,
+            productCategory,
+            productBrand,
+            productPrice: productPriceValue,
+            productImg,
+            quantity: 1
+        };
+
+        console.log(newProduct)
+        cart.push(newProduct);
+
+
+        let newCartProduct = document.createElement("tr")
+        newCartProduct.classList.add("cart_product")
+
+        newCartProduct.innerHTML = 
+        `
+        <td class="productIdentification">
+            <img src="${productImg}" alt="${productName}" class="img_product">
+            <div class="info">
+                <strong class="name_product">${productName}</strong>
+                <div class="id">${productId}</div>
+                <div class="category">${productCategory}</div>
+                <div class="brand">${productBrand}</div>
+            </div>
+        </td>
+        <td>
+            <span class="price_product">R$ ${productPriceValue}</span>
+        </td>
+        <td>
+            <input type="number" value="1" min="1" class="product_qty">
+        </td>
+        <td>
+            <button type="button" class="product_remove">Remove</button>
+        </td>
+        `
+            
+        const tableBody = document.querySelector(".bag_table tbody")
+        tableBody.append(newCartProduct)
+
+        //============================================Botão de Remover========================================================
+        const removeButton = newCartProduct.querySelector(".product_remove");
+        removeButton.addEventListener('click', function() {
+            newCartProduct.remove()
+            cart = cart.filter(product => product.productId !== productId);//Remove do cart = []
+            updateTotal();
+            saveCart()
+        });
+
+        //==============================================Input Quantity========================================================
+        const inputQuantity = newCartProduct.querySelector(".product_qty");
+        inputQuantity.addEventListener('change', function() {
+            const newQuantity = parseInt(inputQuantity.value, 10);
+            if (newQuantity > 0) {
+                const product = cart.find(product => product.productId === productId);
+                if (product) {
+                    product.quantity = newQuantity;
+                    updateTotal();
+                    saveCart();
+                }
+            }
+        });
+
+        updateTotal();
+        saveCart();
+        alert('Produto adicionado com sucesso!')
+    } else {
+        alert('Você precisa estar logado para adicionar produtos ao carrinho.');
+        window.location.href = '/login_page';
+    }
 }
-
+//============================================================================
 
 //=====================================================Save Cart==========================================================
 function getCookie(name) {

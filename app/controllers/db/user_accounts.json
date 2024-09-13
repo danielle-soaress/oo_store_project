@@ -1,29 +1,5 @@
 [
     {
-        "firstname": null,
-        "lastname": null,
-        "username": null,
-        "cpf": null,
-        "telefone": null,
-        "email": null,
-        "address": null,
-        "password": null,
-        "userID": null,
-        "cart": []
-    },
-    {
-        "firstname": null,
-        "lastname": null,
-        "username": null,
-        "cpf": null,
-        "telefone": null,
-        "email": null,
-        "address": null,
-        "password": null,
-        "userID": null,
-        "cart": []
-    },
-    {
         "firstname": "Danielle",
         "lastname": "Soares",
         "username": "dani",
