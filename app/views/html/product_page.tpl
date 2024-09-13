@@ -32,14 +32,15 @@
                     <input id="search_input" type="text" placeholder="headset gaming"/>
 
                 </div>
-                <!--------------ICON PERFIL------------->
-                <div style="{{'display: block;' if authenticated else 'display: none;'}}" class="perfil_icon" id="perfil_icon">
-                    <i class="bi bi-person-circle"></i>
-                </div>
-
+                
                 <!--------------ICON BAG--------------->
                 <div style="{{'display: block;' if authenticated else 'display: none;'}}" class="bag_icon" id="bag_icon">
                     <i class="bi bi-bag"></i>
+                </div>
+
+                <!--------------ICON PERFIL------------->
+                <div style="{{'display: block;' if authenticated else 'display: none;'}}" class="perfil_icon" id="perfil_icon">
+                    <i class="bi bi-person-circle"></i>
                 </div>
 
                 <!-------Painel lateral da bolsa--------->

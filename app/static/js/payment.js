@@ -109,6 +109,17 @@ function retryOrder() {
 const productsContainer = document.querySelector("#cart_products_container"); 
 let cart = []
 
+function getCookie(name) {
+    const value = `; ${document.cookie}`; 
+    console.log('value = ' + value)
+    const parts = value.split(`; ${name}=`); 
+    console.log('parts =' + parts)
+    if (parts.length === 2) {
+        return parts.pop().split(';').shift();
+    } else {
+        return null; 
+    }
+} 
 
 function loadCart() {
     const userID = getCookie('userID');
@@ -141,8 +152,12 @@ function displayCart() {
         let newCartProduct = document.createElement("div"); 
         newCartProduct.classList.add("product_card"); 
 
+        const spanImageText = document.createElement('span');
+        spanImageText.classList.add('span_image_text')
+
         const productImage = document.createElement('img');
         productImage.classList.add('product_card_image');
+        console.log(productImage)
         productImage.src = `../../static/img/${product.productImg}`;
         productImage.alt = product.productName;
 
@@ -209,8 +224,9 @@ function displayCart() {
         removeButton.appendChild(trashIcon);
         removeButton.appendChild(removeText);
 
-        newCartProduct.appendChild(productImage);
-        newCartProduct.appendChild(sectionText);
+        spanImageText.appendChild(productImage);
+        spanImageText.appendChild(sectionText);
+        newCartProduct.appendChild(spanImageText);
         newCartProduct.appendChild(quantityDiv);
         newCartProduct.appendChild(removeButton);
 

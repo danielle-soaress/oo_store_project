@@ -8,11 +8,7 @@ body {
 
 .register_section {
     position: absolute;
-<<<<<<< HEAD
     top: 50%;
-=======
-    top: 80%;
->>>>>>> 259e9f7af19468d60c589b5c3ae69ebe8675cd77
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;

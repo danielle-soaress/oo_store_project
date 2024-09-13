@@ -139,6 +139,12 @@
 
 }
 
+.span_image_text {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
 .cart_products_remove_all {
     background-color: #ed3e3e;
     width: fit-content;
@@ -163,12 +169,16 @@
 
 .product_card {
     background-color: white;
-    padding: 15px;
     display: flex;
     gap: 15px;
     border-radius: 10px;
     align-items: center;
-    justify-content: space-between
+    justify-content: space-between;
+    padding: 15px 30px;
+}
+
+.product_card_image {
+    max-height: 100px;
 }
 
 .section_text {

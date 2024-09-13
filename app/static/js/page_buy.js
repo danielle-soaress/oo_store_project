@@ -59,8 +59,6 @@ function addToCart(event) {
     const productBrand = productInfos.getElementsByClassName("product_item_brand")[0].textContent
     const productPrice = productInfos.getElementsByClassName("product_item_price")[0].textContent
     const productPriceValue = parseFloat(productPrice.replace(/[^0-9,.]/g, '').replace(',', '.'));
-
-    console.log('src = ' + src)
     //Verifica se o produto está no carrinho
     const existingProduct = cart.find(product => product.productId === productId);
     if (existingProduct) {
