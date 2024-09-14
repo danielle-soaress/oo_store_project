@@ -299,21 +299,22 @@ def edit_product(product_id):
 @app.route('/api/products/stock/<product_id>', method='PATCH')
 def edit_stock(product_id):
     try:
-        quantities = request.forms.getall('quantity[]')
-        colors = request.forms.getall('color[]')
+        data = request.json
+        quantity = data['quantity']
 
-        product_stock = dict(zip(colors, quantities))
+        print(f'quantidade cheouuu {quantity}')
 
-        result = []
+        result = prc.update_product_stock(product_id, quantity)
+        
+        print('esse é o resultado')
+        print(result)
 
-        for key, value in product_stock:
-            r = prc.update_product_stock(product_id, key, value)
-            result.append(r)
-
-        if all(x is None for x in result):
+        if not result :
+            print('entrou no if')
             response.status = 400
             return json.dumps({"error": "Something went wrong... Verify if the new quantity is greater or equal to 0."})
 
+        print('deu certo.')
         response.status = 200
         return json.dumps({"message": "Stock updated successfully"})
     except Exception as e:
@@ -329,7 +330,8 @@ def add_product():
         connectivity = request.forms.get('connectivity')
         description = request.forms.get('description')
         brand = request.forms.get('brand')
-        colorStock = {}
+        stock = request.forms.get('stock')
+
         imageFileName = None
         price = None
         ## price processing
@@ -338,6 +340,13 @@ def add_product():
             return json.dumps({"error": "Insert a valid price value. For decimal numbers, use '.'."})
         else:
             price = float(price_str)
+
+        ## price processing
+        if stock.isdigit():
+            stock = int(stock)
+        else:
+            response.status = 400
+            return json.dumps({"error": "Insert a valid price value. For decimal numbers, use '.'."})
 
         ## image processing
         image = request.files.get('image')
@@ -351,21 +360,8 @@ def add_product():
             image.save(file_path)
             imageFileName = filename
         
-
-        ## color stock processing
-        colors = request.forms.getall('colorStock')
-        quantities = request.forms.getall('colorStockQuantity')
-
-        if len(colors) == len(quantities):
-            for color,quantity in zip(colors, quantities):
-                if not is_valid_hex_color(color):
-                    response.status = 400
-                    return json.dumps({"error": f'Color "{color}" is not in a valid hex format'})
-                colorStock[color] = int(quantity) 
-        else:
-            response.status = 400
-            return json.dumps({"error": "All colors must have quantity information. The number of colors is not equal to the number of quantity information."})
-        prc.create_product(name, price, category, connectivity, description, brand, colorStock, imageFileName)
+        prc.create_product(name, price, category, connectivity, description, brand, stock, imageFileName)
+        print('deu certo..')
         response.status = 204
         return json.dumps({"message": "Product created successfully"})
     except Exception as e:

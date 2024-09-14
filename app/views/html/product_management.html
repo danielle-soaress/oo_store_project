@@ -41,7 +41,7 @@
     </header>
     <section id="products_section">
         <div id="left_products_section">
-            <div id="search_bar">
+            <div id="search_bar" class="hide">
                 <i class="bi bi-search"></i>
                 <input id="search_input" type="text" placeholder="Search for product name or id"/>
                 <i class="bi bi-caret-right-fill"></i>
@@ -51,7 +51,7 @@
             </div>
         </div>
         <div id="right_products_section">
-            <button id="add_product_button" class="products_section_action_button">Add Product</button>   
+            <button id="add_product_button" class="product_item_action_button">Register Product</button>   
         </div>
         
     </section>
@@ -66,12 +66,10 @@
 
             <p id="stock_product_status" class="product_item_text"><strong>Status:</strong> In Stock </p>
             <br>
-            <p class="product_item_text"><strong>Available Colors:</strong></p>
             <form id="product_item_colors">
-                <div id="stock_product_colors" class="product_colors">
-                    
-                </div>
-                <input type="submit" class="product_item_action_button" value="Save">
+                <label for="qt">Quantity: </label>
+                <input id="quantity_input" name="qt" type="number">
+                <button class="product_item_action_button">Save</button>
             </form>
             <div>
                 <button class="product_item_action_button" onclick="closeStockInformation()"> Return </button>
@@ -135,15 +133,9 @@
                     
                 </div>
 
-                <div class="label_div colorStock_div">
-                    <label>Color Stock:</label>
-                    <div id="colorStockContainer">
-                        <div class="color-stock">
-                            <input  class="productForm_input" type="text" name="colorStock" placeholder="Hex Color (ex: #FFFFFF)" required>
-                            <input  class="productForm_input" style="width: 90px;" type="number" name="colorStockQuantity" placeholder="Quantity" min="0" required>
-                        </div>
-                    </div>
-                    <button id="add_color_productForm" class="product_item_action_button" style="width: 100px;" type="button">Add Color</button>
+                <div class="label_div stock_div">
+                    <label for="stock">Stock: </label>
+                    <input type="number" min="0" step="1" class="productForm_input" id="stock" name="stock" required>
                     <br>
                 </div>
 
@@ -240,7 +232,7 @@
         });
     }
 </script>
-<script src='../../static/js/product_management.js'></script>
+<script src='../../static/js/product_management__v2.js'></script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>

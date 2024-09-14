@@ -112,6 +112,6 @@ class Product:
             "connectivity": self.__connectivity,
             "description": self.__description,
             "brand": self.__brand,
-            "colorStock": self.__colorStock,
+            "stock": self.__stock,
             "imageFileName": self.__imageFileName,
         }

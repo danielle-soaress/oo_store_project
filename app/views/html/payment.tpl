@@ -157,10 +157,10 @@
                         <p class="identify_step_text"><span class="strong" id="identify_info_name">Full Name:</span> {{ firstname }} {{ lastname }}</p>
                     </div>
                     <div class="info_group">
-                        <p class="identify_step_text"><span class="strong" id="identify_info_cpf">CPF: </span></p>
+                        <p class="identify_step_text"><span class="strong" id="identify_info_cpf">CPF: </span>{{ cpf }}</p>
                     </div>
                     <div class="info_group">
-                        <p class="identify_step_text"><span class="strong" id="identify_info_phone">Phone Number:</span></p>
+                        <p class="identify_step_text"><span class="strong" id="identify_info_phone">Phone Number: </span>{{ telefone }}</p>
                     </div>
                     <div class="info_group">
                         <p class="identify_step_text"><span class="strong" id="identify_info_email">Email: </span>{{ email }}</p>
@@ -169,7 +169,7 @@
                         <p class="identify_step_text"><span class="strong" id="identify_info_adress">Adress: </span>{{ address }}</p>
                     </div>
                 </div>
-                <button class="generic_button" id="edit_information">Edit Information</button>
+                <button class="generic_button" onclick="window.location.href='/pagina/{{userID}}'" id="edit_information">Edit Information</button>
             </div>
         </div>
         <div class="right_identify_section subsection">

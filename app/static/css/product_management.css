@@ -107,7 +107,7 @@ html {
     background-color: #7D29D2;
     height:50vh;
     border-radius: 20px;
-    margin-top: 20px;
+    margin-top: 70px;
     padding: 10px 10px;
     display: flex;
     flex-direction: column;
@@ -195,6 +195,7 @@ html {
 #right_products_section {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 15px;
 }
 
