@@ -87,9 +87,10 @@ function addToCart(event) {
         if (existingProduct) {
             // Se o produto já está no carrinho, aumentar a quantidade
             existingProduct.quantity++;
-            displayCart(cart);  
+            displayCart(); 
             saveCart();        
             updateTotal();   
+            
             return;
         }
 
@@ -116,9 +117,9 @@ function addToCart(event) {
             <img src="${productImg}" alt="${productName}" class="img_product">
             <div class="info">
                 <strong class="name_product">${productName}</strong>
-                <div class="id">${productId}</div>
-                <div class="category">${productCategory}</div>
-                <div class="brand">${productBrand}</div>
+
+                <div class="category">Category: ${productCategory}</div>
+                <div class="brand">Brand: ${productBrand}</div>
             </div>
         </td>
         <td>
@@ -140,6 +141,7 @@ function addToCart(event) {
         removeButton.addEventListener('click', function() {
             newCartProduct.remove()
             cart = cart.filter(product => product.productId !== productId);//Remove do cart = []
+            displayCart() 
             updateTotal();
             saveCart()
         });
@@ -157,7 +159,7 @@ function addToCart(event) {
                 }
             }
         });
-
+        displayCart(); 
         updateTotal();
         saveCart();
         alert('Produto adicionado com sucesso!')
@@ -279,7 +281,7 @@ function displayCart() {
             <img src="../../static/img/${product.productImg}" alt="${product.productName}" class="img_product"> 
             <div class="info"> 
                 <strong class="name_product">${product.productName}</strong> 
-                <div class="id">Id: ${product.productId}</div> 
+
                 <div class="category">Category: ${product.productCategory}</div> 
                 <div class="brand">Brand: ${product.productBrand}</div> 
             </div> 

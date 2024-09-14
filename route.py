@@ -351,6 +351,7 @@ def add_product():
             image.save(file_path)
             imageFileName = filename
         
+
         ## color stock processing
         colors = request.forms.getall('colorStock')
         quantities = request.forms.getall('colorStockQuantity')

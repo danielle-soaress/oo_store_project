@@ -44,7 +44,19 @@ section{
     margin-bottom: 5px;
 }
 
+.product_info_id {
+    display: none;
+}
+
 .tag {
+    background-color: #7D29D2;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.product_info_category {
     background-color: #7D29D2;
     color: white;
     padding: 5px 15px;

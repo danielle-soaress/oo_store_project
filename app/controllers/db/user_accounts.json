@@ -1,12 +1,7 @@
 [
     {
-<<<<<<< HEAD
-        "firstname": "danielle",
-        "lastname": "soares",
-=======
         "firstname": "Danielle",
         "lastname": "Soares",
->>>>>>> f9280da920f8574ad306fb8b81742f41c7a4f484
         "username": "dani",
         "cpf": "123.456.789-09",
         "telefone": "6112341234",
@@ -16,11 +11,11 @@
         "userID": "3bef092a-6ea5-45dd-bd06-bda507864966",
         "cart": [
             {
-                "productId": "3",
-                "quantity": 1
+                "productId": "1",
+                "quantity": 2
             },
             {
-                "productId": "2",
+                "productId": "3",
                 "quantity": 1
             }
         ],

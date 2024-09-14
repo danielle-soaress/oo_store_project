@@ -50,7 +50,27 @@
                     <h2>Your Bag</h2>
 
                     <div id="bag_itens">
-                        <!--------Itens do carrinho------->
+                    <!--------Itens do carrinho------->
+                        <table class="bag_table">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bag_product">
+            
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                    <div class="cart_total">
+                        <p id="total">Total: R$ 0,00</p>
                     </div>
 
                     <!------------Botão Buy---------------->
@@ -68,17 +88,21 @@
     </header>
     <section id="product_info_section">
         <div id="product_info_div">
-            <img src="../../static/img/{{img}}" alt="" class="product_info_image">
+            <img src="../../static/img/{{img}}" alt="" class="product_info_image" id= "product_info_image">
             <div class="product_info_text">
                 <div class="tags_div">
-                    <div class="tag">{{ category }}</div>
+                    <div class="product_info_category" id= "product_info_category" >{{ category }}</div>
                     <div class="tag">{{ connect }}</div>
                 </div>
                 <h1 id="product_info_name">{{ name }}</h1>
                 <div id="product_info_availability_div" style="background-color: {{ 'green' if availability == 'In Stock' else '#EA0000' }}">
                     <p id="product_info_availability">{{ availability }}</p>
                 </div>
+
+                <p id="product_info_id" class="product_info_id"><span class="strong">ID:</span> {{ id }}</p>
+
                 <p id="product_info_brand" class="product_info_paragraph"><span class="strong">Brand:</span> {{ brand }}</p>
+
                 <div id="product_info_price">
                     <div id="product_info_payment_div">
                         <span>
