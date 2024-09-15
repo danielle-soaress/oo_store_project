@@ -55,6 +55,14 @@
     <button class="floating-login-button" onclick="window.location.href='/admin_login'">
         Admins Login
     </button>
+
+
+    <script>
+        function redirectToRegister() {
+            window.location.href = '/register';
+        }
+    </script>
+
     <script src="../../static/js/header.js"></script>
 </body>
 </html>

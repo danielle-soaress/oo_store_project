@@ -30,6 +30,10 @@ def serve_db(filepath):
 
 
 #-----------------------------------------------------------------------------
+@app.route('/')
+def index():
+    return ctl.render('home')
+
 @app.route('/login_page', method='GET')
 def login(error_message = None):
     message_code = request.query.get('message_code', None)
@@ -384,4 +388,4 @@ def generate_unique_filename(filename):
 
 
 if __name__ == '__main__':
-    run(app, host='localhost', port=8080, debug=True, reloader=True)
+    run(app, host="0.0.0.0", port=8080, debug=True, reloader=True)

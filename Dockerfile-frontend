@@ -1,0 +1,14 @@
+# Imagem base do Nginx
+FROM nginx:alpine
+
+#Copia os arquivos do frontend para o diretório padrão do Nginx
+COPY app/static /usr/share/nginx/html/app/static
+COPY app/views /usr/share/nginx/html/app/views
+
+# Corrige permissões
+RUN chmod -R 755 /usr/share/nginx/html/app/static /usr/share/nginx/html/app/views
+
+#Copia a configuração personalizada do Nginx
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 80
