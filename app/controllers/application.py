@@ -94,6 +94,7 @@ class Application():
         return redirect('/admin_login?message_code=1')
 #==============================================================
 
+
     def register(self):
         return template('app/views/html/register')
     
