@@ -1,4 +1,5 @@
 from app.models.user_account import UserAccount
+from app.models.order import Order
 from app.models.admin import Admin
 from bottle import redirect
 import json
@@ -12,7 +13,8 @@ class DataRecord():
 
     def __init__(self):
         self.__user_accounts = []
-        self.__admins = []        
+        self.__admins = []
+        self.__orders = []        
         self.read()
         self.readAdmins()
 
@@ -77,7 +79,6 @@ class DataRecord():
             self.__user_accounts]
             json.dump(user_data, arquivo_json)
         return True #Usuario registrado com sucesso
-    
 
     def getCurrentUser(self,session_id):
         if session_id in DataRecord.authenticated_users:
@@ -139,6 +140,14 @@ class DataRecord():
         except FileNotFoundError:
             return None
     
+    def getUserByID(self, userID):
+        try:
+            for user in self.__user_accounts:
+                if user.userID == userID:
+                    return user
+            return None
+        except FileNotFoundError:
+            return None
 
     def saveUserCart(self, userID, cart):
         try:
@@ -169,6 +178,53 @@ class DataRecord():
         except Exception as e:
             print(f"Ocorreu um erro: {e}")
 
+    def addOrder(self, userID, orderID):
+        try:
+            with open("app/controllers/db/user_accounts.json", "r+") as arquivo_json:
+                data = json.load(arquivo_json)
+                
+                user_found = False
+
+                for user in data:
+                    if user['userID'] == userID:
+                        user['orders'].append(orderID)
+                        user_found = True
+                        break
+
+                if not user_found:
+                    print(f"Usuário '{userID}' não encontrado.")
+                    return False
+
+                arquivo_json.seek(0)
+                json.dump(data, arquivo_json, indent=4)
+                arquivo_json.truncate()
+                return True
+
+        except FileNotFoundError:
+            print("Arquivo não encontrado.")
+        except json.JSONDecodeError:
+            print("Erro ao decodificar o JSON.")
+        except Exception as e:
+            print(f"Ocorreu um erro: {e}")
+
+    def getOrders(self, userID):
+        try:
+            user = self.getUserAccountDates(userID)
+            if user:
+                print('sse é o user')
+                print(user)
+                return user.get('orders', [])
+            else:
+                print(f"Usuário '{userID}' não encontrado.")
+                return False
+
+        except FileNotFoundError:
+            print("Arquivo não encontrado.")
+        except json.JSONDecodeError:
+            print("Erro ao decodificar o JSON.")
+        except Exception as e:
+            print(f"Ocorreu um erro: {e}")
+
     def getUserCart(self, userID):
         try:
             user = self.getUserAccountDates(userID)
@@ -191,8 +247,7 @@ class DataRecord():
             if userAccount.userID == userID:
                 return userAccount
         return None
-
-#====================================================CPF e telefone======================================================
+    
     def updateDates(self, userID, firstname=None, lastname=None, username=None, cpf=None, telefone=None, email=None, address=None, password=None):
         userAccount = self.getUserAccountsDic(userID)
         print(userAccount)
@@ -227,12 +282,10 @@ class DataRecord():
             self.save()
             return userAccount
         return None
-#====================================================================================================================
 
     def delete_account(self, userID):
             self.__user_accounts = [userAccount for userAccount in self.__user_accounts if userAccount.userID != userID]
             self.save()
-
 
     def save(self):
         with open("app/controllers/db/user_accounts.json", "w") as arquivo_json:

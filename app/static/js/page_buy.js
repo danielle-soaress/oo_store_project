@@ -395,9 +395,16 @@ function updateProductList(searchQuery ='') {
 
             //====================================Botão para adicionar ao carrinho========================================
             const addToCartButton = document.createElement('button');
-            addToCartButton.textContent = 'Adicionar ao Carrinho';
+            addToCartButton.innerHTML = 'Add to Cart';
             addToCartButton.classList.add('cart_button');
             addToCartButton.addEventListener('click', (event) => addToCart(event));
+
+            const linkViewProduct = document.createElement('a');
+            linkViewProduct.classList.add('view_product_link')
+            linkViewProduct.href=`/viewProduct/${product.id}`
+            linkViewProduct.innerHTML = `<button class="view_product_button">
+                                            View Product
+                                        </button>`
 
             // ===========================Adicionar informações e botão ao container principal============================
             productTextDiv.appendChild(productName);
@@ -414,6 +421,7 @@ function updateProductList(searchQuery ='') {
             const productActions = document.createElement('div');
             productActions.classList.add('product_item_actions');
             productActions.appendChild(addToCartButton);
+            productActions.appendChild(linkViewProduct);
 
             productItem.appendChild(mainProductInfo);
             productItem.appendChild(productActions);

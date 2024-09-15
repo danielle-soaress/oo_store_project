@@ -37,10 +37,12 @@ body {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     max-width: 450px;
+    height: 70vh;
+    overflow-y: auto;
 }
 
 .container h1 {

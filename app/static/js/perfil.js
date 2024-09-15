@@ -195,3 +195,48 @@ function checkInputs(formUsername, formCpf, formTelefone, formPassword, formConf
         });
 
 }
+
+
+async function loadUserOrders() {
+    const userId = getCookie('userID');
+    console.log(userId)
+
+    if (userId) {
+        try {
+            const response = await fetch(`/orders/${userId}`);
+            console.log(response)
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const orders = await response.json();
+            const ordersList = document.getElementById('ordersList');
+            
+            if (orders.length === 0) {
+                ordersList.innerHTML = '<p>You don\'t have any orders.</p>';
+            } else {
+                ordersList.innerHTML = orders.map(order => `
+                    <div class="order">
+                        <p><strong>ID do Pedido:</strong> ${order.id}</p>
+                        <p><strong>Status:</strong> ${order.status}</p>
+                        <p><strong>Total:</strong> ${order.total}</p>
+                        <p><strong>Payment Method:</strong> ${order.paymentMethod}</p>
+                        ${order.productsList.map(product => `
+                            <div class="product">
+                                <img src="../../static/img/${product.imageFileName}" alt="${product.name}">
+                                <div class="product-info">
+                                    <h3>${product.name}</h3>
+                                    <p><strong>Preço:</strong> $${product.price.toFixed(2)}</p>
+                                    <p><strong>Quantidade:</strong> ${product.quantity}</p>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `).join('');
+            }
+        } catch (error) {
+            console.error('Error loading orders:', error);
+            document.getElementById('ordersList').innerHTML = '<p>Some error ocurred...</p>';
+        }
+    }
+}

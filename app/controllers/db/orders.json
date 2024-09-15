@@ -1,0 +1,40 @@
+[
+    {
+        "id": "0b43b991-3c0e-41ed-885b-d7f02f5bf458",
+        "ownerID": "3bef092a-6ea5-45dd-bd06-bda507864966",
+        "status_code": 1,
+        "productsList": [
+            {
+                "productId": "1",
+                "quantity": 1
+            },
+            {
+                "productId": "2",
+                "quantity": 3
+            }
+        ],
+        "total": 0,
+        "paymentMethod": "Cash"
+    },
+    {
+        "id": "fa5f5c92-d502-4ef3-9454-385c8f329054",
+        "ownerID": "3bef092a-6ea5-45dd-bd06-bda507864966",
+        "status_code": 1,
+        "productsList": [
+            {
+                "productId": "11",
+                "quantity": 1
+            },
+            {
+                "productId": "3",
+                "quantity": 1
+            },
+            {
+                "productId": "5",
+                "quantity": 3
+            }
+        ],
+        "total": "576.00",
+        "paymentMethod": "Credit Card"
+    }
+]

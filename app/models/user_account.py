@@ -1,3 +1,5 @@
+from app.models.order import Order
+
 class UserAccount():
     def __init__(self, firstname, lastname, username, cpf, telefone, email, address, password, userID):
         self.firstname = firstname
@@ -11,6 +13,7 @@ class UserAccount():
         self.userID = userID
         self.cart = []
         self.orders = []
+
 
     def toDict(self):
             return {

@@ -9,16 +9,10 @@
         "address": "dkaodkos",
         "password": "senha123",
         "userID": "3bef092a-6ea5-45dd-bd06-bda507864966",
-        "cart": [
-            {
-                "productId": "3",
-                "quantity": 1
-            },
-            {
-                "productId": "2",
-                "quantity": 1
-            }
-        ],
-        "orders": []
+        "cart": [],
+        "orders": [
+            "0b43b991-3c0e-41ed-885b-d7f02f5bf458",
+            "fa5f5c92-d502-4ef3-9454-385c8f329054"
+        ]
     }
 ]
