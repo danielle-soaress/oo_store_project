@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     loadCart()
 });
 
-
 let currentStep = 1;
 
 // 'previous step' and 'next step' buttons adjustments and layout changes
@@ -286,8 +285,7 @@ function updateCartOnServer() {
             quantity: product.quantity
         };
     });
-    console.log('atualizando carrinho')
-    console.log(cartProducts)
+
     if (validateCart(cartProducts)) {
         fetch('/save-cart', { 
             method: 'POST', 
@@ -333,15 +331,65 @@ document.getElementById('remove_all').addEventListener('click', () => {
 
 /* ---- carregar formulário -----*/
 
-function paymentSimulation() {
-    console.log('pay pay')
-    nextStep()
-    
-    setTimeout(() => {
-        nextStep()
-    }, 4000)
+const total = document.getElementById('total_payment')
+let orderTotal = total.dataset.totalCash
+let paymentMethod = 'Cash'
 
-    showOrderResult(true)
+function paymentSimulation() {
+    nextStep()
+
+    const userID = getCookie('userID'); 
+    console.log(userID)
+
+    if (!userID) {
+        console.error('Usuário não autenticado.');
+        return;
+    }
+
+    const cartProducts = cart.map(product => {
+        return {
+            productId: product.productId,
+            quantity: product.quantity
+        };
+    });
+
+    console.log(cartProducts)
+
+    const requestBody = {
+        user_id: userID,
+        products_list: cartProducts,
+        status_code: 1,
+        total: orderTotal,
+        payment_method: paymentMethod
+    };
+
+    fetch('/order', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestBody)
+    })
+    .then(response => {
+        // Verifica se a resposta foi bem-sucedida
+        if (!response.ok) {
+            return response.json().then(data => {
+                throw new Error(data.error || 'Network response was not ok');
+            });
+        }
+        // Retorna a resposta em formato JSON
+        return response.json();
+    })
+    .then(data => {
+        setTimeout(() => {
+            nextStep()
+        }, 4000)
+        showOrderResult(true);
+    })
+    .catch(error => {
+        // Lidar com erros
+        alert(`Error: ${error.message}`);
+    });
 
 }
 
@@ -357,6 +405,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (cardOption.checked) {
             cardInfo.style.display = 'block';
             cardInputs.forEach(input => input.required = true); // Adiciona 'required'
+            orderTotal = total.dataset.totalCard
+            total.innerHTML = total.dataset.totalCard
+            paymentMethod = 'Credit Card'
         }
     });
 
@@ -364,6 +415,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (cashOption.checked) {
             cardInfo.style.display = 'none';
             cardInputs.forEach(input => input.required = false); // Remove 'required'
+            orderTotal = total.dataset.totalCash
+            total.innerHTML = total.dataset.totalCash
+            paymentMethod = 'Cash'
         }
     });
 

@@ -22,8 +22,8 @@
                 <nav class="header_nav_left">
                     <ul class="header_nav_left_list">
                         <a class="header_link" href="/home"><li class="header_nav_item">Home</li></a>
-                        <a class="header_link" href="/viewProducts"><li class="header_nav_item">Loja</li></a>
-                        <a class="header_link" href="/contact"><li class="header_nav_item">Contato</li></a>
+                        <a class="header_link" href="/viewProducts"><li class="header_nav_item">Store</li></a>
+                        <a class="header_link" href="/contact"><li class="header_nav_item">Contact us</li></a>
                     </ul>
                 </nav>
             </div>
@@ -64,16 +64,12 @@
                                 </tr>
                             </tbody>
                         </table>
-                    
                     </div>
-
                     <div class="cart_total">
                         <p id="total">Total: R$ 0,00</p>
                     </div>
-
                     <!------------Botão Buy---------------->
                     <button id="buy_bag" class="buy_bag">Buy</button>
-
                     <!------------Botão Close-------------->
                     <button id="close_bag" class="close_bag">Close</button>
                 </div>
@@ -113,6 +109,10 @@
 
     <!------------Produtos Loja-------------->
     <main>
+        <div class="main_div_title">
+            <h2 class="main_title">Our Products</h2>
+            <div class="main_title_bar"></div>
+        </div>
         <section id="viewProducts">
             
         </section>

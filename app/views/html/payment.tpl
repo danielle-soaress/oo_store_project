@@ -21,8 +21,8 @@
                 <nav class="header_nav_left">
                     <ul class="header_nav_left_list">
                         <a class="header_link" href="/home"><li class="header_nav_item">Home</li></a>
-                        <a class="header_link" href="/viewProducts"><li class="header_nav_item">Loja</li></a>
-                        <a class="header_link" href="/contact"><li class="header_nav_item">Contato</li></a>
+                        <a class="header_link" href="/viewProducts"><li class="header_nav_item">Store</li></a>
+                        <a class="header_link" href="/contact"><li class="header_nav_item">Contact Us</li></a>
                     </ul>
                 </nav>
             </div>
@@ -224,8 +224,8 @@
                         </div>
                     </div>
                     <div id="total_payment_info">
-                        <p class="subtitle_text" class="section_text strong">Total:</p>
-                        <p id="total_payment" class="section_text strong">4234</p>
+                        <p class="subtitle_text" class="section_text strong">Total (R$):</p>
+                        <p id="total_payment" class="section_text strong" data-total-cash="{{ totalCash[1] }}" data-total-card="{{ totalCreditCard[1] }}">{{ totalCash[1] }}</p>
                     </div>
                     <button type="submit" class="generic_button ">Pay</button>
                 </form>

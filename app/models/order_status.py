@@ -1,8 +1,11 @@
 class OrderStatus:
-    def __init__(self, code, OrderStatus):
+    def __init__(self, code, orderStatus):
         self.code = code
-        self.orderStatus = OrderStatus
+        self.orderStatus = orderStatus
 
+    @classmethod
+    def get_status(cls, code):
+        return STATUS.get(code, None)
 
 STATUS = {
     0: OrderStatus(0, "Processing"),

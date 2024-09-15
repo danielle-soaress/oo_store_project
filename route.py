@@ -3,6 +3,7 @@ from app.models.message import MESSAGES, Message
 from bottle import Bottle, run, request, static_file, response
 from app.controllers.datarecord import DataRecord
 from app.controllers.productrecord import ProductRecord
+from app.controllers.ordersrecord import OrderRecord
 import json
 import os
 import re
@@ -10,6 +11,7 @@ import uuid
 
 
 dtr = DataRecord()
+orcd = OrderRecord()
 app = Bottle()
 ctl = Application()
 prc = ProductRecord()
@@ -245,6 +247,41 @@ def payment(userID):
     if ctl.is_authenticated(userID):
         return ctl.render('payment', userID = userID)
     return ctl.render('login_page', error_message = "Log in to your account to proceed with payment.")
+
+@app.route('/order', method='POST')
+def createOrder():
+    try:
+        user_id = request.json.get('user_id')
+        products_list = request.json.get('products_list')
+        status_code = request.json.get('status_code', 0)  # Default to "Processing"
+        total = request.json.get('total', 0)
+        paymentMethod = request.json.get('payment_method')
+       
+
+        result = orcd.addUserOrder(products_list, user_id, status_code, total, paymentMethod)
+        print(result)
+        if not result:
+            response.status = 400
+            return json.dumps({"error": "User not found"})
+
+        response.status = 201 
+        return json.dumps({"message": "Order created successfully", "order_id": result})
+
+    except Exception as e:
+        response.status = 500
+        return json.dumps({"error": str(e)})
+
+@app.route('/orders/<userID>', method='GET')
+def get_user_orders(userID):
+    print(userID)
+    if not userID:
+        response.status = 400
+        return {'error': 'User ID is required'}
+
+    orders = orcd.getUserOrders(userID)
+    print(orders)
+    response.content_type = 'application/json'
+    return json.dumps(orders)
 
 @app.route('/contact', method='GET')
 def contact():
