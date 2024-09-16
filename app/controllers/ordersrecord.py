@@ -26,28 +26,22 @@ class OrderRecord:
             self.__orders = []
 
     def addUserOrder(self, cart, userID, statusCode, totalPayment, payment):
-        user = OrderRecord.dtr.getUserByID(userID)
-        print('entrou aqui')
-        if user:
-            order_id = str(uuid.uuid4())
-            order = Order(id=order_id, 
-                          ownerID=userID,
-                          status_code=statusCode, 
-                          productsList=cart,
-                          total=totalPayment,
-                          paymentMethod=payment)
+        order_id = str(uuid.uuid4())
+        order = Order(id=order_id, 
+                    ownerID=userID,
+                    status_code=statusCode, 
+                    productsList=cart,
+                    total=totalPayment,
+                    paymentMethod=payment)
             
-            self.__orders.append(order)
-            OrderRecord.dtr.addOrder(userID, order_id)
-            OrderRecord.dtr.saveUserCart(userID, [])
-            self.saveOrders()
+        self.__orders.append(order)
+        OrderRecord.dtr.addOrder(userID, order_id)
+        self.saveOrders()
 
-            with open("app/controllers/db/orders.json", "w") as arquivo_json:
-                order_data = [vars(order) for order in self.__orders]
-                json.dump(order_data, arquivo_json, indent=4)
-                
-            return True
-        return False
+
+        with open("app/controllers/db/orders.json", "w") as arquivo_json:
+            order_data = [vars(order) for order in self.__orders]
+            json.dump(order_data, arquivo_json, indent=4)
     
     def saveOrders(self):
         with open("app/controllers/db/orders.json", "w") as arquivo_json:

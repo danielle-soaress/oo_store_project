@@ -114,7 +114,7 @@ function addToCart(event) {
         newCartProduct.innerHTML = 
         `
         <td class="productIdentification">
-            <img src="${productImg}" alt="${productName}" class="img_product">
+            <img src="../../static/img/${productImg}" alt="${productName}" class="img_product">
             <div class="info">
                 <strong class="name_product">${productName}</strong>
 

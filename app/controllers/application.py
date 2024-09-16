@@ -6,7 +6,6 @@ import json
 
 
 class Application():
-
     def __init__(self):
         self.pages = {
             'login_page': self.login_page,

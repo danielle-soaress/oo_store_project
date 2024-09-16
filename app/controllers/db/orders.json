@@ -87,5 +87,61 @@
         ],
         "total": "290.00",
         "paymentMethod": "Cash"
+    },
+    {
+        "id": "b80c1a98-bea1-415f-b3cb-4ac616de2a2f",
+        "ownerID": "3bef092a-6ea5-45dd-bd06-bda507864966",
+        "status_code": 1,
+        "productsList": [
+            {
+                "productId": "3",
+                "quantity": 1
+            }
+        ],
+        "total": "180.00",
+        "paymentMethod": "Cash"
+    },
+    {
+        "id": "7e4c9cdc-3c5d-48fb-a875-d12d2d3cfb18",
+        "ownerID": "fc9763d1-5bdf-4f83-82de-cf38a6d114a8",
+        "status_code": 1,
+        "productsList": [
+            {
+                "productId": "4",
+                "quantity": 1
+            }
+        ],
+        "total": "140.00",
+        "paymentMethod": "Cash"
+    },
+    {
+        "id": "26b8e308-c920-49a3-a69d-f1051597b979",
+        "ownerID": "ac03fb93-8000-42db-9f7a-65389b50ed17",
+        "status_code": 1,
+        "productsList": [
+            {
+                "productId": "3",
+                "quantity": 1
+            },
+            {
+                "productId": "2",
+                "quantity": 1
+            }
+        ],
+        "total": "269.99",
+        "paymentMethod": "Cash"
+    },
+    {
+        "id": "57ccf41c-b319-4fe5-acf7-8cb11ca16122",
+        "ownerID": "f043daef-d11a-4414-bab9-1381a3abe706",
+        "status_code": 1,
+        "productsList": [
+            {
+                "productId": "3",
+                "quantity": 1
+            }
+        ],
+        "total": "180.00",
+        "paymentMethod": "Cash"
     }
 ]

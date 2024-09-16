@@ -27,9 +27,6 @@ def serve_static(filepath):
 def serve_db(filepath):
     return static_file(filepath, root='./app/controllers/db')
 
-<<<<<<< HEAD
-#---------------------------------LOGIN USERS--------------------------------------
-=======
 
 
 #-----------------------------------------------------------------------------
@@ -37,7 +34,6 @@ def serve_db(filepath):
 def index():
     return ctl.render('home')
 
->>>>>>> 33c48f8d91dafb96ef0608c21347f55b446ace11
 @app.route('/login_page', method='GET')
 def login(error_message = None):
     message_code = request.query.get('message_code', None)
@@ -248,7 +244,7 @@ def createOrder():
         total = request.json.get('total', 0)
         paymentMethod = request.json.get('payment_method')
        
-
+        print(user_id)
         result = orcd.addUserOrder(products_list, user_id, status_code, total, paymentMethod)
         print(result)
         if not result:
