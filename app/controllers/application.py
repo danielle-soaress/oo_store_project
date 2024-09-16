@@ -25,7 +25,7 @@ class Application():
         }
         self.__model= DataRecord()
         self.__product_model = ProductRecord()
-       
+
     def render(self, page, **kwargs):
         content = self.pages.get(page, self.home)
         if kwargs:

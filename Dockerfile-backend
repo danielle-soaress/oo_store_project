@@ -1,0 +1,21 @@
+# imagem base do python
+FROM python:3.9
+
+#Cria um diretório
+WORKDIR /oo_project
+
+#Copia o arquivo de dependência
+COPY requirements.txt .
+
+#Instala as dependências
+RUN pip install --no-cache-dir -r requirements.txt
+
+#Copia as aplicações do backend
+COPY route.py /oo_project
+COPY app/ /oo_project/app
+
+#Porta usada pelo bottle
+EXPOSE 8080
+
+#Comando para rodar a aplicação
+CMD [ "python", "route.py" ]
