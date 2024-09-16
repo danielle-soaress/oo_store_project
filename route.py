@@ -27,7 +27,7 @@ def serve_static(filepath):
 def serve_db(filepath):
     return static_file(filepath, root='./app/controllers/db')
 
-#-----------------------------------------------------------------------------
+#---------------------------------LOGIN USERS--------------------------------------
 @app.route('/login_page', method='GET')
 def login(error_message = None):
     message_code = request.query.get('message_code', None)
@@ -215,13 +215,13 @@ def filtered_products(criterion, name):
     response.content_type = 'application/json'
     return json.dumps(filtered_products, indent=4)
 
-# ---------------- 
+# ------VIEW PRODUCT ROUTE ------- 
 
 @app.route('/viewProduct/<product_id>', method='GET')
 def viewProduct(product_id):
     return ctl.render('viewProduct', product_id = product_id)
 
-# --------------
+# ------ PAYMENT SIMULATION ROUTES------
 
 @app.route('/payment/<userID>', method='GET')
 def payment(userID):
@@ -263,6 +263,8 @@ def get_user_orders(userID):
     print(orders)
     response.content_type = 'application/json'
     return json.dumps(orders)
+
+# --------- CONTACTS PAGE ROUTE ----------------
 
 @app.route('/contact', method='GET')
 def contact():
