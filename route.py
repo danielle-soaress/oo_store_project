@@ -27,17 +27,12 @@ def serve_static(filepath):
 def serve_db(filepath):
     return static_file(filepath, root='./app/controllers/db')
 
-<<<<<<< HEAD
-#---------------------------------LOGIN USERS--------------------------------------
-=======
-
 
 #-----------------------------------------------------------------------------
 @app.route('/')
 def index():
     return ctl.render('home')
 
->>>>>>> 33c48f8d91dafb96ef0608c21347f55b446ace11
 @app.route('/login_page', method='GET')
 def login(error_message = None):
     message_code = request.query.get('message_code', None)

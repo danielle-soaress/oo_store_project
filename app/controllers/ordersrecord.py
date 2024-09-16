@@ -45,8 +45,9 @@ class OrderRecord:
             with open("app/controllers/db/orders.json", "w") as arquivo_json:
                 order_data = [vars(order) for order in self.__orders]
                 json.dump(order_data, arquivo_json, indent=4)
-                
-            return True
+            
+            #==
+            return order_id
         return False
     
     def saveOrders(self):

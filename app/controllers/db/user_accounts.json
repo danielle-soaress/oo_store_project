@@ -10,12 +10,21 @@
         "password": "senha123",
         "userID": "3bef092a-6ea5-45dd-bd06-bda507864966",
         "cart": [],
+        "orders": []
+    },
+    {
+        "firstname": "Henrique",
+        "lastname": "Moura",
+        "username": "Andrade",
+        "cpf": "12345678909",
+        "telefone": "61986759381",
+        "email": "higaleticia12@gmail.com",
+        "address": "Guara",
+        "password": "senha123",
+        "userID": "b71eadf7-a634-41fb-a85f-e2eed1b1ce12",
+        "cart": [],
         "orders": [
-            "0b43b991-3c0e-41ed-885b-d7f02f5bf458",
-            "fa5f5c92-d502-4ef3-9454-385c8f329054",
-            "4997eb0d-5771-4ff7-9260-5c4c9f95579f",
-            "d15a2b02-3d89-4f83-a1ef-ee71305b3d11",
-            "0a608196-0623-4155-b562-22759e9c6368"
+            "b5f047f7-4b8d-4e73-91e9-c19ea202652b"
         ]
     }
 ]

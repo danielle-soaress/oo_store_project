@@ -363,6 +363,8 @@ function paymentSimulation() {
         payment_method: paymentMethod
     };
 
+    console.log(requestBody);
+
     fetch('/order', {
         method: 'POST',
         headers: {
