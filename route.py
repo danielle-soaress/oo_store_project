@@ -9,13 +9,11 @@ import os
 import re
 import uuid
 
-
 dtr = DataRecord()
 orcd = OrderRecord()
 app = Bottle()
 ctl = Application()
 prc = ProductRecord()
-
 
 #-----------------------------------------------------------------------------
 # Rotas:
@@ -28,8 +26,6 @@ def serve_static(filepath):
 @app.route('/db/<filepath:path>')
 def serve_db(filepath):
     return static_file(filepath, root='./app/controllers/db')
-
-
 
 #-----------------------------------------------------------------------------
 @app.route('/login_page', method='GET')
@@ -50,11 +46,9 @@ def action_login():
 def logout():
     return ctl.render('logoutUser')
 
-
 @app.route('/register', method='GET')
 def signUp():
     return ctl.render('register')
-
 
 @app.route('/register', method='POST')
 def action_register():
@@ -78,7 +72,6 @@ def action_register():
         print('success')
         return ctl.render("login_page")
     
-
 # ----------- LOGIN FOR ADMINS ------------------- #
 
 @app.route('/admin_login', method='POST')
@@ -135,7 +128,6 @@ def edit_account(userID):
         response.status = 500
         return json.dumps({"error": str(e)})
 
-
 @app.route('/authenticate', methods='GET')
 def check_auth():
     session_id = request.get_cookie('session_id')
@@ -145,18 +137,15 @@ def check_auth():
         return {'authenticated': True, 'userID': user.userID}
     else:
         return {'authenticated': False}
-
-    
+ 
 #----------------------------------- HOME, STORE AND PRODUCTS PAGES ------------------------------------------
 @app.route('/home', method='GET')
 def home():
     return ctl.render('home')
 
-
 @app.route('/viewProducts', method='GET')
 def viewProducts():
     return ctl.render('viewProducts')
-
 
 #=======================Cart routes========================
 
@@ -184,7 +173,6 @@ def save_cart():
     response.status = 200
     return {'status': 'success', 'message': 'Cart saved successfully'}
 
-
 @app.route('/get-cart', method= 'GET')
 def get_cart():
     userID = request.get_cookie('userID')
@@ -203,7 +191,6 @@ def get_cart():
 
     response.content_type = 'application/json'
     return json.dumps({"status": "success", "cart": detailed_cart})
-
 
 # -------- filter store routes ---------- 
 
@@ -233,8 +220,6 @@ def filtered_products(criterion, name):
 @app.route('/viewProduct/<product_id>', method='GET')
 def viewProduct(product_id):
     return ctl.render('viewProduct', product_id = product_id)
-
-
 
 # --------------
 
@@ -283,9 +268,7 @@ def get_user_orders(userID):
 def contact():
     return ctl.render('contact')
 
-
 # ----------------- PRODUCT MANAGEMENT ROUTES (API) ----------------
-
 
 @app.route('/management', method='GET')
 def management():
