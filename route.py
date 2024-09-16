@@ -28,7 +28,6 @@ def serve_db(filepath):
     return static_file(filepath, root='./app/controllers/db')
 
 
-
 #-----------------------------------------------------------------------------
 @app.route('/')
 def index():
@@ -246,6 +245,7 @@ def createOrder():
        
         print(user_id)
         result = orcd.addUserOrder(products_list, user_id, status_code, total, paymentMethod)
+        
         print(result)
         if not result:
             response.status = 400

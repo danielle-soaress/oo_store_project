@@ -68,7 +68,7 @@ class DataRecord():
 
     #==========================================Telefone e CPF===========================================================
     def book(self,firstname, lastname, username, cpf, telefone, email, address, password):
-        #Se não existir, cria e adiciona o novo usuario
+        
         id = self.generate_unique_id()
         new_user= UserAccount(firstname, lastname, username, cpf, telefone, email, address, password, id)
         self.__user_accounts.append(new_user)
@@ -78,8 +78,7 @@ class DataRecord():
             user_data = [vars(user_account) for user_account in
             self.__user_accounts]
             json.dump(user_data, arquivo_json)
-        
-        self.save()
+            print('Usuario registrado com sucesso')
         return True #Usuario registrado com sucesso
 
     def getCurrentUser(self,session_id):
@@ -144,7 +143,10 @@ class DataRecord():
     
     def getUserByID(self, userID):
         try:
+            print(self.__user_accounts)
+            print(userID)
             for user in self.__user_accounts:
+                print(user.userID)
                 if user.userID == userID:
                     return user
             return None

@@ -1,13 +1,13 @@
 [
     {
         "id": "1",
-        "name": "Wireless Headphones X1",
+        "name": "Wireless Headphones X2",
         "price": 130.0,
         "category": "Headphones",
         "connectivity": "Wireless",
         "description": "Comfortable over-ear headphones with noise cancellation.",
         "brand": "SoundTech",
-        "stock": 44,
+        "stock": 30,
         "imageFileName": "hdw_1.jpg"
     },
     {
@@ -132,14 +132,14 @@
         "imageFileName": "p_12.jpg"
     },
     {
-        "id": "c6cde2a3-785d-4b51-8623-98e2fe9417d9",
-        "name": "Headset Gaming V32 Pink",
-        "price": 399.0,
-        "category": "Headsets",
-        "connectivity": "Wired",
-        "description": "Beautiful headset.",
-        "brand": "VGaming",
-        "stock": 20,
-        "imageFileName": "a4e652b5-73b4-4b8c-b415-872bc53af9b0_headset_catalog.jpg"
+        "id": "47518a7f-31d0-4342-83b6-851c82712be0",
+        "name": "produtinho",
+        "price": 300.0,
+        "category": "Headphones",
+        "connectivity": "Wireless",
+        "description": "dasda",
+        "brand": "dasdas",
+        "stock": 30,
+        "imageFileName": "1c7f5490-376b-4192-b7ee-28ce1e8e148b_Wired-headphones.png"
     }
 ]

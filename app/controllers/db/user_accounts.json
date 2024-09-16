@@ -13,62 +13,105 @@
         "orders": []
     },
     {
+        "firstname": "Henrique",
+        "lastname": "Moura",
+        "username": "Andrade",
+        "cpf": "12345678909",
+        "telefone": "61986759381",
+        "email": "higaleticia12@gmail.com",
+        "address": "Guara",
+        "password": "senha123",
+        "userID": "b71eadf7-a634-41fb-a85f-e2eed1b1ce12",
+        "cart": [],
+        "orders": []
+    },
+    {
         "firstname": "Danielle",
         "lastname": "Soares",
-        "username": "silvasoaresdanielle2@gmail.com",
+        "username": "daniss",
         "cpf": "123.456.789-09",
-        "telefone": "6193839284",
+        "telefone": "61994583982",
+        "email": "silvasoaresdanielle2@gmail.com",
+        "address": "dasdasd",
+        "password": "senha123",
+        "userID": "68c0b824-4dd5-415e-9c5e-84a9a9767750",
+        "cart": [],
+        "orders": []
+    },
+    {
+        "firstname": "Danielle",
+        "lastname": "Soares",
+        "username": "daniellesoaresdasilva",
+        "cpf": "123.456.789-09",
+        "telefone": "61994839243",
         "email": "silvasoaresdanielle2@gmail.com",
         "address": "dasda",
         "password": "senha123",
-        "userID": "fc9763d1-5bdf-4f83-82de-cf38a6d114a8",
+        "userID": "9d587f99-ce57-4bf4-b902-f3975b7c252a",
         "cart": [],
         "orders": []
     },
     {
         "firstname": "Danielle",
         "lastname": "Soares",
-        "username": "danielle",
+        "username": "daninini",
         "cpf": "123.456.789-09",
-        "telefone": "6192929292",
+        "telefone": "61992929292",
         "email": "silvasoaresdanielle2@gmail.com",
-        "address": "dasda",
+        "address": "dsada",
         "password": "senha123",
-        "userID": "ac03fb93-8000-42db-9f7a-65389b50ed17",
+        "userID": "d3404a73-f1cc-4b17-bd4d-39638ac6a89a",
         "cart": [],
         "orders": []
     },
     {
         "firstname": "Danielle",
         "lastname": "Soares",
-        "username": "daninielle",
+        "username": "jujuju",
         "cpf": "123.456.789-09",
-        "telefone": "61994382974",
+        "telefone": "61995443356",
         "email": "silvasoaresdanielle2@gmail.com",
-        "address": "dasd",
+        "address": "dada",
         "password": "senha123",
-        "userID": "8530eba5-f0a0-4d98-b734-e58b43d9cab4",
+        "userID": "64a236d1-f113-4b81-944f-3c4bf2b7abf7",
         "cart": [],
         "orders": []
     },
     {
         "firstname": "Danielle",
         "lastname": "Soares",
-        "username": "danielleso",
+        "username": "jujuba",
         "cpf": "123.456.789-09",
-        "telefone": "6192929292",
+        "telefone": "61992939494",
         "email": "silvasoaresdanielle2@gmail.com",
-        "address": "dani",
+        "address": "dasda5 casa 26",
         "password": "senha123",
-        "userID": "f043daef-d11a-4414-bab9-1381a3abe706",
+        "userID": "bc6f1e7a-19b2-4295-80cc-8a8d671450fe",
+        "cart": [],
+        "orders": []
+    },
+    {
+        "firstname": "danielle",
+        "lastname": "soares",
+        "username": "danidani",
+        "cpf": "123.456.789-09",
+        "telefone": "61992929292",
+        "email": "silvasoaresdanielle2@gmail.com",
+        "address": "dsadas",
+        "password": "senha123",
+        "userID": "3285e2c9-c10a-46e9-beb7-b86668021302",
         "cart": [
             {
-                "productId": "3",
-                "quantity": 1
+                "productId": "c6cde2a3-785d-4b51-8623-98e2fe9417d9",
+                "quantity": 2
+            },
+            {
+                "productId": "11",
+                "quantity": 3
             }
         ],
         "orders": [
-            "57ccf41c-b319-4fe5-acf7-8cb11ca16122"
+            "f61b9023-6fee-4e8f-b5a6-238011a9d62e"
         ]
     }
 ]
